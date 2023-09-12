@@ -1,0 +1,124 @@
+<diagram program="umletino" version="15.1"><zoom_level>9</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>18</x><y>531</y><w>189</w><h>63</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
+*Encantador de Serpentes*
+--
+-nome: string
+-input: Input
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>468</x><y>513</y><w>189</w><h>126</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
+*Serpente*
+--
+-tamanho: int
+-cabeca: ObjetoDeJogo
+-corpo: ObjetoDeJogo[]
+-colisor: Colisor[]
+--
++moverCobraDireita(): void
++moverCobraEsquerda(): void
+
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>198</x><y>549</y><w>288</w><h>45</h></coordinates><panel_attributes>&lt;&lt;association&gt;&gt;
+m2=1
+Controla a serpente &gt;</panel_attributes><additional_attributes>10;20;300;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>189</x><y>198</y><w>189</w><h>63</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
+*Jogo da Cobrinha*
+--
+
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>99</x><y>225</y><w>108</w><h>324</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=
+m2=1
+
+&lt;&lt;aggregation&gt;&gt;</panel_attributes><additional_attributes>100;10;10;10;10;340</additional_attributes></element><element><id>Relation</id><coordinates><x>270</x><y>423</y><w>216</w><h>135</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=
+m2=1
+
+&lt;&lt;aggregation&gt;&gt;</panel_attributes><additional_attributes>10;10;10;120;220;120</additional_attributes></element><element><id>UMLClass</id><coordinates><x>189</x><y>351</y><w>189</w><h>81</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
+*Campo da Serpente*
+--
+-altura: int
+-largura: int
+-limitesDoCampo: Parede[4]
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>270</x><y>252</y><w>99</w><h>117</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=
+m2=1
+
+&lt;&lt;aggregation&gt;&gt;</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>UMLClass</id><coordinates><x>792</x><y>513</y><w>189</w><h>72</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
+*Maçã*
+--
+-colisor: Colisor
+-sprite: \Sprite\
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>648</x><y>549</y><w>162</w><h>45</h></coordinates><panel_attributes>&lt;&lt;association&gt;&gt;
+m2=1
+Come a maçã &gt;</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>Relation</id><coordinates><x>369</x><y>378</y><w>441</w><h>180</h></coordinates><panel_attributes>&lt;&lt;association&gt;&gt;
+m2=1
+Gera novas maçãs &gt;</panel_attributes><additional_attributes>10;10;80;10;80;100;410;100;410;170;470;170</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1161</x><y>180</y><w>99</w><h>63</h></coordinates><panel_attributes>&lt;&lt;Struct&gt;&gt;
+*Vector2*
+--
++X: float
++Y: float
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1296</x><y>36</y><w>396</w><h>81</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
+*IRenderizador*
+--
++renderizarFrame(sprites: SpriteImagem[], asciiSprites: SpriteASCII[]) :void
++renderizarFrame(asciiSprites: RenderizadorDeSpritesASCII[]) :void
++renderizarFrame(sprites: SpriteImagem[]) :void
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1395</x><y>153</y><w>180</w><h>63</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
+*RenderizadorASCII*
+--
+
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1476</x><y>108</y><w>27</w><h>63</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;50;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1323</x><y>468</y><w>180</w><h>63</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
+/Sprite/
+--
+-pronfundidade: int
+--
+
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1224</x><y>603</y><w>180</w><h>54</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
+SpriteImagem
+--
+
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1305</x><y>522</y><w>126</w><h>99</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;90;120;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1422</x><y>603</y><w>180</w><h>54</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
+SpriteASCII
+--
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1404</x><y>522</y><w>126</w><h>99</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>120;90;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1323</x><y>306</y><w>180</w><h>63</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
+/Componente/
+--
+#objetoAnexado: ObjetoDeJogo
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1404</x><y>360</y><w>27</w><h>126</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;120;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1233</x><y>72</y><w>81</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;70;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1071</x><y>468</y><w>243</w><h>81</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
+Colisor
+--
+-formato: Retangulo
+--
++eventoDeColisao(outroColisor: Colisor) : void
+bg=green
++getColisor(): Retangulo</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1188</x><y>360</y><w>243</w><h>126</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;120;250;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1395</x><y>234</y><w>198</w><h>54</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
+*Fisica*
+--
++calcularColisoes(colisores: Colisor[])
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1233</x><y>90</y><w>180</w><h>189</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;40;10;40;190;180;190</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1044</x><y>180</y><w>99</w><h>63</h></coordinates><panel_attributes>&lt;&lt;Struct&gt;&gt;
+*Retangulo*
+--
++Inicio: Vector2
++Fim: Vector2
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1044</x><y>306</y><w>180</w><h>99</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
+/ObjetoDeJogo/
+--
+-posicao: Vector2
+-componentes: Componente[]
+--
++iniciar(): void
++atualizar(): void
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1215</x><y>333</y><w>126</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;120;10</additional_attributes></element><element><id>Relation</id><coordinates><x>909</x><y>396</y><w>243</w><h>135</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>250;10;250;70;10;70;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>549</x><y>396</y><w>576</w><h>135</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>620;10;620;40;200;40;200;110;10;110;10;130</additional_attributes></element><element><id>UMLClass</id><coordinates><x>513</x><y>333</y><w>189</w><h>81</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
+*Parede*
+--
+-altura: int
+-largura: int
+-colisor: Colisor
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>603</x><y>288</y><w>495</w><h>153</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>530;130;530;150;150;150;150;10;10;10;10;50</additional_attributes></element><element><id>Relation</id><coordinates><x>369</x><y>351</y><w>162</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=
+m2=4
+
+&lt;&lt;aggregation&gt;&gt;</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>UMLNote</id><coordinates><x>1035</x><y>0</y><w>675</w><h>675</h></coordinates><panel_attributes>GameEngine..</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1053</x><y>45</y><w>189</w><h>63</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
+/Game/
+--
+
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>270</x><y>99</y><w>891</w><h>117</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>970;10;970;70;10;70;10;110</additional_attributes></element><element><id>UMLNote</id><coordinates><x>0</x><y>135</y><w>990</w><h>522</h></coordinates><panel_attributes>Jogo da Cobrinha..
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1512</x><y>468</y><w>162</w><h>45</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
+Input
+--
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1404</x><y>360</y><w>207</w><h>126</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>210;120;10;10</additional_attributes></element></diagram>
