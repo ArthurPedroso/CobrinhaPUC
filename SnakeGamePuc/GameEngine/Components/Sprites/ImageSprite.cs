@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameEngine.Components
+namespace GameEngine.Components.Sprites
 {
-    public abstract class Component
+    public class ImageSprite : Sprite
     {
     }
 }
