@@ -1,6 +1,6 @@
 ﻿namespace GameEngine
 {
-    public class Class1
+    public class GameInstance
     {
 
     }
