@@ -8,5 +8,8 @@ namespace GameEngine.Components.Sprites
 {
     public class ImageSprite : Sprite
     {
+        public ImageSprite(GameObject _attachedGameObject) : base(_attachedGameObject)
+        {
+        }
     }
 }

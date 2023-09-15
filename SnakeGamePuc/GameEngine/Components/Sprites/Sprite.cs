@@ -8,5 +8,8 @@ namespace GameEngine.Components.Sprites
 {
     public abstract class Sprite : Component
     {
+        protected Sprite(GameObject _attachedGameObject) : base(_attachedGameObject)
+        {
+        }
     }
 }

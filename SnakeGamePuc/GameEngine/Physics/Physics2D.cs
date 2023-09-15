@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Physics
 {
-    internal class Physics2D
+    public class Physics2D
     {
         public void CalculateCollisions(Collider[] _colliders)
         {
