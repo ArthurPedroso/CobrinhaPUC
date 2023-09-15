@@ -37,7 +37,7 @@ namespace GameEngine.GEMath
             m_data = _data;
         }
 
-        public float GetElement(int _row, int _column)
+        public float GetElement(int _column, int _row)
         {
             if (_row >= NumOfRows || _column >= NumOfColumns) throw new MathException();
             return m_data[(_row * NumOfColumns) + _column];
@@ -49,7 +49,7 @@ namespace GameEngine.GEMath
             return m_data[_elementIndex];
         }
 
-        public void SetElement(int _row, int _column, float _newValue)
+        public void SetElement(int _column, int _row, float _newValue)
         {
             if (_row >= NumOfRows || _column >= NumOfColumns) throw new MathException();
             m_data[(_row * NumOfColumns) + _column] = _newValue;
@@ -73,7 +73,7 @@ namespace GameEngine.GEMath
                 newValue = 0;
                 for (int j = 0; j < _m1.NumOfColumns; j++)
                 {
-                    newValue += _m1.GetElement(i / _m1.NumOfRows, j) * _m2.GetElement(j, i % _m2.NumOfColumns);
+                    newValue += _m1.GetElement(j, i / _m1.NumOfRows) * _m2.GetElement(i % _m2.NumOfColumns, j);
                 }
                 newMatrix.SetElement(i, newValue);
             }

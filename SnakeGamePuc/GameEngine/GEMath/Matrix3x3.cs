@@ -11,6 +11,9 @@ namespace GameEngine.GEMath
     {
         Matrix3x3() : base(3, 3)
         {
+            SetElement(0, 0, 1.0f);
+            SetElement(1, 1, 1.0f);
+            SetElement(2, 2, 1.0f);
         }
     }
 }
