@@ -12,7 +12,7 @@ namespace GameEngineASCIIRenderer
         [STAThread]
         public static void Main()
         {
-            GameInstance instance = new GameInstance(new ASCIIRenderer(15, 15, 30));
+            GameInstance instance = new GameInstance(new ASCIIRenderer(16, 16, 30));
         }
     }
 }

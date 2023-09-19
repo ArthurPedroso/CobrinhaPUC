@@ -50,12 +50,12 @@ namespace GameEngineASCIIRenderer
         }
         private bool GameCoordsToFrameCoords(float _x, float _y, out int _result)
         {
-            int y = (int)Math.Round((_y + (WindowHeight / 2.0f)) * -1, 0);
+            int y = (int)Math.Round(((_y * -1) + (WindowHeight / 2.0f)), 0);
             int x = (int)Math.Round(_x + (WindowWidth / 2.0f), 0);
 
             if (y >= 0 && y < WindowHeight && x >= 0 && x < WindowWidth)
             {
-                _result = (y * WindowWidth) + x;
+                _result = (y * (WindowWidth + 1)) + x;
                 return true;
             }
             else
@@ -113,10 +113,12 @@ namespace GameEngineASCIIRenderer
 
                 Console.WriteLine(frame);
 
-                while (m_timer.ElapsedMilliseconds < r_targetFrameRenderTime)
-                { 
-
+                if(m_timer.ElapsedMilliseconds < r_targetFrameRenderTime)
+                {
+                    Thread.Sleep((int)(r_targetFrameRenderTime - m_timer.ElapsedMilliseconds));
                 }
+
+                DeltaTime = m_timer.ElapsedMilliseconds / 1000;
             }
         }
 

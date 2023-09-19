@@ -1,5 +1,6 @@
 ﻿using GameEngine.Components;
 using GameEngine.Components.Sprites;
+using GameEngine.Debug;
 using GameEngine.Input;
 using GameEngine.Patterns;
 using GameEngine.Physics;
@@ -12,11 +13,13 @@ namespace GameEngine
 {
     public class GameInstance : Singleton<GameInstance>
     {
+        private GameEngineDebugger m_debugger;
         private InputSystem m_inputSystem;
         private Physics2D m_physics2D;
         private SceneManager m_sceneManager;
         private IRenderer m_renderer;
 
+        public static IDebugger Debug { get => Instance.m_debugger; }
         public static Physics2D Physics { get => Instance.m_physics2D; }
         public static SceneManager SceneMan { get => Instance.m_sceneManager; }
         public static InputSystem Input { get => Instance.m_inputSystem; }
@@ -26,6 +29,7 @@ namespace GameEngine
             m_physics2D = new Physics2D();
             m_sceneManager = new SceneManager();
             m_inputSystem = new InputSystem();
+            m_debugger = new GameEngineDebugger();
             m_renderer = _renderer;
 
             InitEngine();
@@ -47,6 +51,7 @@ namespace GameEngine
                     Console.WriteLine("a-b");
                 },
                 out message);
+            m_debugger.StartDebugger();
             m_renderer.StartRenderLoop();
             EngineLoop();
         }
@@ -59,7 +64,7 @@ namespace GameEngine
             while (true)
             {
                 m_renderer.RenderSprites(new ASCIISprite[] { obj.GetComponent<ASCIISprite>() });
-                engineLoopCounts++;
+                Debug.LogMsg("Engine Loop Count = " + ++engineLoopCounts);
             }
         }
         private void StopEngine()
