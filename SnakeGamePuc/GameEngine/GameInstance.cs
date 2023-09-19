@@ -55,6 +55,13 @@ namespace GameEngine
             m_renderer.StartRenderLoop();
             EngineLoop();
         }
+        private void WaitForRenderThread()
+        {
+            bool renderThreadDone = false;
+            while(!(m_renderer.CheckIfFrameFinishedRendering(out renderThreadDone) && renderThreadDone))
+            { 
+            }
+        }
         private int engineLoopCounts = 0;
         private void EngineLoop()
         {
@@ -65,6 +72,7 @@ namespace GameEngine
             {
                 m_renderer.RenderSprites(new ASCIISprite[] { obj.GetComponent<ASCIISprite>() });
                 Debug.LogMsg("Engine Loop Count = " + ++engineLoopCounts);
+                WaitForRenderThread();
             }
         }
         private void StopEngine()

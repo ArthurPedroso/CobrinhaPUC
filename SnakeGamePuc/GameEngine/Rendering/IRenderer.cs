@@ -14,6 +14,6 @@ namespace GameEngine.Rendering
         public void RenderSprites(ImageSprite[] _imageSprites);
         public void RenderSprites(ASCIISprite[] _asciiSprites);
         public void RenderSprites(ImageSprite[] _imageSprites, ASCIISprite[] _asciiSprites);
-        //public void RegisterOnFrameRendered(Action _onFrameRender);
+        public bool CheckIfFrameFinishedRendering(out bool _frameRendered);
     }
 }

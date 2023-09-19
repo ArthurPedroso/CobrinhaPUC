@@ -1,5 +1,7 @@
-﻿using GameEngine.Components.Sprites;
+﻿using GameEngine;
+using GameEngine.Components.Sprites;
 using GameEngine.Rendering;
+using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Windows.Controls;
 
@@ -19,6 +21,8 @@ namespace GameEngineASCIIRenderer
         private bool m_run;
 
         //Game Thread Read - Render Thread Write
+        private ConcurrentQueue<bool> m_frameRendered;
+
         public float DeltaTime { get; private set; }
         public int WindowWidth { get; private set; }
         public int WindowHeight { get; private set; }
@@ -30,10 +34,11 @@ namespace GameEngineASCIIRenderer
             m_run = false;
             r_targetFrameRenderTime = 1000 / _fps;
             m_interThreadSpriteBuffer = new List<AsciiFrag>();
+            m_frameRendered = new ConcurrentQueue<bool>();
             m_renderThread = new Thread(new ThreadStart(RenderThreadLoop));
         }
 
-        private void LoadSpriteBuffer(ImageSprite[]? _imageSprites, ASCIISprite[] _asciiSprites)
+        private void LoadSpriteBuffer(ImageSprite[] _imageSprites, ASCIISprite[] _asciiSprites)
         {
             lock (m_interThreadSpriteBuffer) 
             {
@@ -118,7 +123,15 @@ namespace GameEngineASCIIRenderer
                     Thread.Sleep((int)(r_targetFrameRenderTime - m_timer.ElapsedMilliseconds));
                 }
 
+                while (m_frameRendered.Count > 0)
+                {
+                    GameInstance.Debug.LogWarningMsg("Game Loop stalling!");
+                    Thread.Sleep(50);
+                }
+
                 DeltaTime = m_timer.ElapsedMilliseconds / 1000;
+                m_frameRendered.Enqueue(true);
+                GameInstance.Debug.LogMsg("Render Loop Done!");
             }
         }
 
@@ -152,6 +165,11 @@ namespace GameEngineASCIIRenderer
                 m_run = false;
                 m_renderThread.Join();
             }
+        }
+
+        public bool CheckIfFrameFinishedRendering(out bool _frameRendered)
+        {
+            return m_frameRendered.TryDequeue(out _frameRendered);
         }
 
         //public void RegisterOnFrameRendered(Action _onFrameRender)
