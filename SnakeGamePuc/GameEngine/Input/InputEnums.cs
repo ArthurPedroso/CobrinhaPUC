@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace GameEngine.Input
 {
     [Flags]
-    public enum KeyPressed
+    public enum InputKey
     {
         None = 0,
         A = 1, 

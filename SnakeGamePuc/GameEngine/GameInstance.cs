@@ -66,7 +66,9 @@ namespace GameEngine
         }
         private void StopEngine()
         {
+            m_debugger.StopDebugger();
             m_renderer.StopRenderLoop();
+            m_inputSystem.StopInputLoop();
         }
 
         public static void InstantiateGameObj(GameObject _obj)

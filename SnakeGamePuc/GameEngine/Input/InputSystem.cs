@@ -16,119 +16,8 @@ namespace GameEngine.Input
     /// The call is made by sending a message to the thread that installed the hook.
     /// Therefore, the thread that installed the hook must have a message loop.</remarks>
     /// </summary>
-    public sealed class InputSystem : IDisposable
+    public sealed class InputSystem
     {
-        private class HookActions
-        {
-            public HookActions(Action excetue, Action<object> dispose = null)
-            {
-                Execute = excetue;
-                Dispose = dispose;
-            }
-
-            public Action Execute { get; set; }
-            public Action<object> Dispose { get; set; }
-
-        }
-        private class KeyCombination : IEquatable<KeyCombination>
-        {
-            private readonly bool _canModify;
-            public KeyCombination(List<Key> keys)
-            {
-                _keys = keys ?? new List<Key>();
-            }
-
-            public KeyCombination()
-            {
-                _keys = new List<Key>();
-                _canModify = true;
-            }
-
-            public void Add(Key key)
-            {
-                if (_canModify)
-                {
-                    _keys.Add(key);
-                }
-            }
-
-            public void Remove(Key key)
-            {
-                if (_canModify)
-                {
-                    _keys.Remove(key);
-                }
-            }
-
-            public void Clear()
-            {
-                if (_canModify)
-                {
-                    _keys.Clear();
-                }
-            }
-
-            public int Count { get { return _keys.Count; } }
-
-            private readonly List<Key> _keys;
-
-            public bool Equals(KeyCombination other)
-            {
-                return other._keys != null && _keys != null && KeysEqual(other._keys);
-            }
-
-            private bool KeysEqual(List<Key> keys)
-            {
-                if (keys == null || _keys == null || keys.Count != _keys.Count) return false;
-                for (int i = 0; i < _keys.Count; i++)
-                {
-                    if (_keys[i] != keys[i])
-                        return false;
-                }
-                return true;
-            }
-
-            public override bool Equals(object obj)
-            {
-                if (obj is KeyCombination)
-                    return Equals((KeyCombination)obj);
-                return false;
-            }
-
-            public override int GetHashCode()
-            {
-                if (_keys == null) return 0;
-
-                //http://stackoverflow.com/a/263416
-                //http://stackoverflow.com/a/8094931
-                //assume keys not going to modify after we use GetHashCode
-                unchecked
-                {
-                    int hash = 19;
-                    for (int i = 0; i < _keys.Count; i++)
-                    {
-                        hash = hash * 31 + _keys[i].GetHashCode();
-                    }
-                    return hash;
-                }
-            }
-
-            public override string ToString()
-            {
-                if (_keys == null)
-                    return string.Empty;
-
-                var sb = new StringBuilder((_keys.Count - 1) * 4 + 10);
-                for (int i = 0; i < _keys.Count; i++)
-                {
-                    if (i < _keys.Count - 1)
-                        sb.Append(_keys[i] + " , ");
-                    else
-                        sb.Append(_keys[i]);
-                }
-                return sb.ToString();
-            }
-        }
         #region externDlls
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc lpfn, IntPtr hMod, uint dwThreadId);
@@ -147,32 +36,44 @@ namespace GameEngine.Input
         private static extern uint GetCurrentThreadId();
         #endregion
 
+        private class InputState : ICloneable
+        {
+            public InputKey KeysPressed;
+            public InputKey KeysHolded;
+            public InputKey KeysReleased;
+
+            public object Clone()
+            {
+                return MemberwiseClone();
+            }
+        }
+
         private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
 
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;
         private const int WM_KEYUP = 0x0101;
 
-
-        private Dictionary<int, KeyValuePair<KeyCombination, HookActions>> m_hookEvents;
-        private KeyCombination m_pressedKeys;
         private LowLevelKeyboardProc m_proc;
         private Thread m_inputThread;
         private IntPtr m_hookId = IntPtr.Zero;
         private bool m_disposed;
         private bool m_run;
-        private int m_inputID;
-        public Key KeysPressed { get; private set; }
-        public Key KeysHolded { get; private set; }
-        public Key KeysReleased { get; private set; }
+
+        private InputState m_localThreadInputState;
+
+        private InputState m_gameThreadInputState;
+        public InputKey KeysPressed { get => m_gameThreadInputState.KeysPressed; }
+        public InputKey KeysHolded { get => m_gameThreadInputState.KeysHolded; }
+        public InputKey KeysReleased { get => m_gameThreadInputState.KeysReleased; }
 
         public InputSystem()
         {
             m_proc = HookCallback;
-            m_hookEvents = new Dictionary<int, KeyValuePair<KeyCombination, HookActions>>();
-            m_pressedKeys = new KeyCombination();
             m_inputThread = new Thread(new ThreadStart(InputLoop));
             m_run = false;
+            m_localThreadInputState = new InputState();
+            m_gameThreadInputState = new InputState();
         }
         ~InputSystem()
         {
@@ -188,8 +89,6 @@ namespace GameEngine.Input
                 if (dispose)
                 {
                     m_proc = null;
-                    m_hookEvents = null;
-                    m_pressedKeys = null;
                     GC.SuppressFinalize(this);
                 }
                 m_disposed = true;
@@ -199,20 +98,6 @@ namespace GameEngine.Input
             {
             }
         }
-
-        private bool ValidateKeys(IEnumerable<Key> keys)
-        {
-            return keys.All(t => IsKeyValid((int)t));
-        }
-
-        private bool IsKeyValid(int key)
-        {
-            // 'alt' is sys key and hence is disallowed.
-            // a - z and shift, ctrl. 
-            return key >= 44 && key <= 69 || key >= 116 && key <= 119;
-        }
-        
-
         private IntPtr SetHook(LowLevelKeyboardProc proc)
         {
             using (Process curProcess = Process.GetCurrentProcess())
@@ -222,6 +107,86 @@ namespace GameEngine.Input
             }
         }
 
+        private void OnKeyDown(InputKey _inputKey)
+        {
+            lock (m_localThreadInputState)
+            {
+                m_localThreadInputState.KeysPressed |= _inputKey;
+                m_localThreadInputState.KeysHolded &= ~_inputKey;
+                m_localThreadInputState.KeysReleased &= ~_inputKey;
+            }
+        }
+        private void OnKeyUp(InputKey _inputKey)
+        {
+            lock (m_localThreadInputState)
+            {
+                m_localThreadInputState.KeysReleased |= _inputKey;
+                m_localThreadInputState.KeysHolded &= ~_inputKey;
+                m_localThreadInputState.KeysPressed &= ~_inputKey;
+            }
+        }
+
+        private InputKey WindowsKeysToInputKeys(int _vkCode)
+        {
+            switch ((ConsoleKey)_vkCode)
+            {
+                case ConsoleKey.A:
+                    return InputKey.A;
+                case ConsoleKey.B:
+                    return InputKey.B;
+                case ConsoleKey.C:
+                    return InputKey.C;
+                case ConsoleKey.D:
+                    return InputKey.D;
+                case ConsoleKey.E:
+                    return InputKey.E;
+                case ConsoleKey.F:
+                    return InputKey.F;
+                case ConsoleKey.G:
+                    return InputKey.G;
+                case ConsoleKey.H:
+                    return InputKey.H;
+                case ConsoleKey.I:
+                    return InputKey.I;
+                case ConsoleKey.J:
+                    return InputKey.J;
+                case ConsoleKey.K:
+                    return InputKey.K;
+                case ConsoleKey.L:
+                    return InputKey.L;
+                case ConsoleKey.M:
+                    return InputKey.M;
+                case ConsoleKey.N:
+                    return InputKey.N;
+                case ConsoleKey.O:
+                    return InputKey.O;
+                case ConsoleKey.P:
+                    return InputKey.P;
+                case ConsoleKey.Q:
+                    return InputKey.Q;
+                case ConsoleKey.R:
+                    return InputKey.R;
+                case ConsoleKey.S:
+                    return InputKey.S;
+                case ConsoleKey.T:
+                    return InputKey.T;
+                case ConsoleKey.U:
+                    return InputKey.U;
+                case ConsoleKey.V:
+                    return InputKey.V;
+                case ConsoleKey.W:
+                    return InputKey.W;
+                case ConsoleKey.X:
+                    return InputKey.X;
+                case ConsoleKey.Y:
+                    return InputKey.Y;
+                case ConsoleKey.Z:
+                    return InputKey.Z;
+                default:
+                    GameInstance.Debug.LogErrorMsg("Not corresponding input key found");
+                    return InputKey.None;
+            }
+        }
 
         private IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
@@ -229,127 +194,25 @@ namespace GameEngine.Input
                 return CallNextHookEx(m_hookId, nCode, wParam, lParam);
 
             var result = new IntPtr(0);
-            if (wParam == (IntPtr)WM_KEYDOWN)
+            if (wParam == WM_KEYDOWN)
             {
-                m_pressedKeys.Add(KeyInterop.KeyFromVirtualKey(Marshal.ReadInt32(lParam))); // vkCode (in KBDLLHOOKSTRUCT) is DWORD (actually it can be 0-254)
-                if (m_pressedKeys.Count >= 2)
-                {
-                    var keysToAction = m_hookEvents.Values.FirstOrDefault(val => val.Key.Equals(m_pressedKeys));
-                    if (keysToAction.Value != null)
-                    {
-                        keysToAction.Value.Execute();
-                        // don't try to get the action again after the execute because it may removed already
-                        result = new IntPtr(1);
-                    }
-                }
+                OnKeyDown(WindowsKeysToInputKeys(Marshal.ReadInt32(lParam)));
             }
-            else if (wParam == (IntPtr)WM_KEYUP)
+            else if (wParam == WM_KEYUP)
             {
-                m_pressedKeys.Clear();
+                OnKeyUp(WindowsKeysToInputKeys(Marshal.ReadInt32(lParam)));
             }
 
             // in case we processed the message, prevent the system from passing the message to the rest of the hook chain
             // return result.ToInt32() == 0 ? CallNextHookEx(_hookId, nCode, wParam, lParam) : result;
             return CallNextHookEx(m_hookId, nCode, wParam, lParam);
         }
-
-        /// <summary>
-        /// Un register a keyboard hook event
-        /// </summary>
-        /// <param name="id">event id to remove</param>
-        /// <param name="obj">parameter to pass to dispose method</param>
-        private void UnRegisterInput(int id, object obj = null)
-        {
-            if (m_hookEvents == null || id < 0 || !m_hookEvents.ContainsKey(id)) return;
-
-            var hook = m_hookEvents[id];
-
-            if (hook.Value != null && hook.Value.Dispose != null)
-            {
-                try
-                {
-                    hook.Value.Dispose(obj);
-                }
-                catch (Exception)
-                {
-                    // need to be define if we need to throw the exception
-                }
-            }
-
-            m_hookEvents.Remove(id);
-        }
-
-        /// <summary>
-        /// Register a keyboard hook event
-        /// </summary>
-        /// <param name="keys">The short keys. minimum is two keys</param>
-        /// <param name="execute">The action to run when the key ocmbination has pressed</param>
-        /// <param name="message">Empty if no error occurred otherwise error message</param>
-        /// <param name="runAsync">True if the action should execute in the background. -Be careful from thread affinity- Default is false</param>
-        /// <param name="dispose">An action to run when unsubscribing from keyboard hook. can be null</param>
-        /// <returns>Event id to use when unregister</returns>
-        private int RegisterInput(List<Key> keys, Action execute, out string message, bool runAsync = false, Action<object> dispose = null)
-        {
-            if (m_hookEvents == null)
-            {
-                message = "Can't register";
-                return -1;
-            }
-
-            if (keys == null || execute == null)
-            {
-                message = "'keys' and 'execute' can't be null";
-                return -1;
-            }
-
-            if (keys.Count < 2)
-            {
-                message = "You must provide at least two keys";
-                return -1;
-            }
-
-            if (!ValidateKeys(keys))
-            {
-                message = "Unallowed key. Only 'shift', 'ctrl' and 'a' - 'z' are allowed";
-                return -1;
-            }
-
-            var kc = new KeyCombination(keys);
-            int id = kc.GetHashCode();
-            if (m_hookEvents.ContainsKey(id))
-            {
-                message = "The key combination is already exist it the application";
-                return -1;
-            }
-
-            // if the action should run async, wrap it with Task
-            Action asyncAction = null;
-            if (runAsync)
-                asyncAction = () => Task.Run(() => execute);
-
-            m_hookEvents[id] = new KeyValuePair<KeyCombination, HookActions>(kc, new HookActions(asyncAction ?? execute, dispose));
-            message = string.Empty;
-            return id;
-        }
-
         private void InputLoop()
         {
             m_hookId = SetHook(m_proc);
-            string message;
-            m_inputID = RegisterInput(
-                new List<Key> {
-            Key.A,
-            Key.B
-                },
-                () =>
-                {
-                    Console.WriteLine("a-b");
-                },
-                out message);
 
             Application.Run();
 
-            UnRegisterInput(m_inputID);
             Dispose(true);
         }
 
@@ -367,13 +230,14 @@ namespace GameEngine.Input
             if (m_run)
             {
                 m_run = false;
+                Application.Exit();
                 m_inputThread.Join();
             }
         }
 
-        public void Dispose()
+        public void UpdateInputState()
         {
-            Dispose(true);
+            
         }
     }
     
