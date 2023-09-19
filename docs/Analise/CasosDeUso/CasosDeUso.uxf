@@ -1,84 +1,382 @@
-<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><element><id>UMLActor</id><coordinates><x>264</x><y>584</y><w>112</w><h>96</h></coordinates><panel_attributes>*&lt;&lt;Actor&gt;&gt;*
-Encantador de Cobras</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLActor</id><coordinates><x>248</x><y>208</y><w>128</w><h>96</h></coordinates><panel_attributes>*&lt;&lt;Actor&gt;&gt;*
-Encantador de Serpentes</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>536</x><y>496</y><w>280</w><h>304</h></coordinates><panel_attributes>*&lt;&lt;System&gt;&gt;*
-Arena de embate Cobra vs Serpente
---
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>8</x><y>216</y><w>168</w><h>72</h></coordinates><panel_attributes>*Meta*
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>11</zoom_level>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>451</x>
+      <y>462</y>
+      <w>198</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>*&lt;&lt;Actor&gt;&gt;*
+Encantador de Serpentes</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>132</x>
+      <y>473</y>
+      <w>231</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>*Meta*
 --
 Guiar a serpente de forma com
 que ela cresça e cubra o campo
 ou elimine a cobra do oponente
-sem que a sua serpente morra.</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>592</y><w>168</w><h>72</h></coordinates><panel_attributes>*Meta*
+sem que a sua serpente morra.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>352</x>
+      <y>506</y>
+      <w>209</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>170.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>957</x>
+      <y>352</y>
+      <w>187</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>*&lt;&lt;Use Case&gt;&gt;*
+Guia da serpente
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>891</x>
+      <y>286</y>
+      <w>330</w>
+      <h>352</h>
+    </coordinates>
+    <panel_attributes>*&lt;&lt;System&gt;&gt;*
+Mundo da serpente
 --
-Guiar a cobra de forma com
-que ela cresça e elimine a
-serpente do oponente sem que
-a sua cobra morra.</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>160</x><y>616</y><w>168</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>190;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>168</x><y>240</y><w>152</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>170;10;10;10</additional_attributes></element><element><id>UMLUseCase</id><coordinates><x>608</x><y>40</y><w>136</w><h>56</h></coordinates><panel_attributes>*&lt;&lt;Use Case&gt;&gt;*
-Guiar a serpente
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLUseCase</id><coordinates><x>608</x><y>544</y><w>136</w><h>56</h></coordinates><panel_attributes>*&lt;&lt;Use Case&gt;&gt;*
-Guiar a cobra
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>536</x><y>0</y><w>280</w><h>488</h></coordinates><panel_attributes>*&lt;&lt;System&gt;&gt;*
-Campo da serpente
---
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLUseCase</id><coordinates><x>608</x><y>168</y><w>136</w><h>56</h></coordinates><panel_attributes>*&lt;&lt;Use Case&gt;&gt;*
-Alcançar tamanho máximo 
-de serpente
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLUseCase</id><coordinates><x>608</x><y>232</y><w>136</w><h>56</h></coordinates><panel_attributes>*&lt;&lt;Use Case&gt;&gt;*
-Não deixar a serpente 
-se machucar
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLUseCase</id><coordinates><x>592</x><y>296</y><w>168</w><h>56</h></coordinates><panel_attributes>*&lt;&lt;Use Case&gt;&gt;*
-Desafiar o
-encantador de cobras
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLUseCase</id><coordinates><x>608</x><y>672</y><w>136</w><h>56</h></coordinates><panel_attributes>*&lt;&lt;Use Case&gt;&gt;*
-Perder ou ganhar o
-desafio
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLUseCase</id><coordinates><x>608</x><y>104</y><w>136</w><h>56</h></coordinates><panel_attributes>*&lt;&lt;Use Case&gt;&gt;*
-Alimentar a serpente
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLUseCase</id><coordinates><x>608</x><y>360</y><w>136</w><h>56</h></coordinates><panel_attributes>*&lt;&lt;Use Case&gt;&gt;*
-Perder ou ganhar o
-desafio
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLUseCase</id><coordinates><x>608</x><y>608</y><w>136</w><h>56</h></coordinates><panel_attributes>*&lt;&lt;Use Case&gt;&gt;*
-Alimentar a cobra
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLUseCase</id><coordinates><x>608</x><y>424</y><w>136</w><h>56</h></coordinates><panel_attributes>*&lt;&lt;Use Case&gt;&gt;*
-Ver o campo
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>312</x><y>64</y><w>312</w><h>200</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>370;10;10;230</additional_attributes></element><element><id>Relation</id><coordinates><x>312</x><y>128</y><w>312</w><h>136</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>370;10;10;150</additional_attributes></element><element><id>Relation</id><coordinates><x>312</x><y>192</y><w>312</w><h>72</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>370;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>312</x><y>240</y><w>312</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>370;20;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>312</x><y>240</y><w>304</w><h>88</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>360;90;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>312</x><y>240</y><w>312</w><h>160</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>370;180;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>312</x><y>240</y><w>312</w><h>224</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>370;260;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>320</x><y>560</y><w>304</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>360;10;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>320</x><y>616</y><w>304</w><h>32</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>360;20;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>320</x><y>616</y><w>304</w><h>96</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>360;100;10;10</additional_attributes></element><element><id>UMLNote</id><coordinates><x>936</x><y>104</y><w>104</w><h>48</h></coordinates><panel_attributes>*Responsabilidade*
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>957</x>
+      <y>440</y>
+      <w>187</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>*&lt;&lt;Use Case&gt;&gt;*
+Guardião da serpente
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>957</x>
+      <y>528</y>
+      <w>187</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>*&lt;&lt;Use Case&gt;&gt;*
+Observar da serpente
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>550</x>
+      <y>385</y>
+      <w>429</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>370.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>550</x>
+      <y>462</y>
+      <w>429</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>370.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>550</x>
+      <y>506</y>
+      <w>429</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>370.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1408</x>
+      <y>143</y>
+      <w>143</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>*Responsabilidade*
 --
 Receber input do
 host
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>936</x><y>160</y><w>104</w><h>48</h></coordinates><panel_attributes>*Responsabilidade*
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1408</x>
+      <y>220</y>
+      <w>143</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>*Responsabilidade*
 --
 Mudar direção 
 da serpente/cobra
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>936</x><y>216</y><w>120</w><h>40</h></coordinates><panel_attributes>*Responsabilidade*
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1408</x>
+      <y>297</y>
+      <w>165</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>*Responsabilidade*
 --
 Criar frutas no campo
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>936</x><y>264</y><w>112</w><h>40</h></coordinates><panel_attributes>*Responsabilidade*
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1408</x>
+      <y>374</y>
+      <w>154</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>*Responsabilidade*
 --
 Aumentar a serpente
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>936</x><y>312</y><w>112</w><h>40</h></coordinates><panel_attributes>*Responsabilidade*
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1408</x>
+      <y>451</y>
+      <w>154</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>*Responsabilidade*
 --
 Detectar colisão
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>936</x><y>360</y><w>128</w><h>48</h></coordinates><panel_attributes>*Responsabilidade*
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1408</x>
+      <y>528</y>
+      <w>176</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>*Responsabilidade*
 --
 Detectar preenchimento
 total da serpente no campo
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>936</x><y>416</y><w>128</w><h>48</h></coordinates><panel_attributes>*Responsabilidade*
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1408</x>
+      <y>605</y>
+      <w>176</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>*Responsabilidade*
 --
 Detectar morte da cobra
 ou da serpente
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>936</x><y>592</y><w>136</w><h>48</h></coordinates><panel_attributes>*Responsabilidade*
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1408</x>
+      <y>770</y>
+      <w>187</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>*Responsabilidade*
 --
 Mostrar estado do jogo
 atualizado para o jogador
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>936</x><y>536</y><w>128</w><h>48</h></coordinates><panel_attributes>*Responsabilidade*
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1408</x>
+      <y>682</y>
+      <w>176</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>*Responsabilidade*
 --
 Detectar condição de
 vitória/derrota
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>728</x><y>56</y><w>224</w><h>88</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;260;90</additional_attributes></element><element><id>Relation</id><coordinates><x>728</x><y>64</y><w>224</w><h>136</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;260;150</additional_attributes></element><element><id>Relation</id><coordinates><x>728</x><y>112</y><w>224</w><h>136</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;260;150</additional_attributes></element><element><id>Relation</id><coordinates><x>728</x><y>128</y><w>224</w><h>168</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;260;190</additional_attributes></element><element><id>Relation</id><coordinates><x>720</x><y>136</y><w>232</w><h>208</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;270;240</additional_attributes></element><element><id>Relation</id><coordinates><x>728</x><y>320</y><w>224</w><h>72</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;70;260;10</additional_attributes></element><element><id>Relation</id><coordinates><x>736</x><y>192</y><w>216</w><h>208</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;250;240</additional_attributes></element><element><id>Relation</id><coordinates><x>736</x><y>384</y><w>216</w><h>72</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;250;70</additional_attributes></element><element><id>Relation</id><coordinates><x>736</x><y>248</y><w>216</w><h>208</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;250;240</additional_attributes></element><element><id>Relation</id><coordinates><x>728</x><y>432</y><w>224</w><h>200</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;260;230</additional_attributes></element><element><id>Relation</id><coordinates><x>728</x><y>392</y><w>224</w><h>184</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;260;210</additional_attributes></element><element><id>UMLNote</id><coordinates><x>936</x><y>472</y><w>136</w><h>56</h></coordinates><panel_attributes>*Responsabilidade*
---
-Permitir comunicação entre 
-o encantador de cobras e o 
-encantador de serpentes
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>752</x><y>320</y><w>200</w><h>192</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;230;220</additional_attributes></element><element><id>Relation</id><coordinates><x>736</x><y>120</y><w>216</w><h>464</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;560;250;10</additional_attributes></element><element><id>Relation</id><coordinates><x>736</x><y>184</y><w>216</w><h>408</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;490;250;10</additional_attributes></element><element><id>Relation</id><coordinates><x>736</x><y>240</y><w>216</w><h>416</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;500;250;10</additional_attributes></element><element><id>Relation</id><coordinates><x>736</x><y>280</y><w>216</w><h>376</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;450;250;10</additional_attributes></element><element><id>Relation</id><coordinates><x>736</x><y>336</y><w>216</w><h>376</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;450;250;10</additional_attributes></element><element><id>Relation</id><coordinates><x>736</x><y>568</y><w>216</w><h>152</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;170;250;10</additional_attributes></element><element><id>Relation</id><coordinates><x>728</x><y>496</y><w>224</w><h>208</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;240;260;10</additional_attributes></element><element><id>UMLUseCase</id><coordinates><x>608</x><y>736</y><w>136</w><h>56</h></coordinates><panel_attributes>*&lt;&lt;Use Case&gt;&gt;*
-Ver a Arena
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>736</x><y>608</y><w>216</w><h>168</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;190;250;10</additional_attributes></element><element><id>Relation</id><coordinates><x>320</x><y>616</y><w>304</w><h>160</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>360;180;10;10</additional_attributes></element></diagram>
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1111</x>
+      <y>165</y>
+      <w>319</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;180.0;270.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1122</x>
+      <y>242</y>
+      <w>308</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;120.0;260.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1133</x>
+      <y>308</y>
+      <w>297</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;70.0;250.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1133</x>
+      <y>385</y>
+      <w>297</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;250.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1122</x>
+      <y>396</y>
+      <w>308</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;260.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1133</x>
+      <y>462</y>
+      <w>297</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;250.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1122</x>
+      <y>572</y>
+      <w>308</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;260.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1133</x>
+      <y>462</y>
+      <w>297</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;250.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1122</x>
+      <y>539</y>
+      <w>308</w>
+      <h>286</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;260.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1111</x>
+      <y>572</y>
+      <w>319</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;270.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1122</x>
+      <y>550</y>
+      <w>308</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;20.0;260.0;10.0</additional_attributes>
+  </element>
+</diagram>
