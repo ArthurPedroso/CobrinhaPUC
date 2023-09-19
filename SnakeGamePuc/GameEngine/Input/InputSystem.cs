@@ -3,12 +3,13 @@ using System.Diagnostics;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace GameEngine.Input
 {
-    
-    //https://stackoverflow.com/questions/72058558/how-can-i-add-system-windows-forms-to-wpf-application-when-adding-via-reference
+
+    //https://stackoverflow.com/questions/604410/global-keyboard-capture-in-c-sharp-application
     /// <summary>
     /// Provide a way to handle a global keyboard hooks
     /// <remarks>This hook is called in the context of the thread that installed it. 
@@ -141,6 +142,9 @@ namespace GameEngine.Input
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr GetModuleHandle(string lpModuleName);
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern uint GetCurrentThreadId();
         #endregion
 
         private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
@@ -149,23 +153,29 @@ namespace GameEngine.Input
         private const int WM_KEYDOWN = 0x0100;
         private const int WM_KEYUP = 0x0101;
 
-        private readonly IntPtr m_hookId = IntPtr.Zero;
 
         private Dictionary<int, KeyValuePair<KeyCombination, HookActions>> m_hookEvents;
         private KeyCombination m_pressedKeys;
         private LowLevelKeyboardProc m_proc;
+        private Thread m_inputThread;
+        private IntPtr m_hookId = IntPtr.Zero;
         private bool m_disposed;
+        private bool m_run;
+        private int m_inputID;
+        public Key KeysPressed { get; private set; }
+        public Key KeysHolded { get; private set; }
+        public Key KeysReleased { get; private set; }
 
         public InputSystem()
         {
             m_proc = HookCallback;
             m_hookEvents = new Dictionary<int, KeyValuePair<KeyCombination, HookActions>>();
-            m_hookId = SetHook(m_proc);
             m_pressedKeys = new KeyCombination();
+            m_inputThread = new Thread(new ThreadStart(InputLoop));
+            m_run = false;
         }
         ~InputSystem()
         {
-            Dispose(false);
         }
         private void Dispose(bool dispose)
         {
@@ -248,7 +258,7 @@ namespace GameEngine.Input
         /// </summary>
         /// <param name="id">event id to remove</param>
         /// <param name="obj">parameter to pass to dispose method</param>
-        public void UnRegisterInput(int id, object obj = null)
+        private void UnRegisterInput(int id, object obj = null)
         {
             if (m_hookEvents == null || id < 0 || !m_hookEvents.ContainsKey(id)) return;
 
@@ -269,11 +279,6 @@ namespace GameEngine.Input
             m_hookEvents.Remove(id);
         }
 
-        public void Dispose()
-        {
-            Dispose(true);
-        }
-
         /// <summary>
         /// Register a keyboard hook event
         /// </summary>
@@ -283,7 +288,7 @@ namespace GameEngine.Input
         /// <param name="runAsync">True if the action should execute in the background. -Be careful from thread affinity- Default is false</param>
         /// <param name="dispose">An action to run when unsubscribing from keyboard hook. can be null</param>
         /// <returns>Event id to use when unregister</returns>
-        public int RegisterInput(List<Key> keys, Action execute, out string message, bool runAsync = false, Action<object> dispose = null)
+        private int RegisterInput(List<Key> keys, Action execute, out string message, bool runAsync = false, Action<object> dispose = null)
         {
             if (m_hookEvents == null)
             {
@@ -325,6 +330,50 @@ namespace GameEngine.Input
             m_hookEvents[id] = new KeyValuePair<KeyCombination, HookActions>(kc, new HookActions(asyncAction ?? execute, dispose));
             message = string.Empty;
             return id;
+        }
+
+        private void InputLoop()
+        {
+            m_hookId = SetHook(m_proc);
+            string message;
+            m_inputID = RegisterInput(
+                new List<Key> {
+            Key.A,
+            Key.B
+                },
+                () =>
+                {
+                    Console.WriteLine("a-b");
+                },
+                out message);
+
+            Application.Run();
+
+            UnRegisterInput(m_inputID);
+            Dispose(true);
+        }
+
+        public void StartInputLoop()
+        {
+            if (!m_run)
+            {
+                m_run = true;
+                m_inputThread.Start();
+            }
+        }
+
+        public void StopInputLoop()
+        {
+            if (m_run)
+            {
+                m_run = false;
+                m_inputThread.Join();
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
         }
     }
     

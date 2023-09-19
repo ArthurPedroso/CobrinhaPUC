@@ -35,38 +35,27 @@ namespace GameEngine
             InitEngine();
             EngineLoop();
 
-            Application.Run();
         }
 
         private void InitEngine()
         {
-            string message;
-            var hookId = Input.RegisterInput(
-                new List<Key> {
-            Key.A,
-            Key.B
-                },
-                () =>
-                {
-                    Console.WriteLine("a-b");
-                },
-                out message);
             m_debugger.StartDebugger();
             m_renderer.StartRenderLoop();
-            EngineLoop();
+            m_inputSystem.StartInputLoop();
         }
         private void WaitForRenderThread()
         {
             bool renderThreadDone = false;
             while(!(m_renderer.CheckIfFrameFinishedRendering(out renderThreadDone) && renderThreadDone))
             { 
+                Thread.Sleep(10);
             }
         }
         private int engineLoopCounts = 0;
         private void EngineLoop()
         {
             GameObject obj = new GameObject();
-            obj.AttachComponent(new Transform(obj, new GEMath.Matrix3x3()));
+            obj.AttachComponent(new Transform(obj));
             obj.AttachComponent(new ASCIISprite(obj, 'X'));
             while (true)
             {

@@ -28,5 +28,9 @@ namespace GameEngine.Components
         {
             m_transformMat = _transformMat;
         }
+        public Transform(GameObject _go) : base(_go)
+        {
+            m_transformMat = new Matrix3x3();
+        }
     }
 }
