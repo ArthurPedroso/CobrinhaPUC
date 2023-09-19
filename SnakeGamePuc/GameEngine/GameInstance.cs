@@ -24,10 +24,10 @@ namespace GameEngine
         public static SceneManager SceneMan { get => Instance.m_sceneManager; }
         public static InputSystem Input { get => Instance.m_inputSystem; }
 
-        public GameInstance(IRenderer _renderer)
+        public GameInstance(IRenderer _renderer, GameScene[] _gameScenes, string _firstSceneToLoad)
         {
             m_physics2D = new Physics2D();
-            m_sceneManager = new SceneManager();
+            m_sceneManager = new SceneManager(_gameScenes, _firstSceneToLoad);
             m_inputSystem = new InputSystem();
             m_debugger = new GameEngineDebugger();
             m_renderer = _renderer;
@@ -80,6 +80,10 @@ namespace GameEngine
             m_renderer.StopRenderLoop();
         }
 
+        public static void InstantiateGameObj(GameObject _obj)
+        {
+            
+        }
         public static void QuitGame() { Instance.StopEngine(); }
     }
 }

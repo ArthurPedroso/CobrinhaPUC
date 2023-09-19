@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GameEngine\GameEngine.csproj" />
+    <ProjectReference Include="..\SnakeGamePuc\SnakeGamePuc.csproj" />
   </ItemGroup>
 
 </Project>
