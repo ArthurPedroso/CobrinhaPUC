@@ -1,4 +1,6 @@
-﻿using GameEngine.Input;
+﻿using GameEngine.Components;
+using GameEngine.Components.Sprites;
+using GameEngine.Input;
 using GameEngine.Patterns;
 using GameEngine.Physics;
 using GameEngine.Rendering;
@@ -46,12 +48,18 @@ namespace GameEngine
                 },
                 out message);
             m_renderer.StartRenderLoop();
+            EngineLoop();
         }
+        private int engineLoopCounts = 0;
         private void EngineLoop()
         {
+            GameObject obj = new GameObject();
+            obj.AttachComponent(new Transform(obj, new GEMath.Matrix3x3()));
+            obj.AttachComponent(new ASCIISprite(obj, 'X'));
             while (true)
             {
-                
+                m_renderer.RenderSprites(new ASCIISprite[] { obj.GetComponent<ASCIISprite>() });
+                engineLoopCounts++;
             }
         }
         private void StopEngine()

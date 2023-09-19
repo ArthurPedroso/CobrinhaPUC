@@ -1,15 +1,19 @@
 ﻿using GameEngine.Components.Sprites;
 using GameEngine.Rendering;
+using System.Diagnostics;
+using System.Windows.Controls;
 
 namespace GameEngineASCIIRenderer
 {
     public class ASCIIRenderer : IRenderer
     {
         private const char k_defaultSprite = '.';
+        private readonly float r_targetFrameRenderTime;
 
         //Local Thread Read Write
         private Thread m_renderThread;
         private List<AsciiFrag> m_interThreadSpriteBuffer;
+        private Stopwatch m_timer = new Stopwatch();
 
         //Game Thread Write - Render Thread Read
         private bool m_run;
@@ -19,11 +23,12 @@ namespace GameEngineASCIIRenderer
         public int WindowWidth { get; private set; }
         public int WindowHeight { get; private set; }
 
-        public ASCIIRenderer(int _width, int _height, bool _vsync)
+        public ASCIIRenderer(int _width, int _height, int _fps)
         {
             WindowWidth = _width;
             WindowHeight = _height;
             m_run = false;
+            r_targetFrameRenderTime = 1000 / _fps;
             m_interThreadSpriteBuffer = new List<AsciiFrag>();
             m_renderThread = new Thread(new ThreadStart(RenderThreadLoop));
         }
@@ -45,8 +50,8 @@ namespace GameEngineASCIIRenderer
         }
         private bool GameCoordsToFrameCoords(float _x, float _y, out int _result)
         {
-            int y = (int)Math.Round(_y, 0);
-            int x = (int)Math.Round(_x, 0);
+            int y = (int)Math.Round((_y + (WindowHeight / 2.0f)) * -1, 0);
+            int x = (int)Math.Round(_x + (WindowWidth / 2.0f), 0);
 
             if (y >= 0 && y < WindowHeight && x >= 0 && x < WindowWidth)
             {
@@ -60,22 +65,40 @@ namespace GameEngineASCIIRenderer
             }
 
         }
+        private void InitFrame(char[] _frame)
+        {
+            for (int i = 0, y = 0; i < _frame.Length; i++)
+            {
+                if (i == _frame.Length - 1) _frame[i] = '\0';
+                else if (i == ((WindowWidth + 1) * y) + WindowWidth) { _frame[i] = '\n'; y++; }
+                else _frame[i] = k_defaultSprite;
+            }
+        }
+        private void ClearFrame(char[] _frame)
+        {
+            for (int i = 0, y = 0; i < _frame.Length; i++)
+            {
+                if (i == ((WindowWidth + 1) * y) + WindowWidth) y++;
+                else if (i != (_frame.Length - 1))
+                {
+                    _frame[i] = k_defaultSprite;
+                }
+            }
+        }
         private void RenderThreadLoop()
         {
             m_run = true;
             AsciiFrag[] localSpriteBuffer;
             char[] frame = new char[(WindowHeight * WindowWidth) + WindowHeight + 1];
             int index;
-            
-            for (int i = 0, y = 0; i < frame.Length; i++)
-            {
-                if (i == frame.Length - 1) frame[i] = '\0';
-                else if (i == ((WindowWidth + 1) * y) + WindowWidth) { frame[i] = '\n'; y++; }
-                else frame[i] = k_defaultSprite;                
-            }
+
+            InitFrame(frame);
             while (m_run)
             {
+                m_timer.Restart();
+
                 Console.Clear();
+                ClearFrame(frame);
                 lock (m_interThreadSpriteBuffer) { localSpriteBuffer = m_interThreadSpriteBuffer.ToArray(); }
 
                 foreach (AsciiFrag frag in localSpriteBuffer)
@@ -89,6 +112,11 @@ namespace GameEngineASCIIRenderer
                 }
 
                 Console.WriteLine(frame);
+
+                while (m_timer.ElapsedMilliseconds < r_targetFrameRenderTime)
+                { 
+
+                }
             }
         }
 

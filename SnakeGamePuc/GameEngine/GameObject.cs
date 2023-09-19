@@ -9,12 +9,16 @@ namespace GameEngine
 {
     public class GameObject
     {
-        protected List<Component> Components { get; private set; }
+        protected HashSet<Component> Components { get; private set; }
 
 
         public GameObject() 
         {
-            Components = new List<Component>();
+            Components = new HashSet<Component>();
+        }
+        public void AttachComponent(Component _component)
+        {
+            Components.Add(_component);
         }
 
         /// <summary>

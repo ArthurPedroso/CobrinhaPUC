@@ -8,10 +8,14 @@ namespace GameEngine.Components
 {
     public abstract class Component
     {
-        public GameObject AttachedGameObject { get; private set; }
+        private static int s_idCount = 0;
+        private readonly int r_id;
 
+        public GameObject AttachedGameObject { get; private set; }
+        public int GetID { get => r_id; }
         protected Component(GameObject _attachedGameObject)
         {
+            r_id = s_idCount++;
             AttachedGameObject = _attachedGameObject;
         }
     }
