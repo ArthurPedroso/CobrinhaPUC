@@ -9,6 +9,8 @@ namespace GameEngine.Rendering
 {
     public interface IRenderer
     {
+        public void StartRenderLoop();
+        public void StopRenderLoop();
         public void RenderSprites(ImageSprite[] _imageSprites);
         public void RenderSprites(ASCIISprite[] _asciiSprites);
         public void RenderSprites(ImageSprite[] _imageSprites, ASCIISprite[] _asciiSprites);

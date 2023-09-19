@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace GameEngine.GEMath
 {
-    public class Matrix
+    public class Matrix : ICloneable
     {
 
-        float[] m_data;
+        private float[] m_data;
         public int NumOfRows { get; private set; }
         public int NumOfColumns { get; private set; }
         public int Size { get; private set; }
@@ -59,6 +59,13 @@ namespace GameEngine.GEMath
         {
             if (_elementIndex >= Size) throw new MathException();
             m_data[_elementIndex] = _newValue;
+        }
+
+        public object Clone()
+        {
+            Matrix m = (Matrix)MemberwiseClone();
+            m.m_data = (float[])m_data.Clone();
+            return m;
         }
 
         public static Matrix operator *(Matrix _m1, Matrix _m2)

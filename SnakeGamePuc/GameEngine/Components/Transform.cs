@@ -11,6 +11,7 @@ namespace GameEngine.Components
     {
         private Matrix3x3 m_transformMat;
 
+        public Matrix3x3 ModelMatClone { get => (Matrix3x3)m_transformMat.Clone(); }
         public Vector2 Position 
         { 
             get { return new Vector2(m_transformMat.GetElement(2, 0), m_transformMat.GetElement(2, 1)); }
