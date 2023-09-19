@@ -3,6 +3,7 @@ using GameEngine.Patterns;
 using GameEngine.Physics;
 using GameEngine.Rendering;
 using GameEngine.Scenes;
+using System.Diagnostics;
 using System.Windows.Input;
 
 namespace GameEngine
@@ -48,7 +49,10 @@ namespace GameEngine
         }
         private void EngineLoop()
         {
-            //m_physics2D.CalculateCollisions();
+            while (true)
+            {
+                
+            }
         }
         private void StopEngine()
         {

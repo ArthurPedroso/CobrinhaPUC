@@ -10,4 +10,8 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GameEngineDebugger\GameEngineDebugger.csproj" />
+  </ItemGroup>
+
 </Project>

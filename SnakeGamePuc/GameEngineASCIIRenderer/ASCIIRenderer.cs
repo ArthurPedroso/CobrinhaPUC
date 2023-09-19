@@ -123,5 +123,10 @@ namespace GameEngineASCIIRenderer
                 m_renderThread.Join();
             }
         }
+
+        //public void RegisterOnFrameRendered(Action _onFrameRender)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

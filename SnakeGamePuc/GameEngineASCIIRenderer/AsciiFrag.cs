@@ -21,8 +21,13 @@ namespace GameEngineASCIIRenderer
         }
         public AsciiFrag(ASCIISprite _asciiSprite)
         {
+            Transform tr = _asciiSprite.AttachedGameObject.GetComponent<Transform>();
+            if (tr != null)
+                ModelMatrix = tr.ModelMatClone;
+            else
+                ModelMatrix = new Matrix3x3();
+
             Value = _asciiSprite.Icon;
-            ModelMatrix = _asciiSprite.AttachedGameObject.GetComponent<Transform>().ModelMatClone;
         }
     }
 }

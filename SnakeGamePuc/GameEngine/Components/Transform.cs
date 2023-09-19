@@ -24,9 +24,9 @@ namespace GameEngine.Components
         }
         public Vector2 Rotation { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 
-        public Transform(GameObject _go, Matrix3x3 transformMat) : base(_go)
+        public Transform(GameObject _go, Matrix3x3 _transformMat) : base(_go)
         {
-            m_transformMat = transformMat;
+            m_transformMat = _transformMat;
         }
     }
 }
