@@ -131,7 +131,7 @@ namespace GameEngineASCIIRenderer
 
                 DeltaTime = m_timer.ElapsedMilliseconds / 1000;
                 m_frameRendered.Enqueue(true);
-                GameInstance.Debug.LogMsg("Render Loop Done!");
+                //GameInstance.Debug.LogMsg("Render Loop Done!");
             }
         }
 

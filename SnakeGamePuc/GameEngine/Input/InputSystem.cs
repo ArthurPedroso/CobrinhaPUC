@@ -111,8 +111,7 @@ namespace GameEngine.Input
         {
             lock (m_localThreadInputState)
             {
-                m_localThreadInputState.KeysPressed |= _inputKey;
-                m_localThreadInputState.KeysHolded &= ~_inputKey;
+                m_localThreadInputState.KeysHolded |= _inputKey;
                 m_localThreadInputState.KeysReleased &= ~_inputKey;
             }
         }
@@ -122,7 +121,6 @@ namespace GameEngine.Input
             {
                 m_localThreadInputState.KeysReleased |= _inputKey;
                 m_localThreadInputState.KeysHolded &= ~_inputKey;
-                m_localThreadInputState.KeysPressed &= ~_inputKey;
             }
         }
 
@@ -237,7 +235,14 @@ namespace GameEngine.Input
 
         public void UpdateInputState()
         {
-            
+            m_gameThreadInputState.KeysHolded |= m_gameThreadInputState.KeysPressed;
+            lock (m_localThreadInputState)
+            {
+                m_gameThreadInputState.KeysPressed = (~m_gameThreadInputState.KeysPressed) & m_localThreadInputState.KeysHolded;
+                m_gameThreadInputState.KeysReleased = m_localThreadInputState.KeysReleased;
+                m_localThreadInputState.KeysReleased = InputKey.None;
+            }
+            m_gameThreadInputState.KeysHolded &= ~m_gameThreadInputState.KeysReleased;
         }
     }
     

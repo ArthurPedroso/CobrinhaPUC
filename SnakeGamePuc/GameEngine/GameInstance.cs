@@ -59,8 +59,12 @@ namespace GameEngine
             obj.AttachComponent(new ASCIISprite(obj, 'X'));
             while (true)
             {
+                m_inputSystem.UpdateInputState();
+                if (m_inputSystem.KeysPressed.HasFlag(InputKey.A)) m_debugger.LogMsg("A pressionado");
+                if (m_inputSystem.KeysHolded.HasFlag(InputKey.A)) m_debugger.LogMsg("A segurado");
+                if (m_inputSystem.KeysReleased.HasFlag(InputKey.A)) m_debugger.LogMsg("A solto");
                 m_renderer.RenderSprites(new ASCIISprite[] { obj.GetComponent<ASCIISprite>() });
-                Debug.LogMsg("Engine Loop Count = " + ++engineLoopCounts);
+                //Debug.LogMsg("Engine Loop Count = " + ++engineLoopCounts);
                 WaitForRenderThread();
             }
         }
