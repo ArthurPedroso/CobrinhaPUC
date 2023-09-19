@@ -10,8 +10,9 @@ namespace GameEngine.Scenes
     {
         private GameScene[] m_gameScenes;
         private Dictionary<string, GameScene> m_nameToScene;
+        private Action<GameScene> m_onSceneLoadCB;
         public GameScene CurrentScene { get; private set; }
-        public SceneManager(GameScene[] _gameScenes, string _firstSceneToLoad) 
+        public SceneManager(GameScene[] _gameScenes, string _firstSceneToLoad, Action<GameScene> _onNewSceneLoad) 
         {
             m_gameScenes = _gameScenes;
             m_nameToScene = new Dictionary<string, GameScene>(_gameScenes.Length);
@@ -23,6 +24,7 @@ namespace GameEngine.Scenes
             if (m_nameToScene.ContainsKey(_name))
             {
                 CurrentScene = m_nameToScene[_name];
+                m_onSceneLoadCB(CurrentScene);
                 return true;
             }
             else { return false; }

@@ -8,8 +8,17 @@ namespace GameEngine.Components
 {
     public class Script : Component
     {
-        internal Script(GameObject _attachedGameObject) : base(_attachedGameObject)
+        public Script(GameObject _attachedGameObject) : base(_attachedGameObject)
         {
+        }
+
+        public void Start()
+        { 
+
+        }
+        public void Update()
+        {
+            
         }
     }
 }

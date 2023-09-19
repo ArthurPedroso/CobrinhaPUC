@@ -34,5 +34,14 @@ namespace GameEngine
             }
             return null;
         }
+        public T[] GetComponents<T>() where T : Component
+        {
+            List<T> components = new List<T>();
+            foreach (Component component in Components)
+            {
+                if (component is T) components.Add((T)component);
+            }
+            return components.ToArray();
+        }
     }
 }
