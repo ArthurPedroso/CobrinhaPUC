@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace GameEngine.GEMath
 {
-    public struct Rectangle
+    public struct Rect
     {
         public Vector2 TopLeft;
         public Vector2 BottomRight;
-        public Rectangle(Vector2 _topLeft, Vector2 _bottomRight)
+        public Rect(Vector2 _topLeft, Vector2 _bottomRight)
         {
             TopLeft = _topLeft;
             BottomRight = _bottomRight;
         }
 
-        public bool Overlaps(Rectangle _otherRect)
+        public bool Overlaps(Rect _otherRect)
         {
             throw new NotImplementedException();
         }

@@ -9,8 +9,8 @@ namespace GameEngine.Components
 {
     public class Collider : Component
     {
-        private Rectangle m_shape;
-        public Collider(GameObject _attachedGameObject, Rectangle _shape) : base(_attachedGameObject)
+        private Rect m_shape;
+        public Collider(GameObject _attachedGameObject, Rect _shape) : base(_attachedGameObject)
         {
             m_shape = _shape;
         }
