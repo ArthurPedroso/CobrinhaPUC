@@ -1,6 +1,7 @@
 ﻿using GameEngine;
 using GameEngine.Components;
 using GameEngine.GEMath;
+using Microsoft.Win32.SafeHandles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace SnakeGamePuc.Scripts
         Right,
         Up,
         Down,
+        None
     }
     internal class SnakeBody : Script
     {
@@ -24,6 +26,7 @@ namespace SnakeGamePuc.Scripts
 
         public SnakeBody(GameObject _attachedGameObject) : base(_attachedGameObject)
         {
+            NextBodyPiece = null;
         }
 
         public override void Start()
@@ -42,6 +45,7 @@ namespace SnakeGamePuc.Scripts
                 GameObject obj = ObjsBuilders.BuildSnakeBody();
                 obj.GetComponent<Transform>().Position = AttachedGameObject.GetComponent<Transform>().Position;
                 NextBodyPiece = obj.GetComponent<SnakeBody>();
+                NextBodyPiece.Direction = SnakeDirection.None;
                 GameInstance.Instantiate(obj);
             }
             else
@@ -65,12 +69,25 @@ namespace SnakeGamePuc.Scripts
                 case SnakeDirection.Left:
                     m_transform.Position += Vector2.Left;
                     break;
+                default:
+                    break;
             }
             if (NextBodyPiece != null)
             {
                 NextBodyPiece.Move();
                 NextBodyPiece.Direction = Direction;
             }            
+        }
+        public Vector2[] BodyPositions()
+        {
+            List<Vector2> pos = new List<Vector2>();
+            if (NextBodyPiece != null)
+            { 
+                pos.AddRange(NextBodyPiece.BodyPositions());
+            }
+            pos.Add(m_transform.Position);
+
+            return pos.ToArray();
         }
     }
 }

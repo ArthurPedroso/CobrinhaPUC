@@ -18,8 +18,8 @@ namespace GameEngine.Physics
                 {
                     if (_colliders[i].OverlapsOther(_colliders[j]))
                     {
-                        _colliders[i].CallCollisionsCB();
-                        _colliders[j].CallCollisionsCB();
+                        _colliders[i].CallCollisionsCB(_colliders[j]);
+                        _colliders[j].CallCollisionsCB(_colliders[i]);
                     }
                 }
             }

@@ -115,6 +115,11 @@ namespace GameEngine
             if (script != null) 
                 script.Start();
         }
+        public static void RemoveObj(GameObject _obj)
+        {
+            Instance.m_sceneManager.CurrentScene.RemoveObj(_obj);
+        }
         public static void QuitGame() { Instance.StopEngine(); }
+
     }
 }

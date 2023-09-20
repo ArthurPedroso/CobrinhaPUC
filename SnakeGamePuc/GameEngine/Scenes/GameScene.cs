@@ -59,9 +59,9 @@ namespace GameEngine.Scenes
         public void RemoveObj(GameObject _obj)
         {
             m_sceneObjs.Remove(_obj);
-            m_sceneScripts.UnionWith(_obj.GetComponents<Script>());
-            m_sceneColliders.UnionWith(_obj.GetComponents<Collider>());
-            m_sceneSprites.UnionWith(_obj.GetComponents<ASCIISprite>());
+            foreach(Script script in _obj.GetComponents<Script>()) m_sceneScripts.Remove(script);
+            foreach (Collider collider in _obj.GetComponents<Collider>()) m_sceneColliders.Remove(collider);
+            foreach (ASCIISprite sprite in _obj.GetComponents<ASCIISprite>()) m_sceneSprites.Remove(sprite);
         }
     }
 }

@@ -18,12 +18,14 @@ namespace SnakeGamePuc.Scripts
 
         private Transform m_transform;
         private SnakeDirection m_direction;
+        private SnakeDirection m_lastDirection;
         private float m_elapsedTime;
         private SnakeBody m_snakeBody;
 
         public SnakeController(GameObject _attachedGameObject) : base(_attachedGameObject)
         {
             m_direction = SnakeDirection.Left;
+            m_lastDirection = SnakeDirection.Left;
         }
 
         public override void Start()
@@ -39,19 +41,20 @@ namespace SnakeGamePuc.Scripts
             UpdateTimer();
             CheckInput();
         }
-        private void OnCollision()
+        private void OnCollision(Collider _collider)
         {
-            GameInstance.QuitGame();
+            if (_collider.AttachedGameObject.Name == "Apple") m_snakeBody.AddBodyPiece();
+            else GameInstance.QuitGame();
         }
         private void CheckInput()
         {
-            if ((GameInstance.Input.KeysReleased & InputKey.A) != 0 && m_direction != SnakeDirection.Right)
+            if ((GameInstance.Input.KeysReleased & InputKey.A) != 0 && m_direction != SnakeDirection.Right && m_lastDirection != SnakeDirection.Right)
                 m_direction = SnakeDirection.Left;
-            else if ((GameInstance.Input.KeysReleased & InputKey.W) != 0 && m_direction != SnakeDirection.Down)
+            else if ((GameInstance.Input.KeysReleased & InputKey.W) != 0 && m_direction != SnakeDirection.Down && m_lastDirection != SnakeDirection.Down)
                 m_direction = SnakeDirection.Up;
-            else if ((GameInstance.Input.KeysReleased & InputKey.D) != 0 && m_direction != SnakeDirection.Left)
+            else if ((GameInstance.Input.KeysReleased & InputKey.D) != 0 && m_direction != SnakeDirection.Left && m_lastDirection != SnakeDirection.Left)
                 m_direction = SnakeDirection.Right;
-            else if ((GameInstance.Input.KeysReleased & InputKey.S) != 0 && m_direction != SnakeDirection.Up)
+            else if ((GameInstance.Input.KeysReleased & InputKey.S) != 0 && m_direction != SnakeDirection.Up && m_lastDirection != SnakeDirection.Up)
                 m_direction = SnakeDirection.Down;
             else if ((GameInstance.Input.KeysReleased & InputKey.K) != 0) 
                 GameInstance.QuitGame();
@@ -103,8 +106,21 @@ namespace SnakeGamePuc.Scripts
                     m_transform.Position += Vector2.Left;
                     break;
             }
+            m_lastDirection = m_direction;
             m_snakeBody.Move();
             m_snakeBody.Direction = m_direction;
+        }
+
+        public Vector2[] GetSnakePos()
+        {
+            List<Vector2> pos = new List<Vector2>();
+            if (m_snakeBody != null)
+            {
+                pos.AddRange(m_snakeBody.BodyPositions());
+            }
+            pos.Add(m_transform.Position);
+
+            return pos.ToArray();
         }
     }
 }

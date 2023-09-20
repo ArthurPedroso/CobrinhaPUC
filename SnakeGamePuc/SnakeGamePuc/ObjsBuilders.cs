@@ -21,6 +21,17 @@ namespace SnakeGamePuc
 
             return snakeGameCtrl;
         }
+        public static GameObject BuildApple(Action _appleCB)
+        {
+            GameObject apple = new GameObject("Apple");
+
+            apple.AttachComponent(new Transform(apple));
+            apple.AttachComponent(new Collider(apple));
+            apple.AttachComponent(new ASCIISprite(apple, 'M'));
+            apple.AttachComponent(new Apple(apple, _appleCB));
+
+            return apple;
+        }
         public static GameObject BuildSnakeController()
         {
             GameObject snake = new GameObject("Player");
