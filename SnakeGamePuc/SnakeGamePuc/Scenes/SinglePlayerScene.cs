@@ -18,6 +18,7 @@ namespace SnakeGamePuc.Scenes
         {
             GameObject snake = ObjsBuilders.BuildSnakeController();
             AddObj(snake);
+
             GameObject snakeGame = ObjsBuilders.BuildSnakeGameCtrl();
             snakeGame.GetComponent<SnakeGameCtrl>().SnakeCtrl = snake.GetComponent<SnakeController>();
             AddObj(snakeGame);
