@@ -57,7 +57,6 @@ namespace GameEngine
             bool renderThreadDone = false;
             while(!(m_renderer.CheckIfFrameFinishedRendering(out renderThreadDone) && renderThreadDone))
             { 
-                Thread.Sleep(10);
             }
         }
 

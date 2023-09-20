@@ -177,6 +177,16 @@ namespace GameEngineASCIIRenderer
             return DeltaTime;
         }
 
+        public int GetWidth()
+        {
+            return WindowWidth;
+        }
+
+        public int GetHeight()
+        {
+            return WindowHeight;
+        }
+
         //public void RegisterOnFrameRendered(Action _onFrameRender)
         //{
         //    throw new NotImplementedException();

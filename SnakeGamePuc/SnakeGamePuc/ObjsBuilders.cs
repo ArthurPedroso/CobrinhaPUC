@@ -7,11 +7,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GameEngine.GEMath;
 
 namespace SnakeGamePuc
 {
     internal static class ObjsBuilders
     {
+        public static GameObject BuildSnakeGameCtrl()
+        {
+            GameObject snakeGameCtrl = new GameObject("SnakeGameCtrl");
+
+            snakeGameCtrl.AttachComponent(new SnakeGameCtrl(snakeGameCtrl));
+
+            return snakeGameCtrl;
+        }
         public static GameObject BuildSnakeController()
         {
             GameObject snake = new GameObject("Player");
@@ -33,6 +42,53 @@ namespace SnakeGamePuc
             snake.AttachComponent(new SnakeBody(snake));
 
             return snake;
+        }
+        public static GameObject[] BuildWalls()
+        {
+            List<GameObject> walls = new List<GameObject>();
+            int width = GameInstance.Renderer.GetWidth();
+            int height = GameInstance.Renderer.GetHeight();
+            for (int i = 0; i < width; i++)
+            {
+                GameObject wall = new GameObject("Wall");
+
+                wall.AttachComponent(new Transform(wall));
+                wall.AttachComponent(new Collider(wall));
+                wall.AttachComponent(new ASCIISprite(wall, '0'));
+                wall.GetComponent<Transform>().Position = new Vector2(i - (width / 2.0f), -(height / 2.0f) + 1);
+                walls.Add(wall);
+            }
+            for (int i = 0; i < width; i++)
+            {
+                GameObject wall = new GameObject("Wall");
+
+                wall.AttachComponent(new Transform(wall));
+                wall.AttachComponent(new Collider(wall));
+                wall.AttachComponent(new ASCIISprite(wall, '0'));
+                wall.GetComponent<Transform>().Position = new Vector2(i - (width / 2.0f), (height / 2.0f));
+                walls.Add(wall);
+            }
+            for (int i = 0; i < height; i++)
+            {
+                GameObject wall = new GameObject("Wall");
+
+                wall.AttachComponent(new Transform(wall));
+                wall.AttachComponent(new Collider(wall));
+                wall.AttachComponent(new ASCIISprite(wall, '0'));
+                wall.GetComponent<Transform>().Position = new Vector2((width / 2.0f) - 1, i - (height / 2.0f));
+                walls.Add(wall);
+            }
+            for (int i = 0; i < height; i++)
+            {
+                GameObject wall = new GameObject("Wall");
+
+                wall.AttachComponent(new Transform(wall));
+                wall.AttachComponent(new Collider(wall));
+                wall.AttachComponent(new ASCIISprite(wall, '0'));
+                wall.GetComponent<Transform>().Position = new Vector2(-(width / 2.0f), i - (height / 2.0f));
+                walls.Add(wall);
+            }
+            return walls.ToArray();
         }
     }
 }

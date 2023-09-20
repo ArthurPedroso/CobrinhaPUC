@@ -7,12 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using GameEngine.Input;
 using GameEngine.GEMath;
+using GameEngine.Scenes;
 
 namespace SnakeGamePuc.Scripts
 {
     internal class SnakeController : Script
     {
-        private const float k_moveAfter = 1;
+        private const float k_moveAfter = 0.3f;
         private const int k_startingSize = 4;
 
         private Transform m_transform;
@@ -28,6 +29,7 @@ namespace SnakeGamePuc.Scripts
         public override void Start()
         {
             m_transform = AttachedGameObject.GetComponent<Transform>();
+            AttachedGameObject.GetComponent<Collider>().RegisterOnCollisionEnterCB(OnCollision);
             m_elapsedTime = 0;
             BuildBodyParts();
         }
@@ -37,15 +39,19 @@ namespace SnakeGamePuc.Scripts
             UpdateTimer();
             CheckInput();
         }
+        private void OnCollision()
+        {
+            GameInstance.QuitGame();
+        }
         private void CheckInput()
         {
-            if ((GameInstance.Input.KeysReleased & InputKey.A) != 0)
+            if ((GameInstance.Input.KeysReleased & InputKey.A) != 0 && m_direction != SnakeDirection.Right)
                 m_direction = SnakeDirection.Left;
-            else if ((GameInstance.Input.KeysReleased & InputKey.W) != 0)
+            else if ((GameInstance.Input.KeysReleased & InputKey.W) != 0 && m_direction != SnakeDirection.Down)
                 m_direction = SnakeDirection.Up;
-            else if ((GameInstance.Input.KeysReleased & InputKey.D) != 0)
+            else if ((GameInstance.Input.KeysReleased & InputKey.D) != 0 && m_direction != SnakeDirection.Left)
                 m_direction = SnakeDirection.Right;
-            else if ((GameInstance.Input.KeysReleased & InputKey.S) != 0)
+            else if ((GameInstance.Input.KeysReleased & InputKey.S) != 0 && m_direction != SnakeDirection.Up)
                 m_direction = SnakeDirection.Down;
             else if ((GameInstance.Input.KeysReleased & InputKey.K) != 0) 
                 GameInstance.QuitGame();

@@ -28,6 +28,8 @@ namespace GameEngine.GEMath
         public static Vector2 operator *(Vector2 _v1, Vector2 _v2) => new Vector2(_v1.X * _v2.X, _v1.Y * _v2.Y);
         public static Vector2 operator /(Vector2 _v1, float _f2) => new Vector2(_v1.X / _f2, _v1.Y / _f2);
         public static Vector2 operator *(Vector2 _v1, float _f2) => new Vector2(_v1.X * _f2, _v1.Y * _f2);
+        public static bool operator ==(Vector2 _v1, Vector2 _v2) => (_v1.X == _v2.X && _v1.Y == _v2.Y);
+        public static bool operator !=(Vector2 _v1, Vector2 _v2) => (_v1.X != _v2.X || _v1.Y != _v2.Y);
 
         public static readonly Vector2 Zero = new Vector2(0.0f, 0.0f);
         public static readonly Vector2 Up = new Vector2(0.0f, 1.0f);

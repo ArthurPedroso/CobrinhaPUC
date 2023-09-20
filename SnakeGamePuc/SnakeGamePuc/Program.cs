@@ -19,7 +19,7 @@ namespace SnakeGamePuc
             {
                 new SinglePlayerScene()
             };
-            SnakeGame instance = new SnakeGame(new ASCIIRenderer(16, 16, 10), m_gameScenes);
+            SnakeGame instance = new SnakeGame(new ASCIIRenderer(16, 16, 30), m_gameScenes);
         }
     }
 }
