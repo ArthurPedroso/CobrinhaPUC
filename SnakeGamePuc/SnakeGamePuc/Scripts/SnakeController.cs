@@ -24,10 +24,14 @@ namespace SnakeGamePuc.Scripts
 
         public override void Update()
         {
-            if (GameInstance.Input.KeysPressed.HasFlag(InputKey.A)) m_transform.Position += Vector2.Left;
-            if (GameInstance.Input.KeysPressed.HasFlag(InputKey.W)) m_transform.Position += Vector2.Up;
-            if (GameInstance.Input.KeysPressed.HasFlag(InputKey.D)) m_transform.Position += Vector2.Right;
-            if (GameInstance.Input.KeysPressed.HasFlag(InputKey.S)) m_transform.Position += Vector2.Down;
+            if ((GameInstance.Input.KeysReleased & InputKey.A) != 0) 
+                m_transform.Position += Vector2.Left;
+            if ((GameInstance.Input.KeysReleased & InputKey.W) != 0) 
+                m_transform.Position += Vector2.Up;
+            if ((GameInstance.Input.KeysReleased & InputKey.D) != 0) 
+                m_transform.Position += Vector2.Right;
+            if ((GameInstance.Input.KeysReleased & InputKey.S) != 0)
+                m_transform.Position += Vector2.Down;
         }
     }
 }

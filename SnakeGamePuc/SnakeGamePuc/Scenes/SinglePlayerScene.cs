@@ -22,6 +22,7 @@ namespace SnakeGamePuc.Scenes
             snake.AttachComponent(new Collider(snake));
             snake.AttachComponent(new ASCIISprite(snake, '@'));
 
+            AddObj(snake);
         }
     }
 }

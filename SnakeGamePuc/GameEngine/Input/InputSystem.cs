@@ -74,6 +74,14 @@ namespace GameEngine.Input
             m_run = false;
             m_localThreadInputState = new InputState();
             m_gameThreadInputState = new InputState();
+            m_gameThreadInputState.KeysPressed = InputKey.None;
+            m_gameThreadInputState.KeysHolded = InputKey.None;
+            m_gameThreadInputState.KeysReleased = InputKey.None;
+
+            m_localThreadInputState.KeysPressed = InputKey.None;
+            m_localThreadInputState.KeysHolded = InputKey.None;
+            m_localThreadInputState.KeysReleased = InputKey.None;
+
         }
         ~InputSystem()
         {

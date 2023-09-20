@@ -19,6 +19,7 @@ namespace GameEngine.Scenes
         internal IReadOnlyCollection<GameObject> SceneObjs { get => m_sceneObjs; }
         internal IReadOnlyCollection<Script> SceneScripts { get => m_sceneScripts; }
         internal IReadOnlyCollection<Collider> SceneColliders { get => m_sceneColliders; }
+        internal IReadOnlyCollection<ASCIISprite> SceneSprites { get => m_sceneSprites; }
         public GameScene(string _name, GameObject[] _objs) 
         {
             m_sceneObjs = new HashSet<GameObject>(_objs);
@@ -33,6 +34,7 @@ namespace GameEngine.Scenes
             m_sceneObjs = new HashSet<GameObject>();
             m_sceneScripts = new HashSet<Script>();
             m_sceneColliders = new HashSet<Collider>();
+            m_sceneSprites = new HashSet<ASCIISprite>();
             SceneName = _name;
             FindComponents();
         }
@@ -47,14 +49,14 @@ namespace GameEngine.Scenes
             }
         }
 
-        internal void AddObj(GameObject _obj)
+        public void AddObj(GameObject _obj)
         {
             m_sceneObjs.Add(_obj);
             m_sceneScripts.UnionWith(_obj.GetComponents<Script>());
             m_sceneColliders.UnionWith(_obj.GetComponents<Collider>());
             m_sceneSprites.UnionWith(_obj.GetComponents<ASCIISprite>());
         }
-        internal void RemoveObj(GameObject _obj)
+        public void RemoveObj(GameObject _obj)
         {
             m_sceneObjs.Remove(_obj);
             m_sceneScripts.UnionWith(_obj.GetComponents<Script>());

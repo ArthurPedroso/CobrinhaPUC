@@ -63,9 +63,6 @@ namespace GameEngine
         private void UpdateInput()
         {
             m_inputSystem.UpdateInputState();
-            //if (m_inputSystem.KeysPressed.HasFlag(InputKey.A)) m_debugger.LogMsg("A pressionado");
-            //if (m_inputSystem.KeysHolded.HasFlag(InputKey.A)) m_debugger.LogMsg("A segurado");
-            //if (m_inputSystem.KeysReleased.HasFlag(InputKey.A)) m_debugger.LogMsg("A solto");
         }
         private void UpdateScripts()
         {
@@ -83,10 +80,7 @@ namespace GameEngine
 
         private void ShipSpritesToRenderer()
         {
-            GameObject obj = new GameObject();
-            obj.AttachComponent(new Transform(obj));
-            obj.AttachComponent(new ASCIISprite(obj, 'X'));
-            m_renderer.RenderSprites(new ASCIISprite[] { obj.GetComponent<ASCIISprite>() });
+            m_renderer.RenderSprites(m_sceneManager.CurrentScene.SceneSprites.ToArray());
         }
 
         private void EngineLoop()
@@ -113,9 +107,9 @@ namespace GameEngine
         {
             m_engineState = EngineState.FirstFrame;
         }
-        public static void InstantiateGameObj(GameObject _obj)
+        public static void Instantiate(GameObject _obj)
         {
-            
+            Instance.m_sceneManager.CurrentScene.AddObj(_obj);
         }
         public static void QuitGame() { Instance.StopEngine(); }
     }
