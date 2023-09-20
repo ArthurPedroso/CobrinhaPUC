@@ -17,9 +17,9 @@ namespace SnakeGamePuc
             GameObject snake = new GameObject("Player");
 
             snake.AttachComponent(new Transform(snake));
-            snake.AttachComponent(new SnakeController(snake));
             snake.AttachComponent(new Collider(snake));
             snake.AttachComponent(new ASCIISprite(snake, '@'));
+            snake.AttachComponent(new SnakeController(snake));
 
             return snake;
         }
@@ -28,9 +28,9 @@ namespace SnakeGamePuc
             GameObject snake = new GameObject("SnakeBody");
 
             snake.AttachComponent(new Transform(snake));
-            snake.AttachComponent(new SnakeBody(snake));
             snake.AttachComponent(new Collider(snake));
             snake.AttachComponent(new ASCIISprite(snake, 'X'));
+            snake.AttachComponent(new SnakeBody(snake));
 
             return snake;
         }

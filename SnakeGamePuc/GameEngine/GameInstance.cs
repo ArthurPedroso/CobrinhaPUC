@@ -67,7 +67,8 @@ namespace GameEngine
         }
         private void UpdateScripts()
         {
-            foreach (Script script in m_sceneManager.CurrentScene.SceneScripts)
+            Script[] scripts = m_sceneManager.CurrentScene.SceneScripts.ToArray();
+            foreach (Script script in scripts)
             {
                 if (m_engineState == EngineState.FirstFrame) script.Start();
                 else script.Update();
@@ -112,7 +113,8 @@ namespace GameEngine
         {
             Instance.m_sceneManager.CurrentScene.AddObj(_obj);
             Script script = _obj.GetComponent<Script>();
-            if (Instance.m_engineState == EngineState.Running && script != null) script.Start();
+            if (script != null) 
+                script.Start();
         }
         public static void QuitGame() { Instance.StopEngine(); }
     }

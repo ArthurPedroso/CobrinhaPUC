@@ -123,13 +123,13 @@ namespace GameEngineASCIIRenderer
                     Thread.Sleep((int)(r_targetFrameRenderTime - m_timer.ElapsedMilliseconds));
                 }
 
-                while (m_frameRendered.Count > 0)
+                while (m_frameRendered.Count > 0 && m_run)
                 {
                     GameInstance.Debug.LogWarningMsg("Game Loop stalling!");
                     Thread.Sleep(50);
                 }
 
-                DeltaTime = m_timer.ElapsedMilliseconds / 1000;
+                DeltaTime = m_timer.ElapsedMilliseconds / 1000.0f;
                 m_frameRendered.Enqueue(true);
                 //GameInstance.Debug.LogMsg("Render Loop Done!");
             }

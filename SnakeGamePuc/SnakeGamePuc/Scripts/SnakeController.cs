@@ -22,7 +22,7 @@ namespace SnakeGamePuc.Scripts
 
         public SnakeController(GameObject _attachedGameObject) : base(_attachedGameObject)
         {
-            m_direction = SnakeDirection.Right;
+            m_direction = SnakeDirection.Left;
         }
 
         public override void Start()
@@ -35,14 +35,21 @@ namespace SnakeGamePuc.Scripts
         public override void Update()
         {
             UpdateTimer();
-            if ((GameInstance.Input.KeysReleased & InputKey.A) != 0) 
-                m_transform.Position += Vector2.Left;
-            if ((GameInstance.Input.KeysReleased & InputKey.W) != 0) 
-                m_transform.Position += Vector2.Up;
-            if ((GameInstance.Input.KeysReleased & InputKey.D) != 0) 
-                m_transform.Position += Vector2.Right;
-            if ((GameInstance.Input.KeysReleased & InputKey.S) != 0)
-                m_transform.Position += Vector2.Down;
+            CheckInput();
+        }
+        private void CheckInput()
+        {
+            if ((GameInstance.Input.KeysReleased & InputKey.A) != 0)
+                m_direction = SnakeDirection.Left;
+            else if ((GameInstance.Input.KeysReleased & InputKey.W) != 0)
+                m_direction = SnakeDirection.Up;
+            else if ((GameInstance.Input.KeysReleased & InputKey.D) != 0)
+                m_direction = SnakeDirection.Right;
+            else if ((GameInstance.Input.KeysReleased & InputKey.S) != 0)
+                m_direction = SnakeDirection.Down;
+            else if ((GameInstance.Input.KeysReleased & InputKey.K) != 0) 
+                GameInstance.QuitGame();
+
         }
         private void UpdateTimer()
         {
@@ -56,13 +63,20 @@ namespace SnakeGamePuc.Scripts
         private void BuildBodyParts()
         {
             Vector2 newPos = Vector2.Zero;
+            SnakeBody oldsnake = null;
             GameObject obj;
+            SnakeBody snakeBody;
             for (int i = 0; i < k_startingSize; i++)
             {
                 obj = ObjsBuilders.BuildSnakeBody();
                 newPos += Vector2.Right;
                 obj.GetComponent<Transform>().Position += newPos;
+                snakeBody = obj.GetComponent<SnakeBody>();
+                if(oldsnake != null) oldsnake.NextBodyPiece = snakeBody;
                 GameInstance.Instantiate(obj);
+
+                if (i == 0) m_snakeBody = snakeBody;
+                oldsnake = snakeBody;
             }
         }
 
