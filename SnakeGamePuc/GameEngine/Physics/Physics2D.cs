@@ -11,7 +11,6 @@ namespace GameEngine.Physics
     {
         public void CalculateCollisions(Collider[] _colliders)
         {
-            throw new NotImplementedException();
         }
     }
 }

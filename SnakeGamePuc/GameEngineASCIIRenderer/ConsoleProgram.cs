@@ -1,4 +1,4 @@
-﻿using SnakeGamePuc;
+﻿using GameEngine.Scenes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +9,6 @@ namespace GameEngineASCIIRenderer
 {
     public class ConsoleProgram
     {
-        [STAThread]
-        public static void Main()
-        {
-            SnakeGame instance = new SnakeGame(new ASCIIRenderer(16, 16, 30));
-        }
+
     }
 }

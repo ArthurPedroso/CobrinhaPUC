@@ -14,5 +14,9 @@ namespace GameEngine.Components
         {
             m_shape = _shape;
         }
+        public Collider(GameObject _attachedGameObject) : base(_attachedGameObject)
+        {
+            m_shape = new Rect(new Vector2(-0.5f, 0.5f), new Vector2(0.5f, -0.5f));
+        }
     }
 }

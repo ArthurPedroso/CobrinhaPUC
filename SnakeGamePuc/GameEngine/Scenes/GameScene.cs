@@ -47,7 +47,19 @@ namespace GameEngine.Scenes
             }
         }
 
-        internal void AddObj(GameObject _obj) => m_sceneObjs.Add(_obj);
-        internal void RemoveObj(GameObject _obj) => m_sceneObjs.Remove(_obj);
+        internal void AddObj(GameObject _obj)
+        {
+            m_sceneObjs.Add(_obj);
+            m_sceneScripts.UnionWith(_obj.GetComponents<Script>());
+            m_sceneColliders.UnionWith(_obj.GetComponents<Collider>());
+            m_sceneSprites.UnionWith(_obj.GetComponents<ASCIISprite>());
+        }
+        internal void RemoveObj(GameObject _obj)
+        {
+            m_sceneObjs.Remove(_obj);
+            m_sceneScripts.UnionWith(_obj.GetComponents<Script>());
+            m_sceneColliders.UnionWith(_obj.GetComponents<Collider>());
+            m_sceneSprites.UnionWith(_obj.GetComponents<ASCIISprite>());
+        }
     }
 }

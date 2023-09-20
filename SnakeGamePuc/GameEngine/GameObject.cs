@@ -7,12 +7,18 @@ using System.Threading.Tasks;
 
 namespace GameEngine
 {
-    public class GameObject
+    public sealed class GameObject
     {
         protected HashSet<Component> Components { get; private set; }
 
+        public string Name { get; set; }
 
-        public GameObject() 
+        public GameObject(string _name) 
+        {
+            Components = new HashSet<Component>();
+            Name = _name;
+        }
+        public GameObject()
         {
             Components = new HashSet<Component>();
         }

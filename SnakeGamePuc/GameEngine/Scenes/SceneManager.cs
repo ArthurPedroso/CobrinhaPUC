@@ -17,6 +17,8 @@ namespace GameEngine.Scenes
             m_gameScenes = _gameScenes;
             m_nameToScene = new Dictionary<string, GameScene>(_gameScenes.Length);
             foreach (GameScene scene in _gameScenes) m_nameToScene.Add(scene.SceneName, scene);
+            m_onSceneLoadCB = _onNewSceneLoad;
+            LoadScene(_firstSceneToLoad);
         }
 
         public bool LoadScene(string _name)
@@ -25,6 +27,7 @@ namespace GameEngine.Scenes
             {
                 CurrentScene = m_nameToScene[_name];
                 m_onSceneLoadCB(CurrentScene);
+                GameInstance.Debug.LogMsg("Scene " + _name + " loaded!");
                 return true;
             }
             else { return false; }

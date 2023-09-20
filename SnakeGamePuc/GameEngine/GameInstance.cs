@@ -34,10 +34,10 @@ namespace GameEngine
 
         public GameInstance(IRenderer _renderer, GameScene[] _gameScenes, string _firstSceneToLoad)
         {
-            m_physics2D = new Physics2D();
+            m_debugger = new GameEngineDebugger();
             m_sceneManager = new SceneManager(_gameScenes, _firstSceneToLoad, OnSceneLoad);
             m_inputSystem = new InputSystem();
-            m_debugger = new GameEngineDebugger();
+            m_physics2D = new Physics2D();
             m_renderer = _renderer;
 
             InitEngine();
