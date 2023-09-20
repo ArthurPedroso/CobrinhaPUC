@@ -31,6 +31,7 @@ namespace GameEngine
         public static Physics2D Physics { get => Instance.m_physics2D; }
         public static SceneManager SceneMan { get => Instance.m_sceneManager; }
         public static InputSystem Input { get => Instance.m_inputSystem; }
+        public static IRenderer Renderer { get => Instance.m_renderer; }
 
         public GameInstance(IRenderer _renderer, GameScene[] _gameScenes, string _firstSceneToLoad)
         {
@@ -110,6 +111,8 @@ namespace GameEngine
         public static void Instantiate(GameObject _obj)
         {
             Instance.m_sceneManager.CurrentScene.AddObj(_obj);
+            Script script = _obj.GetComponent<Script>();
+            if (Instance.m_engineState == EngineState.Running && script != null) script.Start();
         }
         public static void QuitGame() { Instance.StopEngine(); }
     }

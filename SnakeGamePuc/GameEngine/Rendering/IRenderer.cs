@@ -15,5 +15,6 @@ namespace GameEngine.Rendering
         public void RenderSprites(ASCIISprite[] _asciiSprites);
         public void RenderSprites(ImageSprite[] _imageSprites, ASCIISprite[] _asciiSprites);
         public bool CheckIfFrameFinishedRendering(out bool _frameRendered);
+        public float GetDeltaTime();
     }
 }

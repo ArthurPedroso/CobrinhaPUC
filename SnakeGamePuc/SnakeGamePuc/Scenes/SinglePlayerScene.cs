@@ -16,13 +16,7 @@ namespace SnakeGamePuc.Scenes
     {
         public SinglePlayerScene() : base("SinglePlayerScene")
         {
-            GameObject snake = new GameObject("Player");
-            snake.AttachComponent(new Transform(snake));
-            snake.AttachComponent(new SnakeController(snake));
-            snake.AttachComponent(new Collider(snake));
-            snake.AttachComponent(new ASCIISprite(snake, '@'));
-
-            AddObj(snake);
+            AddObj(ObjsBuilders.BuildSnakeController());
         }
     }
 }

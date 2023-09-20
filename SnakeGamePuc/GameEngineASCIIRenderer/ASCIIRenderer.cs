@@ -172,6 +172,11 @@ namespace GameEngineASCIIRenderer
             return m_frameRendered.TryDequeue(out _frameRendered);
         }
 
+        public float GetDeltaTime()
+        {
+            return DeltaTime;
+        }
+
         //public void RegisterOnFrameRendered(Action _onFrameRender)
         //{
         //    throw new NotImplementedException();
