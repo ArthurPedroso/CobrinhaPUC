@@ -1,0 +1,12 @@
+UAW 	= 3
+UUCW 	= 10 + 5 + 10
+UUCP	= UAW + UUCW = 28
+
+TCF		= 0.6 + (0.01 * (T2(3) + T4(1) + T7(1) + T10(5))) = 0.6 + (0.125) = 0.725 
+ECF		= 1.4 + (-0.03 * (E1(1) + E2(3) + E3(3) + E4(3) + E6(5))) = 1.4 + (-0.03 * (17.5)) = 0.875
+UCP		= 28 * 0.725 * 0.875 = 17.75
+P 		= 20
+E		= UCP * P = 355
+
+5 Integrantes no projeto = 71h por pessoa
+71h / 3hrs por dia = 24 dias = 5 Semanas
