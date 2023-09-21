@@ -131,5 +131,32 @@ namespace SnakeGamePuc
                 BuildMainMenuCtrl()
             };
         }
+        public static GameObject BuildEndSceneCtrl()
+        {
+            GameObject endSceneCtrl = new GameObject("EndSceneCtrl");
+
+            endSceneCtrl.AttachComponent(new EndSceneCtrl(endSceneCtrl));
+
+            return endSceneCtrl;
+
+        }
+        public static GameObject[] BuildWinScene()
+        {
+            return new GameObject[]
+            {
+                BuildUI(new Vector2(0.0f, 4.0f), "Voce Ganhou!"),
+                BuildUI(new Vector2(-1.0f, 0.0f), "1. Sair"),
+                BuildEndSceneCtrl()
+            };
+        }
+        public static GameObject[] BuildLoseScene()
+        {
+            return new GameObject[]
+            {
+                BuildUI(new Vector2(0.0f, 4.0f), "Voce Perdeu!"),
+                BuildUI(new Vector2(-1.0f, 0.0f), "1. Sair"),
+                BuildEndSceneCtrl()
+            };
+        }
     }
 }

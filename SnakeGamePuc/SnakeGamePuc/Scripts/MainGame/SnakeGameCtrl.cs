@@ -57,7 +57,7 @@ namespace SnakeGamePuc.Scripts
             }
             else
             {
-                GameInstance.SceneMan.LoadScene("MainMenu");
+                GameInstance.SceneMan.LoadScene("WinScene");
             }
         }
 

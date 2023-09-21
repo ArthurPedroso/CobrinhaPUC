@@ -44,7 +44,7 @@ namespace SnakeGamePuc.Scripts
         private void OnCollision(Collider _collider)
         {
             if (_collider.AttachedGameObject.Name == "Apple") m_snakeBody.AddBodyPiece();
-            else GameInstance.SceneMan.LoadScene("MainMenu");
+            else GameInstance.SceneMan.LoadScene("LoseScene");
         }
         private void CheckInput()
         {
