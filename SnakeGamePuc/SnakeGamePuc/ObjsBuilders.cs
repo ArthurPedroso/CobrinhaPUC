@@ -38,10 +38,17 @@ namespace SnakeGamePuc
         {
             GameObject snake = new GameObject("Player");
 
+            SoundEmitter appleEat = new SoundEmitter(snake, Resources.OnAppleEaten);
+            SoundEmitter failure = new SoundEmitter(snake, Resources.Failure);
+            SoundEmitter win = new SoundEmitter(snake, Resources.OnWin);
+
             snake.AttachComponent(new Transform(snake));
             snake.AttachComponent(new Collider(snake));
             snake.AttachComponent(new ASCIISprite(snake, '@'));
-            snake.AttachComponent(new SnakeController(snake));
+            snake.AttachComponent(appleEat);
+            snake.AttachComponent(failure);
+            snake.AttachComponent(win);
+            snake.AttachComponent(new SnakeController(snake, appleEat, failure, win));
 
             return snake;
         }

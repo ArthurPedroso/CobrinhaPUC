@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 using GameEngine.Input;
 using GameEngine.GEMath;
 using GameEngine.Scenes;
+using System.Net.Quic;
 
 namespace SnakeGamePuc.Scripts
 {
     internal class SnakeController : Script
     {
-        private const float k_moveAfter = 0.8f;
+        private const float k_moveAfter = 0.3f;
         private const int k_startingSize = 4;
 
         private Transform m_transform;
@@ -21,11 +22,17 @@ namespace SnakeGamePuc.Scripts
         private SnakeDirection m_lastDirection;
         private float m_elapsedTime;
         private SnakeBody m_snakeBody;
+        private SoundEmitter m_onAppleEatSound;
+        private SoundEmitter m_failureSound;
+        private SoundEmitter m_winSound;
 
-        public SnakeController(GameObject _attachedGameObject) : base(_attachedGameObject)
+        public SnakeController(GameObject _attachedGameObject, SoundEmitter _soundEmitter, SoundEmitter _failureSound, SoundEmitter _winSound) : base(_attachedGameObject)
         {
             m_direction = SnakeDirection.Left;
             m_lastDirection = SnakeDirection.Left;
+            m_onAppleEatSound = _soundEmitter;
+            m_failureSound = _failureSound;
+            m_winSound = _winSound;
         }
 
         public override void Start()
@@ -41,10 +48,20 @@ namespace SnakeGamePuc.Scripts
             UpdateTimer();
             CheckInput();
         }
+        private void EatApple()
+        {
+            m_snakeBody.AddBodyPiece();
+            m_onAppleEatSound.Play();
+        }
+        private void Die()
+        {
+            m_failureSound.Play();
+            GameInstance.SceneMan.LoadScene("LoseScene");
+        }
         private void OnCollision(Collider _collider)
         {
-            if (_collider.AttachedGameObject.Name == "Apple") m_snakeBody.AddBodyPiece();
-            else GameInstance.SceneMan.LoadScene("LoseScene");
+            if (_collider.AttachedGameObject.Name == "Apple") EatApple();
+            else Die();
         }
         private void CheckInput()
         {
