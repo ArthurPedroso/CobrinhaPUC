@@ -63,9 +63,9 @@ namespace GameEngine.Input
         private InputState m_localThreadInputState;
 
         private InputState m_gameThreadInputState;
-        public InputKey KeysPressed { get => m_gameThreadInputState.KeysPressed; }
-        public InputKey KeysHolded { get => m_gameThreadInputState.KeysHolded; }
-        public InputKey KeysReleased { get => m_gameThreadInputState.KeysReleased; }
+        //public InputKey KeysPressed { get => m_gameThreadInputState.KeysPressed; }
+        //public InputKey KeysHolded { get => m_gameThreadInputState.KeysHolded; }
+        //public InputKey KeysReleased { get => m_gameThreadInputState.KeysReleased; }
 
         public InputSystem()
         {
@@ -251,6 +251,19 @@ namespace GameEngine.Input
                 m_localThreadInputState.KeysReleased = InputKey.None;
             }
             m_gameThreadInputState.KeysHolded &= ~m_gameThreadInputState.KeysReleased;
+        }
+
+        public bool KeyPressed(InputKey _key) 
+        {
+            return (m_gameThreadInputState.KeysPressed & _key) != 0;
+        }
+        public bool KeyHolded(InputKey _key)
+        {
+            return (m_gameThreadInputState.KeysHolded & _key) != 0;
+        }
+        public bool KeyReleased(InputKey _key)
+        {
+            return (m_gameThreadInputState.KeysReleased & _key) != 0;
         }
     }
     

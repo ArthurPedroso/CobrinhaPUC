@@ -101,5 +101,9 @@ namespace SnakeGamePuc
             }
             return walls.ToArray();
         }
+        public static GameObject[] BuildMainMenu()
+        {
+            return null;
+        }
     }
 }

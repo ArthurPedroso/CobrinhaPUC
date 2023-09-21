@@ -48,15 +48,15 @@ namespace SnakeGamePuc.Scripts
         }
         private void CheckInput()
         {
-            if ((GameInstance.Input.KeysReleased & InputKey.A) != 0 && m_direction != SnakeDirection.Right && m_lastDirection != SnakeDirection.Right)
+            if ((GameInstance.Input.KeyPressed(InputKey.A) && m_direction != SnakeDirection.Right && m_lastDirection != SnakeDirection.Right))
                 m_direction = SnakeDirection.Left;
-            else if ((GameInstance.Input.KeysReleased & InputKey.W) != 0 && m_direction != SnakeDirection.Down && m_lastDirection != SnakeDirection.Down)
+            else if ((GameInstance.Input.KeyPressed(InputKey.W) && m_direction != SnakeDirection.Down && m_lastDirection != SnakeDirection.Down))
                 m_direction = SnakeDirection.Up;
-            else if ((GameInstance.Input.KeysReleased & InputKey.D) != 0 && m_direction != SnakeDirection.Left && m_lastDirection != SnakeDirection.Left)
+            else if ((GameInstance.Input.KeyPressed(InputKey.D) && m_direction != SnakeDirection.Left && m_lastDirection != SnakeDirection.Left))
                 m_direction = SnakeDirection.Right;
-            else if ((GameInstance.Input.KeysReleased & InputKey.S) != 0 && m_direction != SnakeDirection.Up && m_lastDirection != SnakeDirection.Up)
+            else if ((GameInstance.Input.KeyPressed(InputKey.S) && m_direction != SnakeDirection.Up && m_lastDirection != SnakeDirection.Up))
                 m_direction = SnakeDirection.Down;
-            else if ((GameInstance.Input.KeysReleased & InputKey.K) != 0) 
+            else if (GameInstance.Input.KeyPressed(InputKey.K)) 
                 GameInstance.QuitGame();
 
         }
