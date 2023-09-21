@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GameEngine.GEMath;
+using GameEngine.Components.Scripts;
+using SnakeGamePuc.Scripts.MainMenu;
 
 namespace SnakeGamePuc
 {
@@ -101,9 +103,33 @@ namespace SnakeGamePuc
             }
             return walls.ToArray();
         }
+        public static GameObject BuildUI(Vector2 _pos, string _ui, bool _centerUI = true)
+        {
+            GameObject ui = new GameObject("Ui");
+
+            ui.AttachComponent(new Transform(ui));
+            ui.AttachComponent(new UI(ui, _ui, _centerUI));
+            ui.GetComponent<Transform>().Position = _pos;
+
+            return ui;
+        }
+        public static GameObject BuildMainMenuCtrl()
+        {
+            GameObject ui = new GameObject("UiCtrl");
+
+            ui.AttachComponent(new MainMenuCtrl(ui));
+
+            return ui;
+        }
         public static GameObject[] BuildMainMenu()
         {
-            return null;
+            return new GameObject[] 
+            {
+                BuildUI(new Vector2(0.0f, 4.0f), "Snake Game"),                
+                BuildUI(new Vector2(-1.0f, 0.0f), "1. Jogar"),
+                BuildUI(new Vector2(-1.0f, -1.0f), "2. Sair"),
+                BuildMainMenuCtrl()
+            };
         }
     }
 }

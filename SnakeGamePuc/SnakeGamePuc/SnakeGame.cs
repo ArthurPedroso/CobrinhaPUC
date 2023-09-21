@@ -7,7 +7,7 @@ namespace SnakeGamePuc
 {
     public class SnakeGame : GameInstance
     {
-        public SnakeGame(IRenderer _renderer, GameScene[] _gameScenes) : base(_renderer, _gameScenes, "SinglePlayerScene")
+        public SnakeGame(IRenderer _renderer, GameScene[] _gameScenes) : base(_renderer, _gameScenes, "MainMenu")
         {
 
         }

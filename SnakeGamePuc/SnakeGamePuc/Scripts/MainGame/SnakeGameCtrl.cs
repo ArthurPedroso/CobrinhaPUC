@@ -1,6 +1,7 @@
 ﻿using GameEngine;
 using GameEngine.Components;
 using GameEngine.GEMath;
+using GameEngine.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,7 +57,7 @@ namespace SnakeGamePuc.Scripts
             }
             else
             {
-                GameInstance.QuitGame();
+                GameInstance.SceneMan.LoadScene("MainMenu");
             }
         }
 
@@ -71,6 +72,8 @@ namespace SnakeGamePuc.Scripts
 
         public override void Update()
         {
+            if (GameInstance.Input.KeyPressed(InputKey.Esc))
+                GameInstance.QuitGame();
         }
 
 

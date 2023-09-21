@@ -26,6 +26,7 @@ namespace GameEngine.Scenes
             if (m_nameToScene.ContainsKey(_name))
             {
                 CurrentScene = m_nameToScene[_name];
+                CurrentScene.LoadScene();
                 m_onSceneLoadCB(CurrentScene);
                 GameInstance.Debug.LogMsg("Scene " + _name + " loaded!");
                 return true;

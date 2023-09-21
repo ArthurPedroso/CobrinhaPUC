@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Scenes
 {
-    public class GameScene
+    public abstract class GameScene
     {
         private HashSet<GameObject> m_sceneObjs;
         private HashSet<Script> m_sceneScripts;
@@ -20,15 +20,6 @@ namespace GameEngine.Scenes
         internal IReadOnlyCollection<Script> SceneScripts { get => m_sceneScripts; }
         internal IReadOnlyCollection<Collider> SceneColliders { get => m_sceneColliders; }
         internal IReadOnlyCollection<ASCIISprite> SceneSprites { get => m_sceneSprites; }
-        public GameScene(string _name, GameObject[] _objs) 
-        {
-            m_sceneObjs = new HashSet<GameObject>(_objs);
-            m_sceneScripts = new HashSet<Script>();
-            m_sceneColliders = new HashSet<Collider>();
-            m_sceneSprites = new HashSet<ASCIISprite>();
-            SceneName = _name;
-            FindComponents();
-        }
         public GameScene(string _name)
         {
             m_sceneObjs = new HashSet<GameObject>();
@@ -36,10 +27,9 @@ namespace GameEngine.Scenes
             m_sceneColliders = new HashSet<Collider>();
             m_sceneSprites = new HashSet<ASCIISprite>();
             SceneName = _name;
-            FindComponents();
         }
 
-        private void FindComponents()
+        private void LoadComponents()
         {
             foreach (GameObject obj in m_sceneObjs)
             {
@@ -48,7 +38,20 @@ namespace GameEngine.Scenes
                 m_sceneSprites.UnionWith(obj.GetComponents<ASCIISprite>());
             }
         }
-
+        private void ClearScene()
+        {
+            m_sceneObjs.Clear();
+            m_sceneScripts.Clear();
+            m_sceneColliders.Clear();
+            m_sceneSprites.Clear();
+        }
+        internal void LoadScene()
+        {
+            ClearScene();
+            BuildScene();
+            LoadComponents();
+        }
+        public abstract void BuildScene();
         public void AddObj(GameObject _obj)
         {
             m_sceneObjs.Add(_obj);

@@ -13,7 +13,7 @@ namespace GameEngine
 {
     public class GameInstance : Singleton<GameInstance>
     {
-        private enum EngineState { FirstFrame, Running, Exiting }
+        private enum EngineState { FirstFrame, Running, Exiting, ChangeScene }
 
         //Engine systems
         private GameEngineDebugger m_debugger;
@@ -70,7 +70,7 @@ namespace GameEngine
             foreach (Script script in scripts)
             {
                 if (m_engineState == EngineState.FirstFrame) script.Start();
-                else script.Update();
+                else if(m_engineState == EngineState.Running) script.Update();
             }
         }
 
@@ -93,7 +93,10 @@ namespace GameEngine
                 UpdateScripts();
                 ShipSpritesToRenderer();
                 WaitForRenderThread();
-                if (m_engineState == EngineState.FirstFrame) m_engineState = EngineState.Running;
+                if (m_engineState == EngineState.FirstFrame)
+                    m_engineState = EngineState.Running;
+                else if (m_engineState == EngineState.ChangeScene)
+                    m_engineState = EngineState.FirstFrame;
             }
         }
         private void StopEngine()
@@ -106,7 +109,7 @@ namespace GameEngine
 
         private void OnSceneLoad(GameScene _scene)
         {
-            m_engineState = EngineState.FirstFrame;
+            m_engineState = EngineState.ChangeScene;
         }
         public static void Instantiate(GameObject _obj)
         {

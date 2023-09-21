@@ -17,6 +17,7 @@ namespace SnakeGamePuc
         {
             GameScene[] m_gameScenes = new GameScene[]
             {
+                new MainMenu(),
                 new SinglePlayerScene()
             };
             SnakeGame instance = new SnakeGame(new ASCIIRenderer(16, 16, 30), m_gameScenes);

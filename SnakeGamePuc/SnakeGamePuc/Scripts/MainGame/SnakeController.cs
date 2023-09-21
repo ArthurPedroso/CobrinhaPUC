@@ -44,7 +44,7 @@ namespace SnakeGamePuc.Scripts
         private void OnCollision(Collider _collider)
         {
             if (_collider.AttachedGameObject.Name == "Apple") m_snakeBody.AddBodyPiece();
-            else GameInstance.QuitGame();
+            else GameInstance.SceneMan.LoadScene("MainMenu");
         }
         private void CheckInput()
         {
@@ -56,8 +56,6 @@ namespace SnakeGamePuc.Scripts
                 m_direction = SnakeDirection.Right;
             else if ((GameInstance.Input.KeyPressed(InputKey.S) && m_direction != SnakeDirection.Up && m_lastDirection != SnakeDirection.Up))
                 m_direction = SnakeDirection.Down;
-            else if (GameInstance.Input.KeyPressed(InputKey.K)) 
-                GameInstance.QuitGame();
 
         }
         private void UpdateTimer()

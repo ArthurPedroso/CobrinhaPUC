@@ -1,4 +1,5 @@
-﻿using GameEngine.Scenes;
+﻿using GameEngine;
+using GameEngine.Scenes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,14 @@ namespace SnakeGamePuc.Scenes
     {
         public MainMenu() : base("MainMenu")
         {
+        }
 
+        public override void BuildScene()
+        {
+            foreach (GameObject obj in ObjsBuilders.BuildMainMenu())
+            {
+                AddObj(obj);
+            }
         }
     }
 }

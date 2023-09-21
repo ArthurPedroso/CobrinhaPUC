@@ -188,8 +188,17 @@ namespace GameEngine.Input
                     return InputKey.Y;
                 case ConsoleKey.Z:
                     return InputKey.Z;
+                case ConsoleKey.D1:
+                    return InputKey.Key1;
+                case ConsoleKey.D2:
+                    return InputKey.Key2;
+                case ConsoleKey.D3:
+                    return InputKey.Key3;
+                case ConsoleKey.D4:
+                    return InputKey.Key4;
+                case ConsoleKey.Escape:
+                    return InputKey.Esc;
                 default:
-                    GameInstance.Debug.LogErrorMsg("Not corresponding input key found");
                     return InputKey.None;
             }
         }

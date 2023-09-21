@@ -16,6 +16,10 @@ namespace SnakeGamePuc.Scenes
     {
         public SinglePlayerScene() : base("SinglePlayerScene")
         {
+        }
+
+        public override void BuildScene()
+        {
             GameObject snake = ObjsBuilders.BuildSnakeController();
             AddObj(snake);
 
