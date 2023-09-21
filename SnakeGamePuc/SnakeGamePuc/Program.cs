@@ -1,4 +1,5 @@
-﻿using GameEngine.Scenes;
+﻿using GameEngine;
+using GameEngine.Scenes;
 using GameEngineASCIIRenderer;
 using SnakeGamePuc.Scenes;
 using System;
@@ -22,7 +23,7 @@ namespace SnakeGamePuc
                 new LoseScene(),
                 new WinScene()
             };
-            SnakeGame instance = new SnakeGame(new ASCIIRenderer(16, 16, 30), m_gameScenes);
+            GameInstance instance = new GameInstance(new ASCIIRenderer(6, 6, 20), m_gameScenes, "MainMenu");
         }
     }
 }

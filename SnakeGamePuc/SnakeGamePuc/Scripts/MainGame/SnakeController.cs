@@ -13,7 +13,7 @@ namespace SnakeGamePuc.Scripts
 {
     internal class SnakeController : Script
     {
-        private const float k_moveAfter = 0.3f;
+        private const float k_moveAfter = 0.8f;
         private const int k_startingSize = 4;
 
         private Transform m_transform;

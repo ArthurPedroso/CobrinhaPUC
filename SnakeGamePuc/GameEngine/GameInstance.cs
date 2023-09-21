@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace GameEngine
 {
-    public class GameInstance : Singleton<GameInstance>
+    public sealed class GameInstance : Singleton<GameInstance>
     {
         private enum EngineState { FirstFrame, Running, Exiting, ChangeScene }
 
@@ -88,10 +88,10 @@ namespace GameEngine
         {
             while (m_engineState != EngineState.Exiting)
             {
+                ShipSpritesToRenderer();
                 UpdateInput();
                 UpdatePhysics();
                 UpdateScripts();
-                ShipSpritesToRenderer();
                 WaitForRenderThread();
                 if (m_engineState == EngineState.FirstFrame)
                     m_engineState = EngineState.Running;
