@@ -23,7 +23,7 @@ namespace SnakeGamePuc
                 new LoseScene(),
                 new WinScene()
             };
-            GameInstance instance = new GameInstance(new ASCIIRenderer(6, 6, 20), m_gameScenes, "MainMenu");
+            GameInstance instance = new GameInstance(new ASCIIRenderer(16, 16, 20), m_gameScenes, "MainMenu");
         }
     }
 }
