@@ -16,7 +16,7 @@ namespace GameEngine.Input
     /// The call is made by sending a message to the thread that installed the hook.
     /// Therefore, the thread that installed the hook must have a message loop.</remarks>
     /// </summary>
-    public sealed class InputSystem
+    public sealed class InputSystem : ThreadedModule
     {
         #region externDlls
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
@@ -67,7 +67,7 @@ namespace GameEngine.Input
         //public InputKey KeysHolded { get => m_gameThreadInputState.KeysHolded; }
         //public InputKey KeysReleased { get => m_gameThreadInputState.KeysReleased; }
 
-        public InputSystem()
+        public InputSystem() : base()
         {
             m_proc = HookCallback;
             m_inputThread = new Thread(new ThreadStart(InputLoop));
@@ -222,33 +222,6 @@ namespace GameEngine.Input
             // return result.ToInt32() == 0 ? CallNextHookEx(_hookId, nCode, wParam, lParam) : result;
             return CallNextHookEx(m_hookId, nCode, wParam, lParam);
         }
-        private void InputLoop()
-        {
-            m_hookId = SetHook(m_proc);
-
-            Application.Run();
-
-            Dispose(true);
-        }
-
-        public void StartInputLoop()
-        {
-            if (!m_run)
-            {
-                m_run = true;
-                m_inputThread.Start();
-            }
-        }
-
-        public void StopInputLoop()
-        {
-            if (m_run)
-            {
-                m_run = false;
-                Application.Exit();
-                m_inputThread.Join();
-            }
-        }
 
         public void UpdateInputState()
         {
@@ -273,6 +246,33 @@ namespace GameEngine.Input
         public bool KeyReleased(InputKey _key)
         {
             return (m_gameThreadInputState.KeysReleased & _key) != 0;
+        }
+
+        protected override void ModuleLoop()
+        {
+            m_hookId = SetHook(m_proc);
+
+            Application.Run();
+
+            Dispose(true);
+        }
+
+        protected override void OnModuleStart()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void OnModuleStop()
+        {
+            Application.Exit();
+        }
+
+        protected override void PreThreadModuleStart()
+        {
+        }
+
+        protected override void PostThreadModuleStop()
+        {
         }
     }
     

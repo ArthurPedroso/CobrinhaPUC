@@ -7,39 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
+using System.Windows.Interop;
 
 namespace GameEngine.Debug
 {
-    internal class GameEngineDebugger : IDebugger
+    internal class GameEngineDebugger : ThreadedModule, IDebugger
     {
         private const int k_maxBufferSize = 100;
         private readonly string r_logPath = "log_" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt";
-        private Thread m_debuggerThread;
         private ConcurrentQueue<string> m_msgBuffer;
-        private bool m_run;
-        internal GameEngineDebugger()
+        internal GameEngineDebugger() : base()
         {
-            m_debuggerThread = new Thread(new ThreadStart(DebugLoop));
             m_msgBuffer = new ConcurrentQueue<string>();
-            m_run = false;
-        }
-
-        private void DebugLoop()
-        {
-            string msg;
-            while (m_run)
-            {
-                while (m_msgBuffer.Count > 0)
-                {
-                    if (m_msgBuffer.TryDequeue(out msg) && !string.IsNullOrEmpty(msg))
-                    {
-                        StreamWriter sw = File.AppendText(r_logPath);
-                        sw.WriteLine("[" + DateTime.Now.ToString() + "]:" + msg);
-                        sw.Close();
-                    }
-                }
-                Thread.Sleep(500);
-            }
         }
         private void CreateDebbugFile()
         {
@@ -49,22 +28,36 @@ namespace GameEngine.Debug
             }
         }
 
-        internal void StartDebugger()
+        protected override void ModuleLoop()
         {
-            if (!m_run)
+            string msg;
+            while (m_msgBuffer.Count > 0)
             {
-                m_run = true;
-                CreateDebbugFile();
-                m_debuggerThread.Start();
+                if (m_msgBuffer.TryDequeue(out msg) && !string.IsNullOrEmpty(msg))
+                {
+                    StreamWriter sw = File.AppendText(r_logPath);
+                    sw.WriteLine("[" + DateTime.Now.ToString() + "]:" + msg);
+                    sw.Close();
+                }
             }
+            Thread.Sleep(500);
         }
-        internal void StopDebugger()
+
+        protected override void OnModuleStart()
         {
-            if (m_run)
-            {
-                m_run = false;
-                m_debuggerThread.Join();
-            }
+        }
+
+        protected override void OnModuleStop()
+        {
+        }
+
+        protected override void PreThreadModuleStart()
+        {
+            CreateDebbugFile();
+        }
+
+        protected override void PostThreadModuleStop()
+        {
         }
 
         public void LogMsg(string _msg)
