@@ -55,23 +55,14 @@ namespace GameEngine.Input
         private const int WM_KEYUP = 0x0101;
 
         private LowLevelKeyboardProc m_proc;
-        private Thread m_inputThread;
+        private InputState m_localThreadInputState;
+        private InputState m_gameThreadInputState;
         private IntPtr m_hookId = IntPtr.Zero;
         private bool m_disposed;
-        private bool m_run;
-
-        private InputState m_localThreadInputState;
-
-        private InputState m_gameThreadInputState;
-        //public InputKey KeysPressed { get => m_gameThreadInputState.KeysPressed; }
-        //public InputKey KeysHolded { get => m_gameThreadInputState.KeysHolded; }
-        //public InputKey KeysReleased { get => m_gameThreadInputState.KeysReleased; }
 
         public InputSystem() : base()
         {
             m_proc = HookCallback;
-            m_inputThread = new Thread(new ThreadStart(InputLoop));
-            m_run = false;
             m_localThreadInputState = new InputState();
             m_gameThreadInputState = new InputState();
             m_gameThreadInputState.KeysPressed = InputKey.None;
@@ -86,25 +77,9 @@ namespace GameEngine.Input
         ~InputSystem()
         {
         }
-        private void Dispose(bool dispose)
+        private void Dispose()
         {
-            try
-            {
-                if (m_disposed)
-                    return;
-
-                UnhookWindowsHookEx(m_hookId);
-                if (dispose)
-                {
-                    m_proc = null;
-                    GC.SuppressFinalize(this);
-                }
-                m_disposed = true;
-            }
-            // ReSharper disable once EmptyGeneralCatchClause
-            catch
-            {
-            }
+            UnhookWindowsHookEx(m_hookId);
         }
         private IntPtr SetHook(LowLevelKeyboardProc proc)
         {
@@ -223,6 +198,32 @@ namespace GameEngine.Input
             return CallNextHookEx(m_hookId, nCode, wParam, lParam);
         }
 
+        protected override void ModuleLoop()
+        {
+            m_hookId = SetHook(m_proc);
+
+            Application.Run();
+
+            Dispose();
+        }
+
+        protected override void OnModuleStart()
+        {
+        }
+
+        protected override void OnModuleStop()
+        {
+        }
+
+        protected override void PreThreadModuleStart()
+        {
+        }
+
+        protected override void PreThreadModuleStop()
+        {
+            Application.Exit();
+        }
+
         public void UpdateInputState()
         {
             m_gameThreadInputState.KeysHolded |= m_gameThreadInputState.KeysPressed;
@@ -246,33 +247,6 @@ namespace GameEngine.Input
         public bool KeyReleased(InputKey _key)
         {
             return (m_gameThreadInputState.KeysReleased & _key) != 0;
-        }
-
-        protected override void ModuleLoop()
-        {
-            m_hookId = SetHook(m_proc);
-
-            Application.Run();
-
-            Dispose(true);
-        }
-
-        protected override void OnModuleStart()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void OnModuleStop()
-        {
-            Application.Exit();
-        }
-
-        protected override void PreThreadModuleStart()
-        {
-        }
-
-        protected override void PostThreadModuleStop()
-        {
         }
     }
     

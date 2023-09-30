@@ -49,7 +49,7 @@ namespace GameEngine
         {
             m_debugger.StartModuleThread();
             m_renderer.StartRenderLoop();
-            m_inputSystem.StartInputLoop();
+            m_inputSystem.StartModuleThread();
             m_engineState = EngineState.FirstFrame;
         }
         private void WaitForRenderThread()
@@ -103,7 +103,7 @@ namespace GameEngine
         {
             m_debugger.StopModuleThread();
             m_renderer.StopRenderLoop();
-            m_inputSystem.StopInputLoop();
+            m_inputSystem.StopModuleThread();
             m_engineState = EngineState.Exiting;
         }
 

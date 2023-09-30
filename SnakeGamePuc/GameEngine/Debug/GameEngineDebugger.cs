@@ -56,7 +56,7 @@ namespace GameEngine.Debug
             CreateDebbugFile();
         }
 
-        protected override void PostThreadModuleStop()
+        protected override void PreThreadModuleStop()
         {
         }
 

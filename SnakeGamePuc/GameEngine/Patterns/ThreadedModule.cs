@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Patterns
 {
-    internal abstract class ThreadedModule
+    public abstract class ThreadedModule
     {
         protected Thread m_thread;
         private bool m_run;
-        internal ThreadedModule()
+        public ThreadedModule()
         {
             m_run = false;
             m_thread = new Thread(new ThreadStart(ThreadLoop));
@@ -32,7 +32,7 @@ namespace GameEngine.Patterns
         protected abstract void OnModuleStart();
         protected abstract void OnModuleStop();
         protected abstract void PreThreadModuleStart();
-        protected abstract void PostThreadModuleStop();
+        protected abstract void PreThreadModuleStop();
         internal void StartModuleThread()
         {
             if (!m_run)
@@ -47,8 +47,8 @@ namespace GameEngine.Patterns
             if (m_run)
             {
                 m_run = false;
+                PreThreadModuleStop();
                 m_thread.Join();
-                PostThreadModuleStop();
             }
         }
     }
