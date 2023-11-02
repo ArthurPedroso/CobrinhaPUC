@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>11</zoom_level>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>935</x>
+      <y>198</y>
+      <w>176</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>*&lt;&lt;Use Case&gt;&gt;*
+ Enviar direção da
+ serpente B
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>924</x>
+      <y>286</y>
+      <w>198</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>*&lt;&lt;Use Case&gt;&gt;*
+Receber estados do
+mundo da serpente
+do host
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>638</x>
+      <y>231</y>
+      <w>319</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>270.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>638</x>
+      <y>319</y>
+      <w>308</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>260.0;10.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1309</x>
+      <y>275</y>
+      <w>176</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>*Responsabilidade*
+--
+Mostrar estado do jogo
+atualizado para o cliente
+com dados recebidos
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>539</x>
+      <y>297</y>
+      <w>110</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>Cliente
+// Text Element
+// DB Symbol
+_umletcode=
+fg='black';
+bg='#222222';
+drawArc(0,0,width,height*2/5,0,180,true) //Parameters (x, y, width, height, start, extent, open)
+bg='bg';
+drawArc(0,0,width,height*2/5,180,180,true)  //Parameters (x, y, width, height, start, extent, open)
+fg='#929292';
+bg='#222222';
+drawRectangle(0,(height+0.5)/5,width,(height)*3/5-1)  //Parameters (x, y, width, height)
+fg='black'
+drawLine(0,height/5,0,height*4/5) //Parameters (x1, y1, x2, y2)
+drawLine(width,height/5,width,height*4/5) //Parameters (x1, y1, x2, y2)
+bg='bg';
+drawArc(0,height*1/5,width,height*2/5,180,180,true)  //Parameters (x, y, width, height, start, extent, open)
+drawArc(0,height*2/5,width,height*2/5,180,180,true)  //Parameters (x, y, width, height, start, extent, open)
+bg='#222222'
+drawArc(0,height*3/5,width,height*2/5,180,180,true)  //Parameters (x, y, width, height, start, extent, open)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>385</x>
+      <y>330</y>
+      <w>176</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>99</x>
+      <y>286</y>
+      <w>297</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>*Meta*
+--
+Enviar a direção da serpente B
+Receber estados do mundo da serpente A
+Receber posição da serpente A</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>891</x>
+      <y>132</y>
+      <w>264</w>
+      <h>352</h>
+    </coordinates>
+    <panel_attributes>*&lt;&lt;System&gt;&gt;*
+Cliente do mundo (ambiente) da serpente B
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>539</x>
+      <y>649</y>
+      <w>110</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>Host
+// Text Element
+// DB Symbol
+_umletcode=
+fg='black';
+bg='#222222';
+drawArc(0,0,width,height*2/5,0,180,true) //Parameters (x, y, width, height, start, extent, open)
+bg='bg';
+drawArc(0,0,width,height*2/5,180,180,true)  //Parameters (x, y, width, height, start, extent, open)
+fg='#929292';
+bg='#222222';
+drawRectangle(0,(height+0.5)/5,width,(height)*3/5-1)  //Parameters (x, y, width, height)
+fg='black'
+drawLine(0,height/5,0,height*4/5) //Parameters (x1, y1, x2, y2)
+drawLine(width,height/5,width,height*4/5) //Parameters (x1, y1, x2, y2)
+bg='bg';
+drawArc(0,height*1/5,width,height*2/5,180,180,true)  //Parameters (x, y, width, height, start, extent, open)
+drawArc(0,height*2/5,width,height*2/5,180,180,true)  //Parameters (x, y, width, height, start, extent, open)
+bg='#222222'
+drawArc(0,height*3/5,width,height*2/5,180,180,true)  //Parameters (x, y, width, height, start, extent, open)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>891</x>
+      <y>506</y>
+      <w>264</w>
+      <h>341</h>
+    </coordinates>
+    <panel_attributes>*&lt;&lt;System&gt;&gt;*
+Host do mundo da serpente
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>935</x>
+      <y>561</y>
+      <w>176</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>*&lt;&lt;Use Case&gt;&gt;*
+Receber direção da
+ serpente B
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>924</x>
+      <y>649</y>
+      <w>198</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>*&lt;&lt;Use Case&gt;&gt;*
+Eviar estados do
+mundo da serpente
+do host
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>935</x>
+      <y>748</y>
+      <w>187</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>*&lt;&lt;Use Case&gt;&gt;*
+Enviar posição
+da serpente A e da B
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>363</x>
+      <y>682</y>
+      <w>198</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>160.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>88</x>
+      <y>649</y>
+      <w>286</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>*Meta*
+--
+Receber a direção da serpente B
+Enviar estados do mundo da serpente A
+Enviar posição da serpente A</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>638</x>
+      <y>594</y>
+      <w>330</w>
+      <h>121</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>280.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>638</x>
+      <y>682</y>
+      <w>330</w>
+      <h>121</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>280.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>638</x>
+      <y>682</y>
+      <w>319</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>270.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1309</x>
+      <y>572</y>
+      <w>165</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>*Responsabilidade*
+--
+Mostrar posição da 
+serpente B para o host
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1111</x>
+      <y>319</y>
+      <w>220</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>180.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1309</x>
+      <y>660</y>
+      <w>165</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>*Responsabilidade*
+--
+Mostrar estado do jogo
+atualizado para o host
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1100</x>
+      <y>594</y>
+      <w>231</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>190.0;20.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1111</x>
+      <y>682</y>
+      <w>220</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>180.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1309</x>
+      <y>759</y>
+      <w>154</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>*Responsabilidade*
+--
+Mostrar posição da 
+serpente A e B
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1111</x>
+      <y>781</y>
+      <w>220</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>180.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1309</x>
+      <y>187</y>
+      <w>176</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>*Responsabilidade*
+--
+Compartilhar direção da 
+serpente B para o host
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1089</x>
+      <y>209</y>
+      <w>242</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>200.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1309</x>
+      <y>396</y>
+      <w>154</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>*Responsabilidade*
+--
+Mostrar posição da 
+serpente A e B
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>638</x>
+      <y>330</y>
+      <w>319</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>270.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1111</x>
+      <y>418</y>
+      <w>220</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>180.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>935</x>
+      <y>385</y>
+      <w>187</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>*&lt;&lt;Use Case&gt;&gt;*
+Receber posição
+da serpente A e B
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1309</x>
+      <y>495</y>
+      <w>165</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>*Responsabilidade*
+--
+Atualizar posição da 
+serpente B para o host
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1100</x>
+      <y>528</y>
+      <w>231</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>190.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+</diagram>

@@ -4,8 +4,8 @@
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>363</x>
-      <y>418</y>
+      <x>374</x>
+      <y>319</y>
       <w>220</w>
       <h>132</h>
     </coordinates>
@@ -16,8 +16,8 @@ Encantador de Serpentes A</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>55</x>
-      <y>429</y>
+      <x>66</x>
+      <y>330</y>
       <w>231</w>
       <h>99</h>
     </coordinates>
@@ -32,8 +32,8 @@ sem que a sua serpente morra.</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>275</x>
-      <y>462</y>
+      <x>286</x>
+      <y>363</y>
       <w>209</w>
       <h>33</h>
     </coordinates>
@@ -43,8 +43,8 @@ sem que a sua serpente morra.</panel_attributes>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>880</x>
-      <y>308</y>
+      <x>891</x>
+      <y>209</y>
       <w>187</w>
       <h>77</h>
     </coordinates>
@@ -56,8 +56,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>814</x>
-      <y>242</y>
+      <x>825</x>
+      <y>143</y>
       <w>330</w>
       <h>352</h>
     </coordinates>
@@ -70,8 +70,8 @@ Mundo da serpente A
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>880</x>
-      <y>396</y>
+      <x>891</x>
+      <y>297</y>
       <w>187</w>
       <h>77</h>
     </coordinates>
@@ -83,8 +83,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>880</x>
-      <y>484</y>
+      <x>891</x>
+      <y>385</y>
       <w>187</w>
       <h>77</h>
     </coordinates>
@@ -96,8 +96,8 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>473</x>
-      <y>341</y>
+      <x>484</x>
+      <y>242</y>
       <w>429</w>
       <h>154</h>
     </coordinates>
@@ -107,8 +107,8 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>473</x>
-      <y>418</y>
+      <x>484</x>
+      <y>319</y>
       <w>429</w>
       <h>77</h>
     </coordinates>
@@ -118,8 +118,8 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>473</x>
-      <y>462</y>
+      <x>484</x>
+      <y>363</y>
       <w>429</w>
       <h>77</h>
     </coordinates>
@@ -129,8 +129,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1331</x>
-      <y>99</y>
+      <x>1342</x>
+      <y>0</y>
       <w>143</w>
       <h>66</h>
     </coordinates>
@@ -144,8 +144,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1331</x>
-      <y>176</y>
+      <x>1342</x>
+      <y>77</y>
       <w>143</w>
       <h>66</h>
     </coordinates>
@@ -159,8 +159,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1331</x>
-      <y>253</y>
+      <x>1342</x>
+      <y>154</y>
       <w>165</w>
       <h>55</h>
     </coordinates>
@@ -173,8 +173,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1331</x>
-      <y>330</y>
+      <x>1342</x>
+      <y>231</y>
       <w>154</w>
       <h>55</h>
     </coordinates>
@@ -187,8 +187,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1331</x>
-      <y>407</y>
+      <x>1342</x>
+      <y>308</y>
       <w>154</w>
       <h>55</h>
     </coordinates>
@@ -201,8 +201,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1331</x>
-      <y>484</y>
+      <x>1342</x>
+      <y>385</y>
       <w>176</w>
       <h>66</h>
     </coordinates>
@@ -216,8 +216,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1331</x>
-      <y>561</y>
+      <x>1342</x>
+      <y>462</y>
       <w>176</w>
       <h>66</h>
     </coordinates>
@@ -231,8 +231,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1331</x>
-      <y>726</y>
+      <x>1342</x>
+      <y>616</y>
       <w>187</w>
       <h>66</h>
     </coordinates>
@@ -246,8 +246,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1331</x>
-      <y>638</y>
+      <x>1342</x>
+      <y>539</y>
       <w>176</w>
       <h>66</h>
     </coordinates>
@@ -261,8 +261,8 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1045</x>
-      <y>121</y>
+      <x>1056</x>
+      <y>22</y>
       <w>308</w>
       <h>231</h>
     </coordinates>
@@ -272,8 +272,8 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1056</x>
-      <y>198</y>
+      <x>1067</x>
+      <y>99</y>
       <w>297</w>
       <h>165</h>
     </coordinates>
@@ -283,8 +283,8 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1045</x>
-      <y>264</y>
+      <x>1056</x>
+      <y>165</y>
       <w>308</w>
       <h>88</h>
     </coordinates>
@@ -294,8 +294,8 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1056</x>
-      <y>341</y>
+      <x>1067</x>
+      <y>242</y>
       <w>297</w>
       <h>33</h>
     </coordinates>
@@ -305,8 +305,8 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1045</x>
-      <y>352</y>
+      <x>1056</x>
+      <y>253</y>
       <w>308</w>
       <h>99</h>
     </coordinates>
@@ -316,8 +316,8 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1045</x>
-      <y>418</y>
+      <x>1056</x>
+      <y>319</y>
       <w>308</w>
       <h>33</h>
     </coordinates>
@@ -327,8 +327,8 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1045</x>
-      <y>528</y>
+      <x>1056</x>
+      <y>429</y>
       <w>308</w>
       <h>88</h>
     </coordinates>
@@ -338,8 +338,8 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1045</x>
-      <y>429</y>
+      <x>1056</x>
+      <y>330</y>
       <w>308</w>
       <h>187</h>
     </coordinates>
@@ -349,19 +349,19 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1045</x>
-      <y>506</y>
+      <x>1056</x>
+      <y>407</y>
       <w>308</w>
-      <h>275</h>
+      <h>264</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;260.0;230.0</additional_attributes>
+    <additional_attributes>10.0;10.0;260.0;220.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1034</x>
-      <y>528</y>
+      <x>1045</x>
+      <y>429</y>
       <w>319</w>
       <h>165</h>
     </coordinates>
@@ -371,12 +371,141 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1045</x>
-      <y>506</y>
+      <x>1056</x>
+      <y>407</y>
       <w>308</w>
       <h>44</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;20.0;260.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>825</x>
+      <y>913</y>
+      <w>308</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>*&lt;&lt;System&gt;&gt;*
+Mundo da serpente B
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>891</x>
+      <y>979</y>
+      <w>187</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>*&lt;&lt;Use Case&gt;&gt;*
+Guia da serpente B
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>528</x>
+      <y>968</y>
+      <w>220</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>*&lt;&lt;Actor&gt;&gt;*
+Encantador de Serpentes B</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>209</x>
+      <y>957</y>
+      <w>231</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>*Meta*
+--
+Guiar a serpente de forma com
+que ela cresça e cubra o campo
+ou elimine a cobra do oponente
+sem que a sua serpente morra.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>429</x>
+      <y>1001</y>
+      <w>220</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>180.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>638</x>
+      <y>1001</y>
+      <w>275</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>230.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1309</x>
+      <y>935</y>
+      <w>143</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>*Responsabilidade*
+--
+Receber input do 
+cliente
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1056</x>
+      <y>957</y>
+      <w>275</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;50.0;230.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1309</x>
+      <y>1012</y>
+      <w>143</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>*Responsabilidade*
+--
+Definir direção 
+da serpente/cobra
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1056</x>
+      <y>1012</y>
+      <w>275</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;230.0;40.0</additional_attributes>
   </element>
 </diagram>
