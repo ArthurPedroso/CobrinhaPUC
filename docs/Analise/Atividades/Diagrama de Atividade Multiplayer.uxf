@@ -4,7 +4,7 @@
   <element>
     <id>UMLObject</id>
     <coordinates>
-      <x>330</x>
+      <x>280</x>
       <y>0</y>
       <w>1520</w>
       <h>1920</h>
@@ -18,7 +18,7 @@ valign=top</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>2430</x>
+      <x>2380</x>
       <y>10</y>
       <w>20</w>
       <h>20</h>
@@ -29,7 +29,7 @@ valign=top</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>1400</x>
+      <x>1350</x>
       <y>90</y>
       <w>20</w>
       <h>20</h>
@@ -41,7 +41,7 @@ valign=top</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1400</x>
+      <x>1350</x>
       <y>100</y>
       <w>30</w>
       <h>80</h>
@@ -52,7 +52,7 @@ valign=top</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>1390</x>
+      <x>1340</x>
       <y>250</y>
       <w>40</w>
       <h>40</h>
@@ -64,7 +64,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1400</x>
+      <x>1350</x>
       <y>190</y>
       <w>30</w>
       <h>80</h>
@@ -75,7 +75,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1180</x>
+      <x>1130</x>
       <y>250</y>
       <w>230</w>
       <h>120</h>
@@ -87,7 +87,7 @@ Não</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1420</x>
+      <x>1370</x>
       <y>250</y>
       <w>230</w>
       <h>100</h>
@@ -99,7 +99,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>1610</x>
+      <x>1560</x>
       <y>440</y>
       <w>40</w>
       <h>40</h>
@@ -111,7 +111,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1180</x>
+      <x>1130</x>
       <y>380</y>
       <w>30</w>
       <h>80</h>
@@ -122,7 +122,7 @@ type=decision</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1070</x>
+      <x>1020</x>
       <y>540</y>
       <w>160</w>
       <h>40</h>
@@ -133,7 +133,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1220</x>
+      <x>1170</x>
       <y>450</y>
       <w>410</w>
       <h>130</h>
@@ -145,7 +145,7 @@ Não</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1620</x>
+      <x>1570</x>
       <y>470</y>
       <w>50</w>
       <h>130</h>
@@ -157,7 +157,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1560</x>
+      <x>1510</x>
       <y>580</y>
       <w>150</w>
       <h>40</h>
@@ -168,7 +168,7 @@ Sim</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1620</x>
+      <x>1570</x>
       <y>610</y>
       <w>30</w>
       <h>110</h>
@@ -179,7 +179,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>1610</x>
+      <x>1560</x>
       <y>820</y>
       <w>40</w>
       <h>40</h>
@@ -191,7 +191,7 @@ type=decision</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1580</x>
+      <x>1530</x>
       <y>700</y>
       <w>100</w>
       <h>40</h>
@@ -202,7 +202,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1620</x>
+      <x>1570</x>
       <y>730</y>
       <w>30</w>
       <h>110</h>
@@ -213,7 +213,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1490</x>
+      <x>1440</x>
       <y>590</y>
       <w>140</w>
       <h>270</h>
@@ -225,7 +225,7 @@ Não</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1620</x>
+      <x>1570</x>
       <y>850</y>
       <w>50</w>
       <h>120</h>
@@ -237,7 +237,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1570</x>
+      <x>1520</x>
       <y>950</y>
       <w>130</w>
       <h>40</h>
@@ -249,7 +249,7 @@ ou si mesmo?</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1390</x>
+      <x>1340</x>
       <y>1060</y>
       <w>120</w>
       <h>40</h>
@@ -260,7 +260,7 @@ ou si mesmo?</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>1610</x>
+      <x>1560</x>
       <y>1060</y>
       <w>40</w>
       <h>40</h>
@@ -272,7 +272,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1620</x>
+      <x>1570</x>
       <y>980</y>
       <w>30</w>
       <h>100</h>
@@ -283,7 +283,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1620</x>
+      <x>1570</x>
       <y>1090</y>
       <w>50</w>
       <h>110</h>
@@ -295,7 +295,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1580</x>
+      <x>1530</x>
       <y>1180</y>
       <w>100</w>
       <h>40</h>
@@ -307,7 +307,7 @@ Sim</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1620</x>
+      <x>1570</x>
       <y>1210</y>
       <w>30</w>
       <h>100</h>
@@ -318,7 +318,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>1620</x>
+      <x>1570</x>
       <y>1290</y>
       <w>20</w>
       <h>20</h>
@@ -329,7 +329,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1580</x>
+      <x>1530</x>
       <y>330</y>
       <w>100</w>
       <h>40</h>
@@ -340,7 +340,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1360</x>
+      <x>1310</x>
       <y>160</y>
       <w>100</w>
       <h>40</h>
@@ -351,7 +351,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1140</x>
+      <x>1090</x>
       <y>350</y>
       <w>100</w>
       <h>40</h>
@@ -362,7 +362,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>1180</x>
+      <x>1130</x>
       <y>440</y>
       <w>20</w>
       <h>20</h>
@@ -373,7 +373,7 @@ Sim</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1620</x>
+      <x>1570</x>
       <y>360</y>
       <w>30</w>
       <h>100</h>
@@ -384,7 +384,7 @@ Sim</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1500</x>
+      <x>1450</x>
       <y>1060</y>
       <w>130</w>
       <h>40</h>
@@ -396,7 +396,7 @@ Não</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1400</x>
+      <x>1350</x>
       <y>1170</y>
       <w>100</w>
       <h>40</h>
@@ -407,7 +407,7 @@ Não</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1440</x>
+      <x>1390</x>
       <y>1090</y>
       <w>30</w>
       <h>100</h>
@@ -419,7 +419,7 @@ Não</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1440</x>
+      <x>1390</x>
       <y>1200</y>
       <w>30</w>
       <h>100</h>
@@ -431,7 +431,7 @@ Não</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1390</x>
+      <x>1340</x>
       <y>1280</y>
       <w>120</w>
       <h>40</h>
@@ -442,7 +442,7 @@ Não</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>1430</x>
+      <x>1380</x>
       <y>1390</y>
       <w>40</w>
       <h>40</h>
@@ -454,7 +454,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1440</x>
+      <x>1390</x>
       <y>1310</y>
       <w>30</w>
       <h>100</h>
@@ -466,7 +466,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1440</x>
+      <x>1390</x>
       <y>1420</y>
       <w>50</w>
       <h>110</h>
@@ -478,7 +478,7 @@ Sim</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1460</x>
+      <x>1410</x>
       <y>590</y>
       <w>370</w>
       <h>840</h>
@@ -490,7 +490,7 @@ Não</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1400</x>
+      <x>1350</x>
       <y>1510</y>
       <w>100</w>
       <h>40</h>
@@ -502,7 +502,7 @@ Não</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>1440</x>
+      <x>1390</x>
       <y>1600</y>
       <w>20</w>
       <h>20</h>
@@ -513,7 +513,7 @@ Não</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1440</x>
+      <x>1390</x>
       <y>1540</y>
       <w>30</w>
       <h>80</h>
@@ -524,7 +524,7 @@ Não</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>1040</x>
+      <x>990</x>
       <y>740</y>
       <w>40</w>
       <h>40</h>
@@ -536,7 +536,7 @@ type=decision</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>990</x>
+      <x>940</x>
       <y>650</y>
       <w>140</w>
       <h>40</h>
@@ -548,7 +548,7 @@ de Serpentes A?</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1050</x>
+      <x>1000</x>
       <y>680</y>
       <w>30</w>
       <h>80</h>
@@ -559,7 +559,7 @@ de Serpentes A?</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>820</x>
+      <x>770</x>
       <y>740</y>
       <w>240</w>
       <h>80</h>
@@ -571,7 +571,7 @@ Sim</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1070</x>
+      <x>1020</x>
       <y>740</y>
       <w>170</w>
       <h>120</h>
@@ -583,7 +583,7 @@ Não</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>760</x>
+      <x>710</x>
       <y>880</y>
       <w>150</w>
       <h>40</h>
@@ -595,7 +595,7 @@ e a Serpente B</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>690</x>
+      <x>640</x>
       <y>890</y>
       <w>140</w>
       <h>230</h>
@@ -607,7 +607,7 @@ Não</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>820</x>
+      <x>770</x>
       <y>910</y>
       <w>30</w>
       <h>100</h>
@@ -618,7 +618,7 @@ Não</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>780</x>
+      <x>730</x>
       <y>990</y>
       <w>120</w>
       <h>40</h>
@@ -630,7 +630,7 @@ SerpentesColidiu?</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
+      <x>610</x>
       <y>890</y>
       <w>370</w>
       <h>850</h>
@@ -642,7 +642,7 @@ Não</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>820</x>
+      <x>770</x>
       <y>1020</y>
       <w>30</w>
       <h>80</h>
@@ -653,7 +653,7 @@ Não</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>820</x>
+      <x>770</x>
       <y>1110</y>
       <w>50</w>
       <h>120</h>
@@ -665,7 +665,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>810</x>
+      <x>760</x>
       <y>1080</y>
       <w>40</w>
       <h>40</h>
@@ -677,7 +677,7 @@ type=decision</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>770</x>
+      <x>720</x>
       <y>1210</y>
       <w>130</w>
       <h>40</h>
@@ -689,7 +689,7 @@ ou si mesmo?</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>820</x>
+      <x>770</x>
       <y>1240</y>
       <w>30</w>
       <h>100</h>
@@ -700,7 +700,7 @@ ou si mesmo?</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>820</x>
+      <x>770</x>
       <y>1350</y>
       <w>50</w>
       <h>100</h>
@@ -712,7 +712,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>810</x>
+      <x>760</x>
       <y>1320</y>
       <w>40</w>
       <h>40</h>
@@ -724,7 +724,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>700</x>
+      <x>650</x>
       <y>1320</y>
       <w>130</w>
       <h>40</h>
@@ -736,7 +736,7 @@ Não</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>590</x>
+      <x>540</x>
       <y>1320</y>
       <w>120</w>
       <h>40</h>
@@ -747,7 +747,7 @@ Não</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>640</x>
+      <x>590</x>
       <y>1350</y>
       <w>30</w>
       <h>60</h>
@@ -759,7 +759,7 @@ Não</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>590</x>
+      <x>540</x>
       <y>1540</y>
       <w>120</w>
       <h>40</h>
@@ -770,7 +770,7 @@ Não</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>640</x>
+      <x>590</x>
       <y>1570</y>
       <w>30</w>
       <h>70</h>
@@ -782,7 +782,7 @@ Não</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>590</x>
+      <x>540</x>
       <y>1620</y>
       <w>120</w>
       <h>40</h>
@@ -793,7 +793,7 @@ Não</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>640</x>
+      <x>590</x>
       <y>1650</y>
       <w>30</w>
       <h>70</h>
@@ -805,7 +805,7 @@ Não</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>630</x>
+      <x>580</x>
       <y>1700</y>
       <w>40</w>
       <h>40</h>
@@ -817,7 +817,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>820</x>
+      <x>770</x>
       <y>1640</y>
       <w>30</w>
       <h>70</h>
@@ -828,7 +828,7 @@ type=decision</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>820</x>
+      <x>770</x>
       <y>1690</y>
       <w>20</w>
       <h>20</h>
@@ -839,7 +839,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>640</x>
+      <x>590</x>
       <y>1730</y>
       <w>50</w>
       <h>70</h>
@@ -851,7 +851,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>570</x>
+      <x>520</x>
       <y>1780</y>
       <w>160</w>
       <h>50</h>
@@ -864,7 +864,7 @@ Sim</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>640</x>
+      <x>590</x>
       <y>1820</y>
       <w>30</w>
       <h>70</h>
@@ -875,7 +875,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>640</x>
+      <x>590</x>
       <y>1870</y>
       <w>20</w>
       <h>20</h>
@@ -886,7 +886,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>740</x>
+      <x>690</x>
       <y>1590</y>
       <w>180</w>
       <h>60</h>
@@ -899,7 +899,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>770</x>
+      <x>720</x>
       <y>1430</y>
       <w>110</w>
       <h>40</h>
@@ -910,7 +910,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1130</x>
+      <x>1080</x>
       <y>1110</y>
       <w>180</w>
       <h>70</h>
@@ -924,7 +924,7 @@ Serpente A
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1150</x>
+      <x>1100</x>
       <y>840</y>
       <w>150</w>
       <h>40</h>
@@ -936,7 +936,7 @@ Mundo da serpente A</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1210</x>
+      <x>1160</x>
       <y>870</y>
       <w>30</w>
       <h>80</h>
@@ -947,7 +947,7 @@ Mundo da serpente A</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1210</x>
+      <x>1160</x>
       <y>1050</y>
       <w>50</w>
       <h>80</h>
@@ -959,7 +959,7 @@ não</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>760</x>
+      <x>710</x>
       <y>800</y>
       <w>150</w>
       <h>40</h>
@@ -971,7 +971,7 @@ Serpente B</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>820</x>
+      <x>770</x>
       <y>830</y>
       <w>30</w>
       <h>70</h>
@@ -982,7 +982,7 @@ Serpente B</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>810</x>
+      <x>760</x>
       <y>1500</y>
       <w>40</w>
       <h>40</h>
@@ -994,7 +994,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>820</x>
+      <x>770</x>
       <y>1460</y>
       <w>30</w>
       <h>60</h>
@@ -1006,7 +1006,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>820</x>
+      <x>770</x>
       <y>1530</y>
       <w>50</w>
       <h>80</h>
@@ -1018,7 +1018,7 @@ Sim</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>840</x>
+      <x>790</x>
       <y>1500</y>
       <w>290</w>
       <h>110</h>
@@ -1030,7 +1030,7 @@ Não</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1100</x>
+      <x>1050</x>
       <y>1640</y>
       <w>30</w>
       <h>70</h>
@@ -1041,7 +1041,7 @@ Não</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1020</x>
+      <x>970</x>
       <y>1590</y>
       <w>180</w>
       <h>60</h>
@@ -1054,7 +1054,7 @@ Não</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>1100</x>
+      <x>1050</x>
       <y>1690</y>
       <w>20</w>
       <h>20</h>
@@ -1065,7 +1065,7 @@ Não</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1140</x>
+      <x>1090</x>
       <y>930</y>
       <w>160</w>
       <h>40</h>
@@ -1076,7 +1076,7 @@ Não</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>1200</x>
+      <x>1150</x>
       <y>1020</y>
       <w>40</w>
       <h>40</h>
@@ -1088,7 +1088,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1210</x>
+      <x>1160</x>
       <y>960</y>
       <w>30</w>
       <h>80</h>
@@ -1099,7 +1099,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1070</x>
+      <x>1020</x>
       <y>1030</y>
       <w>150</w>
       <h>200</h>
@@ -1111,7 +1111,7 @@ Sim</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1290</x>
+      <x>1240</x>
       <y>850</y>
       <w>90</w>
       <h>310</h>
@@ -1122,7 +1122,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>600</x>
+      <x>550</x>
       <y>1390</y>
       <w>110</w>
       <h>40</h>
@@ -1133,7 +1133,7 @@ Sim</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>640</x>
+      <x>590</x>
       <y>1420</y>
       <w>30</w>
       <h>60</h>
@@ -1145,7 +1145,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>630</x>
+      <x>580</x>
       <y>1460</y>
       <w>40</w>
       <h>40</h>
@@ -1157,7 +1157,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>640</x>
+      <x>590</x>
       <y>1490</y>
       <w>50</w>
       <h>70</h>
@@ -1169,7 +1169,7 @@ Sim</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
+      <x>380</x>
       <y>1460</y>
       <w>220</w>
       <h>100</h>
@@ -1181,7 +1181,7 @@ Não</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>380</x>
+      <x>330</x>
       <y>1540</y>
       <w>120</w>
       <h>40</h>
@@ -1192,7 +1192,7 @@ Não</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
+      <x>380</x>
       <y>1570</y>
       <w>30</w>
       <h>70</h>
@@ -1204,7 +1204,7 @@ Não</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>380</x>
+      <x>330</x>
       <y>1620</y>
       <w>120</w>
       <h>40</h>
@@ -1215,7 +1215,7 @@ Não</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>420</x>
+      <x>370</x>
       <y>1690</y>
       <w>40</w>
       <h>40</h>
@@ -1227,7 +1227,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
+      <x>380</x>
       <y>1650</y>
       <w>30</w>
       <h>60</h>
@@ -1239,7 +1239,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
+      <x>380</x>
       <y>1720</y>
       <w>50</w>
       <h>80</h>
@@ -1251,7 +1251,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>360</x>
+      <x>310</x>
       <y>1780</y>
       <w>160</w>
       <h>50</h>
@@ -1264,7 +1264,7 @@ Sim</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
+      <x>380</x>
       <y>1820</y>
       <w>30</w>
       <h>70</h>
@@ -1275,7 +1275,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>430</x>
+      <x>380</x>
       <y>1870</y>
       <w>20</w>
       <h>20</h>
@@ -1286,7 +1286,7 @@ Sim</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>350</x>
+      <x>300</x>
       <y>880</y>
       <w>430</w>
       <h>850</h>
@@ -1298,7 +1298,7 @@ Não</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>1080</x>
+      <x>1030</x>
       <y>1300</y>
       <w>40</w>
       <h>40</h>
@@ -1310,7 +1310,7 @@ type=decision</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1010</x>
+      <x>960</x>
       <y>1210</y>
       <w>150</w>
       <h>40</h>
@@ -1321,7 +1321,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1090</x>
+      <x>1040</x>
       <y>1240</y>
       <w>30</w>
       <h>80</h>
@@ -1333,7 +1333,7 @@ type=decision</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1110</x>
+      <x>1060</x>
       <y>1300</y>
       <w>210</w>
       <h>110</h>
@@ -1345,7 +1345,7 @@ Não</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1090</x>
+      <x>1040</x>
       <y>1330</y>
       <w>50</w>
       <h>80</h>
@@ -1357,7 +1357,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1030</x>
+      <x>980</x>
       <y>1390</y>
       <w>160</w>
       <h>50</h>
@@ -1370,7 +1370,7 @@ Sim</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1100</x>
+      <x>1050</x>
       <y>1430</y>
       <w>30</w>
       <h>70</h>
@@ -1381,7 +1381,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>1100</x>
+      <x>1050</x>
       <y>1480</y>
       <w>20</w>
       <h>20</h>
@@ -1392,7 +1392,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1230</x>
+      <x>1180</x>
       <y>1390</y>
       <w>160</w>
       <h>50</h>
@@ -1405,7 +1405,7 @@ Sim</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1300</x>
+      <x>1250</x>
       <y>1430</y>
       <w>30</w>
       <h>70</h>
@@ -1416,7 +1416,7 @@ Sim</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>1300</x>
+      <x>1250</x>
       <y>1480</y>
       <w>20</w>
       <h>20</h>
