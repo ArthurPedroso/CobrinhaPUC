@@ -4,6 +4,7 @@ using GameEngine.Patterns;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -14,9 +15,9 @@ using System.Windows.Interop;
 
 namespace GameEngine.Net
 {
-    internal sealed class TcpHost : ThreadedModule
+    public sealed class TcpHost : ThreadedModule
     {
-        internal enum HostState
+        public enum HostState
         {
             Idle,
             StartWaitConnection,
@@ -25,16 +26,19 @@ namespace GameEngine.Net
         }
 
         private const int k_maxSendBufferSize = 128;
-        private const int k_timeoutSecs = 60;
+        private const int k_timeoutMSecs = 60000;
 
         private IPAddress m_ipAddress;
         private ConcurrentQueue<byte[]> m_sendBuffer;
         private HostState m_currentState;
         private Socket m_listener;
         private Socket m_handler;
-        private int m_waitAcceptTime;
 
-        internal HostState State { get { return m_currentState; } }
+        //Accept Data
+        private IAsyncResult m_asyncAccept;
+        private Stopwatch m_waitAcceptStopWatch;
+
+        public HostState State { get { return m_currentState; } }
 
         internal TcpHost() : base()
         {
@@ -69,42 +73,23 @@ namespace GameEngine.Net
         {
             if (State != HostState.StartWaitConnection) throw new NetException("Wrong Host State! Should be StartWaitConnection");
 
-            m_waitAcceptTime = 0;
+            m_waitAcceptStopWatch = new Stopwatch();
             m_currentState = HostState.WaitingConnection;
             m_listener.BeginAccept(OnAcceptConnectionResult, m_listener);
         }
 
         private void WaitingConnection()
         {
+            if(m_waitAcceptStopWatch.ElapsedMilliseconds >= k_timeoutMSecs) 
+            {
+                if(m_asyncAccept.IsCompleted) throw new NetException("Wrong Host State! Should be Listening or Idle!");
 
-            if(m_listener.Connected) 
-                m_currentState = HostState.Listening;
-            else
-                m_currentState = HostState.Idle;
-
+                m_listener.EndAccept(null);
+            }
         }
 
         private void ListenForMsgs()
         {
-            // Receive message.
-            var buffer = new byte[1_024];
-            var received = await handler.ReceiveAsync(buffer, SocketFlags.None);
-            var response = Encoding.UTF8.GetString(buffer, 0, received);
-
-            var eom = "<|EOM|>";
-            if (response.IndexOf(eom) > -1 /* is end of message */)
-            {
-                Console.WriteLine(
-                    $"Socket server received message: \"{response.Replace(eom, "")}\"");
-
-                var ackMessage = "<|ACK|>";
-                var echoBytes = Encoding.UTF8.GetBytes(ackMessage);
-                await handler.SendAsync(echoBytes, 0);
-                Console.WriteLine(
-                    $"Socket server sent acknowledgment: \"{ackMessage}\"");
-
-                break;
-            }
         }
         protected override void ModuleLoop()
         {
@@ -150,7 +135,7 @@ namespace GameEngine.Net
         {
         }
 
-        internal bool ListenToPort(int _port)
+        public bool ListenToPort(int _port)
         {
             if (State != HostState.Idle) return false;
             try
