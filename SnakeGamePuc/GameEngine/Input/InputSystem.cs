@@ -163,6 +163,8 @@ namespace GameEngine.Input
                     return InputKey.Y;
                 case ConsoleKey.Z:
                     return InputKey.Z;
+                case ConsoleKey.D0:
+                    return InputKey.Key0;
                 case ConsoleKey.D1:
                     return InputKey.Key1;
                 case ConsoleKey.D2:
@@ -171,6 +173,36 @@ namespace GameEngine.Input
                     return InputKey.Key3;
                 case ConsoleKey.D4:
                     return InputKey.Key4;
+                case ConsoleKey.D5:
+                    return InputKey.Key5;
+                case ConsoleKey.D6:
+                    return InputKey.Key6;
+                case ConsoleKey.D7:
+                    return InputKey.Key7;
+                case ConsoleKey.D8:
+                    return InputKey.Key8;
+                case ConsoleKey.D9:
+                    return InputKey.Key9;
+                case ConsoleKey.NumPad0:
+                    return InputKey.KeyPad0;
+                case ConsoleKey.NumPad1:
+                    return InputKey.KeyPad1;
+                case ConsoleKey.NumPad2:
+                    return InputKey.KeyPad2;
+                case ConsoleKey.NumPad3:
+                    return InputKey.KeyPad3;
+                case ConsoleKey.NumPad4:
+                    return InputKey.KeyPad4;
+                case ConsoleKey.NumPad5:
+                    return InputKey.KeyPad5;
+                case ConsoleKey.NumPad6:
+                    return InputKey.KeyPad6;
+                case ConsoleKey.NumPad7:
+                    return InputKey.KeyPad7;
+                case ConsoleKey.NumPad8:
+                    return InputKey.KeyPad8;
+                case ConsoleKey.NumPad9:
+                    return InputKey.KeyPad9;
                 case ConsoleKey.Escape:
                     return InputKey.Esc;
                 default:
