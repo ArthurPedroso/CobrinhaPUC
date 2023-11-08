@@ -7,6 +7,7 @@ using GameEngine.Net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -95,6 +96,9 @@ namespace SnakeGamePuc.Scripts.ClientMenu
             }
             else if (GameInstance.ClientTCP.State == TcpClient.ClientState.Connected)
             {
+                IPEndPoint remote = GameInstance.ClientTCP.GetConnectedEnpoint();
+                GameInstance.UDPReceive.StartUdpReceive(remote.Port);
+                GameInstance.UDPSend.StartUdpSend(remote);
                 m_menuState = ClientMenuState.Done;
                 GameInstance.SceneMan.LoadScene("ClientGame");
             }

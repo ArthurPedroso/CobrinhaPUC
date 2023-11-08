@@ -180,6 +180,14 @@ namespace GameEngine.Net
         {
         }
 
+        public IPEndPoint GetConnectedEnpoint()
+        {
+            IPEndPoint result = null;
+            if (m_currentState == HostState.Connected)
+                result = m_handler.RemoteEndPoint as IPEndPoint;
+            return result;
+        }
+
         public bool ListenToPort(int _port)
         {
             if (State != HostState.Idle) return false;
@@ -232,6 +240,11 @@ namespace GameEngine.Net
                 GameInstance.Debug.LogErrorMsg("TCP Receive Queue FULL!");
 
             return false;
+        }
+
+        public override void StopNetModule()
+        {
+            throw new NotImplementedException();
         }
     }
 

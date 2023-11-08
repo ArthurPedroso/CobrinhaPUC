@@ -30,6 +30,11 @@ namespace GameEngine.Net
 
         private void Idle()
         {
+            if (m_sleep == false)
+            {
+                if(m_udpReceiveSocket != null) m_udpReceiveSocket.Close();
+                m_sleep = true;
+            }
         }
         private void ReceiveMessages()
         {
@@ -62,8 +67,6 @@ namespace GameEngine.Net
 
         protected override void OnModuleStart()
         {
-            m_currentState = UdpReceiveState.Idle;
-            m_sleep = true;
         }
 
         protected override void OnModuleStop()
@@ -90,8 +93,8 @@ namespace GameEngine.Net
                 SocketType.Dgram,
                 ProtocolType.Udp);
 
-                m_sleep = false;
                 m_currentState = UdpReceiveState.Receiving;
+                m_sleep = false;
 
                 return true;
             }
@@ -118,6 +121,11 @@ namespace GameEngine.Net
 
             if(!success) GameInstance.Debug.LogErrorMsg("UDP Receive Queue FULL!");
             return success;
+        }
+
+        public override void StopNetModule()
+        {
+            throw new NotImplementedException();
         }
     }
 }

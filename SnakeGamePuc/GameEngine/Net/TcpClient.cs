@@ -247,5 +247,17 @@ namespace GameEngine.Net
 
             return false;
         }
+
+        public IPEndPoint GetConnectedEnpoint()
+        {
+            IPEndPoint result = null;
+            if (m_currentState == ClientState.Connected)
+                result = m_client.RemoteEndPoint as IPEndPoint;
+            return result;
+        }
+        public override void StopNetModule()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -17,5 +17,7 @@ namespace GameEngine.Net
         {
             if(m_sleep) Thread.Sleep(k_sleepTimeMS);
         }
+
+        public abstract void StopNetModule();
     }
 }

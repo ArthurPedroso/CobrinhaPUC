@@ -40,8 +40,8 @@ namespace GameEngine
         public static IRenderer Renderer { get => Instance.m_renderer; }
         public static TcpHost HostTCP { get => Instance.m_tcpHost; }
         public static TcpClient ClientTCP { get => Instance.m_tcpClient; }
-        public static UdpReceive HostUDP { get => Instance.m_udpHost; }
-        public static UdpSend ClientUDP { get => Instance.m_udpClient; }
+        public static UdpReceive UDPReceive { get => Instance.m_udpHost; }
+        public static UdpSend UDPSend { get => Instance.m_udpClient; }
 
         public GameInstance(IRenderer _renderer, GameScene[] _gameScenes, string _firstSceneToLoad)
         {

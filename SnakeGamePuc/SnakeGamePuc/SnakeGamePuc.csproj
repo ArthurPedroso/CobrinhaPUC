@@ -29,9 +29,4 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Scripts\HostGame\" />
-    <Folder Include="Scripts\ClientGame\" />
-  </ItemGroup>
-
 </Project>
