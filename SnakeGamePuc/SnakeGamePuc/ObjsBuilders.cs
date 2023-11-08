@@ -123,6 +123,16 @@ namespace SnakeGamePuc
 
             return ui;
         }
+        internal static GameObject BuildInputField(Vector2 _pos, string _ui, int _maxSize = 999999, bool _centerUI = true, bool _onlyNums = false)
+        {
+            GameObject ui = new GameObject("InputField");
+
+            ui.AttachComponent(new Transform(ui));
+            ui.AttachComponent(new UIInputField(ui, _ui, _maxSize, _centerUI, _onlyNums));
+            ui.GetComponent<Transform>().Position = _pos;
+
+            return ui;
+        }
         internal static GameObject BuildMainMenuCtrl()
         {
             GameObject ui = new GameObject("UiCtrl");
@@ -229,6 +239,11 @@ namespace SnakeGamePuc
         }
 
         internal static GameObject[] BuildHostGame()
+        {
+            return new GameObject[] { };
+        }
+
+        internal static GameObject[] BuildClientGame()
         {
             return new GameObject[] { };
         }

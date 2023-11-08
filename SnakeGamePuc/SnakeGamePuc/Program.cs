@@ -22,7 +22,9 @@ namespace SnakeGamePuc
                 new SinglePlayerScene(),
                 new MultiplayerMenu(),
                 new ClientMenu(),
+                new ClientGame(),
                 new HostMenu(),
+                new HostGame(),
                 new LoseScene(),
                 new WinScene()
             };

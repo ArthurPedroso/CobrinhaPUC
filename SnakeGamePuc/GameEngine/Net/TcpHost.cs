@@ -147,6 +147,7 @@ namespace GameEngine.Net
         protected override void OnModuleStop()
         {
             m_listener?.Close();
+            m_handler?.Close();
         }
 
         protected override void PreThreadModuleStart()

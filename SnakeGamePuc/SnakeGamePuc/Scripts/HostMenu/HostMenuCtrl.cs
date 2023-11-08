@@ -50,42 +50,40 @@ namespace SnakeGamePuc.Scripts.HostMenu
             }
         }
 
-        private void WaitForConnection()
+        private void StartTcpHost()
         {
-            if (m_menuState == HostMenuState.StartTcpHost)
+            if (GameInstance.HostTCP.State == TcpHost.HostState.Idle)
             {
-                if (GameInstance.HostTCP.State == TcpHost.HostState.Idle)
+                if (GameInstance.HostTCP.ListenToPort(7778))
                 {
-                    if (GameInstance.HostTCP.ListenToPort(7778))
-                    {
-                        m_hostStatus.UiText = "Waiting";
-                        m_menuState = HostMenuState.WaitingConnection;
-                    }
-                    else
-                    {
-                        m_timer = k_errorMsgTime;
-                        m_hostStatus.UiText = "Failed Bind";
-                        m_menuState = HostMenuState.Done;
-                    }
+                    m_hostStatus.UiText = "Waiting";
+                    m_menuState = HostMenuState.WaitingConnection;
                 }
                 else
                 {
-                    throw new Exception("Tcp not done!");
+                    m_timer = k_errorMsgTime;
+                    m_hostStatus.UiText = "Failed Bind";
+                    m_menuState = HostMenuState.Done;
                 }
             }
-            else if(m_menuState == HostMenuState.WaitingConnection)
+            else
             {
-                if(GameInstance.HostTCP.State == TcpHost.HostState.Idle)
-                {
-                    m_timer = k_errorMsgTime;
-                    m_hostStatus.UiText = "Timed Out";
-                    m_menuState = HostMenuState.Done;
-                }
-                else if(GameInstance.HostTCP.State == TcpHost.HostState.Listening)
-                {
-                    m_menuState = HostMenuState.Done;
-                    GameInstance.SceneMan.LoadScene("HostGame");
-                }
+                throw new Exception("Tcp not done!");
+            }
+
+        }
+        private void WaitForConnection()
+        {
+            if (GameInstance.HostTCP.State == TcpHost.HostState.Idle)
+            {
+                m_timer = k_errorMsgTime;
+                m_hostStatus.UiText = "Timed Out";
+                m_menuState = HostMenuState.Done;
+            }
+            else if (GameInstance.HostTCP.State == TcpHost.HostState.Listening)
+            {
+                m_menuState = HostMenuState.Done;
+                GameInstance.SceneMan.LoadScene("HostGame");
             }
         }
 
@@ -124,12 +122,13 @@ namespace SnakeGamePuc.Scripts.HostMenu
                         m_hostStatus.ShowText = true;
                         m_hostStatus.UiText = "Starting";
                         m_menuState = HostMenuState.StartTcpHost;
-                        WaitForConnection();
                     }
                     else if (GameInstance.Input.KeyPressed(InputKey.Key2))
                         GameInstance.SceneMan.LoadScene("MultiplayerMenu");
                     break;
                 case HostMenuState.StartTcpHost:
+                    StartTcpHost();
+                    break;
                 case HostMenuState.WaitingConnection:
                     WaitForConnection();
                     break;

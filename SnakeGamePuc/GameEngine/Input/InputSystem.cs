@@ -205,8 +205,20 @@ namespace GameEngine.Input
                     return InputKey.KeyPad9;
                 case ConsoleKey.Enter:
                     return InputKey.Enter;
+                case ConsoleKey.Backspace:
+                    return InputKey.Backspace;
+                case ConsoleKey.OemPeriod:
+                    return InputKey.Dot;
                 case ConsoleKey.Escape:
                     return InputKey.Esc;
+                case ConsoleKey.UpArrow:
+                    return InputKey.ArrowUp;
+                case ConsoleKey.DownArrow:
+                    return InputKey.ArrowDown;
+                case ConsoleKey.LeftArrow:
+                    return InputKey.ArrowLeft;
+                case ConsoleKey.RightArrow:
+                    return InputKey.ArrowRight;
                 default:
                     return InputKey.None;
             }

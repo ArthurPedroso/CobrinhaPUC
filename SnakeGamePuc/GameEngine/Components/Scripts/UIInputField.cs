@@ -11,10 +11,15 @@ namespace GameEngine.Components.Scripts
     {
         private readonly bool r_onlyNums;
         private bool m_editingText;
-        public UIInputField(GameObject _attachedGameObject, string _text, bool _centerText = true, bool _onlyNums = false) : base(_attachedGameObject, _text, _centerText)
+        
+        public bool EditingText { get => m_editingText; }
+        public int MaxSize { get; set; }
+
+        public UIInputField(GameObject _attachedGameObject, string _text, int _maxSize = 999999, bool _centerText = true, bool _onlyNums = false) : base(_attachedGameObject, _text, _centerText)
         {
             m_editingText = false;
             r_onlyNums = _onlyNums;
+            MaxSize = _maxSize;
         }
 
         private void EditText()
@@ -22,7 +27,19 @@ namespace GameEngine.Components.Scripts
 
             InputSystem input = GameInstance.Input;
 
-            if (r_onlyNums)
+            if (input.KeyPressed(InputKey.Backspace))
+            {
+                UiText = UiText.Substring(0, UiText.Length - 1);
+            }
+            else if (input.KeyPressed(InputKey.Enter))
+            {
+                FinishEditingText();
+            }
+            else if (UiText.Length >= MaxSize)
+            {
+                return;
+            }
+            else if (r_onlyNums)
             {
                 if (input.KeyPressed(InputKey.Key0) || input.KeyPressed(InputKey.KeyPad0))
                     UiText += "0";
