@@ -15,7 +15,7 @@ using System.Windows.Interop;
 
 namespace GameEngine.Net
 {
-    public sealed class TcpHost : ThreadedModule
+    public sealed class TcpHost : ThreadedNETModule
     {
         public enum HostState
         {
@@ -26,13 +26,14 @@ namespace GameEngine.Net
         }
 
         private const int k_maxSendBufferSize = 128;
-        private const int k_timeoutMSecs = 60000;
+        private const int k_timeoutMSecs = 30000;
 
         private IPAddress m_ipAddress;
         private ConcurrentQueue<byte[]> m_sendBuffer;
         private HostState m_currentState;
         private Socket m_listener;
         private Socket m_handler;
+        
 
         //Accept Data
         private IAsyncResult m_asyncAccept;
@@ -46,13 +47,25 @@ namespace GameEngine.Net
             m_listener = null;
             m_sendBuffer = new ConcurrentQueue<byte[]>();
             m_currentState = HostState.Idle;
+            m_sleep = true;
         }
 
         private void OnAcceptConnectionResult(IAsyncResult _result)
         {
-            if(State != HostState.WaitingConnection) throw new NetException("Wrong Host State! Should be WaitingConnection");
-            Socket? result = (Socket)_result.AsyncState;
+            Socket? result = null;
+            try
+            {
+                result = (Socket?)_result.AsyncState;
+                int x = result.Available;
 
+            }catch (System.ObjectDisposedException ex)
+            {
+                GameInstance.Debug.LogWarningMsg("Timed Out!");
+                return;
+            }
+            if (State != HostState.WaitingConnection) throw new NetException("Wrong Host State! Should be WaitingConnection");
+
+            m_asyncAccept = null;
             if (result != null)
             {
                 m_handler = result.EndAccept(_result);
@@ -62,6 +75,7 @@ namespace GameEngine.Net
             {
                 GameInstance.Debug.LogWarningMsg("Accept failed!");
                 m_currentState = HostState.Idle;
+                m_sleep = true;
             }
         }
 
@@ -74,17 +88,21 @@ namespace GameEngine.Net
             if (State != HostState.StartWaitConnection) throw new NetException("Wrong Host State! Should be StartWaitConnection");
 
             m_waitAcceptStopWatch = new Stopwatch();
+
+            m_waitAcceptStopWatch.Start();
             m_currentState = HostState.WaitingConnection;
-            m_listener.BeginAccept(OnAcceptConnectionResult, m_listener);
+            m_asyncAccept = m_listener.BeginAccept(OnAcceptConnectionResult, m_listener);
         }
 
         private void WaitingConnection()
         {
-            if(m_waitAcceptStopWatch.ElapsedMilliseconds >= k_timeoutMSecs) 
+            if (m_waitAcceptStopWatch.ElapsedMilliseconds >= k_timeoutMSecs) 
             {
-                if(m_asyncAccept.IsCompleted) throw new NetException("Wrong Host State! Should be Listening or Idle!");
+                if(m_asyncAccept != null && m_asyncAccept.IsCompleted) throw new NetException("Wrong Host State! Should be Listening or Idle!");
 
-                m_listener.EndAccept(null);
+                m_waitAcceptStopWatch.Stop();
+                m_listener.Close();
+                m_currentState = HostState.Idle;
             }
         }
 
@@ -93,6 +111,8 @@ namespace GameEngine.Net
         }
         protected override void ModuleLoop()
         {
+            base.ModuleLoop();
+            /*
             byte[] msg;
             while (m_sendBuffer.Count > 0)
             {
@@ -100,7 +120,7 @@ namespace GameEngine.Net
                 {
                 }
             }
-
+            */
             switch(m_currentState) 
             {
                 case HostState.Idle:
@@ -120,6 +140,8 @@ namespace GameEngine.Net
 
         protected override void OnModuleStart()
         {
+            m_currentState = HostState.Idle;
+            m_sleep = true;
         }
 
         protected override void OnModuleStop()
@@ -149,6 +171,7 @@ namespace GameEngine.Net
                 m_listener.Bind(endPoint);
                 m_listener.Listen(1); //Apenas aceita 1 conexao s
 
+                m_sleep = false;
                 m_currentState = HostState.StartWaitConnection;
 
                 return true;

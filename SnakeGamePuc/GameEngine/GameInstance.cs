@@ -2,6 +2,7 @@
 using GameEngine.Components.Sprites;
 using GameEngine.Debug;
 using GameEngine.Input;
+using GameEngine.Net;
 using GameEngine.Patterns;
 using GameEngine.Physics;
 using GameEngine.Rendering;
@@ -25,6 +26,11 @@ namespace GameEngine
         //Engine state
         private EngineState m_engineState;
         private int m_frameCount;
+        private TcpHost m_tcpHost;
+        private TcpClient m_tcpClient;
+        private UdpHost m_udpHost;
+        private UdpClient m_udpClient;
+
         //Game components
 
         public static IDebugger Debug { get => Instance.m_debugger; }
@@ -32,10 +38,18 @@ namespace GameEngine
         public static SceneManager SceneMan { get => Instance.m_sceneManager; }
         public static InputSystem Input { get => Instance.m_inputSystem; }
         public static IRenderer Renderer { get => Instance.m_renderer; }
+        public static TcpHost HostTCP { get => Instance.m_tcpHost; }
+        public static TcpClient ClientTCP { get => Instance.m_tcpClient; }
+        public static UdpHost HostUDP { get => Instance.m_udpHost; }
+        public static UdpClient ClientUDP { get => Instance.m_udpClient; }
 
         public GameInstance(IRenderer _renderer, GameScene[] _gameScenes, string _firstSceneToLoad)
         {
             m_debugger = new GameEngineDebugger();
+            m_tcpHost = new TcpHost();
+            m_tcpClient = new TcpClient();
+            m_udpHost = new UdpHost();
+            m_udpClient = new UdpClient();
             m_sceneManager = new SceneManager(_gameScenes, _firstSceneToLoad, OnSceneLoad);
             m_inputSystem = new InputSystem();
             m_physics2D = new Physics2D();
@@ -50,6 +64,10 @@ namespace GameEngine
             m_debugger.StartModuleThread();
             m_renderer.StartRenderLoop();
             m_inputSystem.StartModuleThread();
+            m_tcpHost.StartModuleThread();
+            m_tcpClient.StartModuleThread();
+            m_udpHost.StartModuleThread();
+            m_udpClient.StartModuleThread();
             m_engineState = EngineState.FirstFrame;
         }
         private void WaitForRenderThread()
@@ -104,6 +122,10 @@ namespace GameEngine
             m_debugger.StopModuleThread();
             m_renderer.StopRenderLoop();
             m_inputSystem.StopModuleThread();
+            m_tcpHost.StopModuleThread();
+            m_tcpClient.StopModuleThread();
+            m_udpHost.StopModuleThread();
+            m_udpClient.StopModuleThread();
             m_engineState = EngineState.Exiting;
         }
 

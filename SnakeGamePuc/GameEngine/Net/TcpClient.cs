@@ -5,41 +5,39 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using static GameEngine.Net.TcpHost;
 
 namespace GameEngine.Net
 {
-    internal class TcpClient : ThreadedModule
+    public class TcpClient : ThreadedNETModule
     {
         protected override void ModuleLoop()
         {
-            throw new NotImplementedException();
+            base.ModuleLoop();
         }
 
         protected override void OnModuleStart()
         {
-            throw new NotImplementedException();
+            m_sleep = true;
         }
 
         protected override void OnModuleStop()
         {
-            throw new NotImplementedException();
         }
 
         protected override void PreThreadModuleStart()
         {
-            throw new NotImplementedException();
         }
 
         protected override void PreThreadModuleStop()
         {
-            throw new NotImplementedException();
         }
 
-        internal void AttemptToConnect(string _address, Action<bool> _result)
+        public void AttemptToConnect(string _address, Action<bool> _result)
         {
-            IPAddress[] addresses = Dns.GetHostAddresses(_address);
+            //IPAddress[] addresses = Dns.GetHostAddresses(_address);
 
-            if (addresses.Length <= 0) _result(false);
+            //if (addresses.Length <= 0) _result(false);
 
 
         }

@@ -227,5 +227,10 @@ namespace SnakeGamePuc
                 BuildClientCtrl()
             };
         }
+
+        internal static GameObject[] BuildHostGame()
+        {
+            return new GameObject[] { };
+        }
     }
 }

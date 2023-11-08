@@ -3,6 +3,8 @@ using GameEngine.Components;
 using GameEngine.Components.Scripts;
 using GameEngine.GEMath;
 using GameEngine.Input;
+using GameEngine.Net;
+using GameEngine.Scenes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,17 +18,75 @@ namespace SnakeGamePuc.Scripts.HostMenu
         private enum HostMenuState
         {
             Default,
-            WaitingConnection
+            StartTcpHost,
+            WaitingConnection,
+            Done
         }
+        private const float k_errorMsgTime = 5.0f;
+
         private List<UI> m_hostUI;
         private UI m_hostStatus;
 
         private HostMenuState m_menuState;
-
+        private float m_timer;
         public HostMenuCtrl(GameObject _attachedGameObject) : base(_attachedGameObject)
         {
             m_hostUI = new List<UI>();
             m_menuState = HostMenuState.Default;
+            m_timer = 0;
+        }
+
+        private void Timer()
+        {
+            if(m_timer > 0)
+            {
+                m_timer -= GameInstance.Renderer.GetDeltaTime();
+                if(m_timer <= 0)
+                {
+                    m_hostStatus.ShowText = false;
+                    foreach (UI ui in m_hostUI) ui.ShowText = true;
+                    m_menuState = HostMenuState.Default;
+                }
+            }
+        }
+
+        private void WaitForConnection()
+        {
+            if (m_menuState == HostMenuState.StartTcpHost)
+            {
+                if (GameInstance.HostTCP.State == TcpHost.HostState.Idle)
+                {
+                    if (GameInstance.HostTCP.ListenToPort(7778))
+                    {
+                        m_hostStatus.UiText = "Waiting";
+                        m_menuState = HostMenuState.WaitingConnection;
+                    }
+                    else
+                    {
+                        m_timer = k_errorMsgTime;
+                        m_hostStatus.UiText = "Failed Bind";
+                        m_menuState = HostMenuState.Done;
+                    }
+                }
+                else
+                {
+                    throw new Exception("Tcp not done!");
+                }
+            }
+            else if(m_menuState == HostMenuState.WaitingConnection)
+            {
+                if(GameInstance.HostTCP.State == TcpHost.HostState.Idle)
+                {
+                    m_timer = k_errorMsgTime;
+                    m_hostStatus.UiText = "Timed Out";
+                    m_menuState = HostMenuState.Done;
+                }
+                else if(GameInstance.HostTCP.State == TcpHost.HostState.Listening)
+                {
+                    m_menuState = HostMenuState.Done;
+                    GameInstance.SceneMan.LoadScene("HostGame");
+                }
+            }
         }
 
         private void BuildHostUI()
@@ -62,15 +122,21 @@ namespace SnakeGamePuc.Scripts.HostMenu
                     {
                         foreach (UI ui in m_hostUI) ui.ShowText = false;
                         m_hostStatus.ShowText = true;
-                        m_hostStatus.UiText = "Waiting";
-                        m_menuState = HostMenuState.WaitingConnection;
+                        m_hostStatus.UiText = "Starting";
+                        m_menuState = HostMenuState.StartTcpHost;
+                        WaitForConnection();
                     }
                     else if (GameInstance.Input.KeyPressed(InputKey.Key2))
                         GameInstance.SceneMan.LoadScene("MultiplayerMenu");
                     break;
+                case HostMenuState.StartTcpHost:
                 case HostMenuState.WaitingConnection:
+                    WaitForConnection();
+                    break;
+                case HostMenuState.Done:
                     break;
             }
+            Timer();
         }
     }
 }
