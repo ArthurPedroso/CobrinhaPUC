@@ -49,7 +49,11 @@ namespace GameEngineASCIIRenderer
                 }
                 if (_asciiSprites != null)
                 {
-                    foreach (ASCIISprite sprite in _asciiSprites) m_interThreadSpriteBuffer.Add(new AsciiFrag(sprite));
+                    foreach (ASCIISprite sprite in _asciiSprites)
+                    {
+                        if(sprite.Vizible)
+                            m_interThreadSpriteBuffer.Add(new AsciiFrag(sprite));
+                    }
                 }                    
             }
         }

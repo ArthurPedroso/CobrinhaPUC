@@ -13,15 +13,37 @@ namespace GameEngine.Components.Scripts
         private Transform m_transform;
         private GameObject[] m_uiTexts;
         private string m_text;
+        private bool m_showText;
         public string UiText { get => m_text; set { m_text = value; UpdateUi(); } }
         public bool CenterText { get; set; }
+
+        public bool ShowText
+        {
+            get
+            {
+                return m_showText;
+            }
+            set
+            {
+                m_showText = value;
+
+                foreach(GameObject obj in m_uiTexts)
+                {
+                    if(obj != null && obj.GetComponent<ASCIISprite>() != null)
+                        obj.GetComponent<ASCIISprite>().Vizible = value;
+                }
+            }
+        }
+
         public UI(GameObject _attachedGameObject, string _text, bool _centerText = true) : base(_attachedGameObject)
         {
+            m_uiTexts = new GameObject[0];
+            ShowText = true;
             m_text = _text;
             CenterText = _centerText;
         }
 
-        private void UpdateUi()
+        protected void UpdateUi()
         {
             if (m_uiTexts != null && m_uiTexts.Length > 0)
             {
@@ -38,11 +60,14 @@ namespace GameEngine.Components.Scripts
             {
                 newUiObj = new GameObject(m_text[i].ToString());
                 newUiObj.AttachComponent(new Transform(newUiObj));
-                newUiObj.AttachComponent(new ASCIISprite(newUiObj, m_text[i]));
+                ASCIISprite sprite = new ASCIISprite(newUiObj, m_text[i]);
+                sprite.Vizible = ShowText;
+                newUiObj.AttachComponent(sprite);
 
                 newUiObj.GetComponent<Transform>().Position = m_transform.Position + posOffset + (Vector2.Right * i);
 
                 GameInstance.Instantiate(newUiObj);
+                m_uiTexts[i] = newUiObj;
             }
         }
 

@@ -20,10 +20,13 @@ namespace SnakeGamePuc
             {
                 new MainMenu(),
                 new SinglePlayerScene(),
+                new MultiplayerMenu(),
+                new ClientMenu(),
+                new HostMenu(),
                 new LoseScene(),
                 new WinScene()
             };
-            GameInstance instance = new GameInstance(new ASCIIRenderer(16, 16, 20), m_gameScenes, "MainMenu");
+            GameInstance instance = new GameInstance(new ASCIIRenderer(16, 16, 8), m_gameScenes, "MainMenu");
         }
     }
 }

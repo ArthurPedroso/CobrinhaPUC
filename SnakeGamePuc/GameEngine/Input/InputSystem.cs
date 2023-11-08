@@ -203,6 +203,8 @@ namespace GameEngine.Input
                     return InputKey.KeyPad8;
                 case ConsoleKey.NumPad9:
                     return InputKey.KeyPad9;
+                case ConsoleKey.Enter:
+                    return InputKey.Enter;
                 case ConsoleKey.Escape:
                     return InputKey.Esc;
                 default:

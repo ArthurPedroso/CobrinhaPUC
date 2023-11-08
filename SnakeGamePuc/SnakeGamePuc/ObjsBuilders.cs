@@ -10,12 +10,15 @@ using System.Threading.Tasks;
 using GameEngine.GEMath;
 using GameEngine.Components.Scripts;
 using SnakeGamePuc.Scripts.MainMenu;
+using SnakeGamePuc.Scripts.MultiplayerMenu;
+using SnakeGamePuc.Scripts.HostMenu;
+using SnakeGamePuc.Scripts.ClientMenu;
 
 namespace SnakeGamePuc
 {
     internal static class ObjsBuilders
     {
-        public static GameObject BuildSnakeGameCtrl()
+        internal static GameObject BuildSnakeGameCtrl()
         {
             GameObject snakeGameCtrl = new GameObject("SnakeGameCtrl");
 
@@ -23,7 +26,7 @@ namespace SnakeGamePuc
 
             return snakeGameCtrl;
         }
-        public static GameObject BuildApple(Action _appleCB)
+        internal static GameObject BuildApple(Action _appleCB)
         {
             GameObject apple = new GameObject("Apple");
 
@@ -34,7 +37,7 @@ namespace SnakeGamePuc
 
             return apple;
         }
-        public static GameObject BuildSnakeController()
+        internal static GameObject BuildSnakeController()
         {
             GameObject snake = new GameObject("Player");
 
@@ -52,7 +55,7 @@ namespace SnakeGamePuc
 
             return snake;
         }
-        public static GameObject BuildSnakeBody()
+        internal static GameObject BuildSnakeBody()
         {
             GameObject snake = new GameObject("SnakeBody");
 
@@ -63,7 +66,7 @@ namespace SnakeGamePuc
 
             return snake;
         }
-        public static GameObject[] BuildWalls()
+        internal static GameObject[] BuildWalls()
         {
             List<GameObject> walls = new List<GameObject>();
             int width = GameInstance.Renderer.GetWidth();
@@ -110,7 +113,7 @@ namespace SnakeGamePuc
             }
             return walls.ToArray();
         }
-        public static GameObject BuildUI(Vector2 _pos, string _ui, bool _centerUI = true)
+        internal static GameObject BuildUI(Vector2 _pos, string _ui, bool _centerUI = true)
         {
             GameObject ui = new GameObject("Ui");
 
@@ -120,7 +123,7 @@ namespace SnakeGamePuc
 
             return ui;
         }
-        public static GameObject BuildMainMenuCtrl()
+        internal static GameObject BuildMainMenuCtrl()
         {
             GameObject ui = new GameObject("UiCtrl");
 
@@ -128,17 +131,38 @@ namespace SnakeGamePuc
 
             return ui;
         }
-        public static GameObject[] BuildMainMenu()
+        internal static GameObject BuildMultiplayerCtrl()
+        {
+            GameObject ui = new GameObject("UiCtrl");
+
+            ui.AttachComponent(new MultiplayerMenuCtrl(ui));
+
+            return ui;
+        }
+        internal static GameObject[] BuildMainMenu()
         {
             return new GameObject[] 
             {
                 BuildUI(new Vector2(0.0f, 4.0f), "Snake Game"),                
-                BuildUI(new Vector2(-1.0f, 0.0f), "1. Jogar"),
-                BuildUI(new Vector2(-1.0f, -1.0f), "2. Sair"),
+                BuildUI(new Vector2(-1.0f, 0.0f), "1.Singleplayer"),
+                BuildUI(new Vector2(-1.0f, -1.0f), "2.Multiplayer"),
+                BuildUI(new Vector2(-1.0f, -2.0f), "3.Sair"),
                 BuildMainMenuCtrl()
             };
         }
-        public static GameObject BuildEndSceneCtrl()
+        internal static GameObject[] BuildMultiplayerMenu()
+        {
+            return new GameObject[]
+            {
+                BuildUI(new Vector2(0.0f, 5.0f), "Multiplayer"),
+                BuildUI(new Vector2(0.0f, 4.0f), "Selection"),
+                BuildUI(new Vector2(-1.0f, 0.0f), "1.Hospedar"),
+                BuildUI(new Vector2(-1.0f, -1.0f), "2.Conectar"),
+                BuildUI(new Vector2(-1.0f, -2.0f), "3.Sair"),
+                BuildMultiplayerCtrl()
+            };
+        }
+        internal static GameObject BuildEndSceneCtrl()
         {
             GameObject endSceneCtrl = new GameObject("EndSceneCtrl");
 
@@ -147,22 +171,60 @@ namespace SnakeGamePuc
             return endSceneCtrl;
 
         }
-        public static GameObject[] BuildWinScene()
+        internal static GameObject[] BuildWinScene()
         {
             return new GameObject[]
             {
                 BuildUI(new Vector2(0.0f, 4.0f), "Voce Ganhou!"),
-                BuildUI(new Vector2(-1.0f, 0.0f), "1. Sair"),
+                BuildUI(new Vector2(-1.0f, 0.0f), "1.Sair"),
                 BuildEndSceneCtrl()
             };
         }
-        public static GameObject[] BuildLoseScene()
+        internal static GameObject[] BuildLoseScene()
         {
             return new GameObject[]
             {
                 BuildUI(new Vector2(0.0f, 4.0f), "Voce Perdeu!"),
-                BuildUI(new Vector2(-1.0f, 0.0f), "1. Sair"),
+                BuildUI(new Vector2(-1.0f, 0.0f), "1.Sair"),
                 BuildEndSceneCtrl()
+            };
+        }
+
+        internal static GameObject BuildHostCtrl()
+        {
+            GameObject hostCtrl = new GameObject("HostCtrl");
+
+            hostCtrl.AttachComponent(new HostMenuCtrl(hostCtrl));
+
+            return hostCtrl;
+        }
+
+        internal static GameObject BuildClientCtrl()
+        {
+            GameObject clientMenuCtrl = new GameObject("ClientCtrl");
+
+            clientMenuCtrl.AttachComponent(new ClientMenuCtrl(clientMenuCtrl));
+
+            return clientMenuCtrl;
+        }
+
+        internal static GameObject[] BuildHostMenu()
+        {
+            return new GameObject[]
+            {
+                BuildUI(new Vector2(0.0f, 5.0f), "Iniciar"),
+                BuildUI(new Vector2(0.0f, 4.0f), "Hospedagem"),
+                BuildHostCtrl()
+            };
+        }
+
+        internal static GameObject[] BuildClientMenu()
+        {
+            return new GameObject[]
+            {
+                BuildUI(new Vector2(0.0f, 5.0f), "Digite o IP"),
+                BuildUI(new Vector2(0.0f, 4.0f), "do Hospedeiro"),
+                BuildClientCtrl()
             };
         }
     }

@@ -21,8 +21,12 @@ namespace SnakeGamePuc.Scripts.MainMenu
 
         public override void Update()
         {
-            if (GameInstance.Input.KeyPressed(InputKey.Key1)) GameInstance.SceneMan.LoadScene("SinglePlayerScene");
-            else if(GameInstance.Input.KeyPressed(InputKey.Key2)) GameInstance.QuitGame();
+            if (GameInstance.Input.KeyPressed(InputKey.Key1)) 
+                GameInstance.SceneMan.LoadScene("SinglePlayerScene");
+            else if (GameInstance.Input.KeyPressed(InputKey.Key2)) 
+                GameInstance.SceneMan.LoadScene("MultiplayerMenu");
+            else if (GameInstance.Input.KeyPressed(InputKey.Key3)) 
+                GameInstance.QuitGame();
         }
     }
 }
