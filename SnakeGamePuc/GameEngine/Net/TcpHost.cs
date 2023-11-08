@@ -22,14 +22,15 @@ namespace GameEngine.Net
             Idle,
             StartWaitConnection,
             WaitingConnection,
-            Listening
+            Connected
         }
 
-        private const int k_maxSendBufferSize = 128;
         private const int k_timeoutMSecs = 30000;
+        private const int k_maxQueueSize = 5;
 
         private IPAddress m_ipAddress;
         private ConcurrentQueue<byte[]> m_sendBuffer;
+        private ConcurrentQueue<byte[]> m_receiveBuffer;
         private HostState m_currentState;
         private Socket m_listener;
         private Socket m_handler;
@@ -46,6 +47,7 @@ namespace GameEngine.Net
             m_ipAddress = null;
             m_listener = null;
             m_sendBuffer = new ConcurrentQueue<byte[]>();
+            m_receiveBuffer = new ConcurrentQueue<byte[]>();
             m_currentState = HostState.Idle;
             m_sleep = true;
         }
@@ -68,8 +70,9 @@ namespace GameEngine.Net
             m_asyncAccept = null;
             if (result != null)
             {
+                m_waitAcceptStopWatch.Stop();
                 m_handler = result.EndAccept(_result);
-                m_currentState = HostState.Listening;
+                m_currentState = HostState.Connected;
             }
             else
             {
@@ -106,21 +109,41 @@ namespace GameEngine.Net
             }
         }
 
-        private void ListenForMsgs()
+        private void ReceiveMessages()
         {
+            byte[] buffer = new byte[1024];
+            if (m_receiveBuffer.Count < k_maxQueueSize)
+            {
+                if (m_handler.Receive(buffer) > 4)
+                {
+                    m_receiveBuffer.Enqueue(buffer);
+                }
+            }
+            else
+                GameInstance.Debug.LogErrorMsg("TCP Receive Queue FULL!");
         }
-        protected override void ModuleLoop()
+
+        private void SendMessages()
         {
-            base.ModuleLoop();
-            /*
             byte[] msg;
             while (m_sendBuffer.Count > 0)
             {
                 if (m_sendBuffer.TryDequeue(out msg) && msg.Length > 0)
                 {
+                    if(m_handler.Send(msg) != msg.Length)
+                    {
+                        m_listener?.Close();
+                        m_handler.Close();
+                        m_currentState = HostState.Idle;
+                        GameInstance.Debug.LogWarningMsg("TCP Disconnected!");
+                    }
                 }
             }
-            */
+        }
+
+        protected override void ModuleLoop()
+        {
+            base.ModuleLoop();
             switch(m_currentState) 
             {
                 case HostState.Idle:
@@ -132,8 +155,9 @@ namespace GameEngine.Net
                 case HostState.WaitingConnection:
                     WaitingConnection();
                     break;
-                case HostState.Listening:
-                    ListenForMsgs();
+                case HostState.Connected:
+                    ReceiveMessages();
+                    SendMessages();
                     break;
             }
         }
@@ -181,6 +205,35 @@ namespace GameEngine.Net
                 GameInstance.Debug.LogErrorMsg(e.ToString());
                 return false;
             }
+        }
+        public bool SendData(byte[] _data)
+        {
+            if (m_currentState != HostState.Connected) return false;
+
+            if (m_sendBuffer.Count < k_maxQueueSize)
+            {
+                m_sendBuffer.Enqueue(_data);
+                return true;
+            }
+            else
+                GameInstance.Debug.LogErrorMsg("TCP Send Queue FULL!");
+
+            return false;
+        }
+        public bool ReceiveData(out byte[][] _data)
+        {
+            _data = null;
+            if (m_currentState != HostState.Connected) return false;
+
+            if (m_receiveBuffer.Count < k_maxQueueSize)
+            {
+                _data = m_receiveBuffer.ToArray();
+                return true;
+            }
+            else
+                GameInstance.Debug.LogErrorMsg("TCP Receive Queue FULL!");
+
+            return false;
         }
     }
 

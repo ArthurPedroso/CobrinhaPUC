@@ -80,7 +80,7 @@ namespace SnakeGamePuc.Scripts.HostMenu
                 m_hostStatus.UiText = "Timed Out";
                 m_menuState = HostMenuState.Done;
             }
-            else if (GameInstance.HostTCP.State == TcpHost.HostState.Listening)
+            else if (GameInstance.HostTCP.State == TcpHost.HostState.Connected)
             {
                 m_menuState = HostMenuState.Done;
                 GameInstance.SceneMan.LoadScene("HostGame");
