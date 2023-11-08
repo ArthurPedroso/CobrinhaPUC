@@ -28,8 +28,8 @@ namespace GameEngine
         private int m_frameCount;
         private TcpHost m_tcpHost;
         private TcpClient m_tcpClient;
-        private UdpHost m_udpHost;
-        private UdpClient m_udpClient;
+        private UdpReceive m_udpHost;
+        private UdpSend m_udpClient;
 
         //Game components
 
@@ -40,16 +40,16 @@ namespace GameEngine
         public static IRenderer Renderer { get => Instance.m_renderer; }
         public static TcpHost HostTCP { get => Instance.m_tcpHost; }
         public static TcpClient ClientTCP { get => Instance.m_tcpClient; }
-        public static UdpHost HostUDP { get => Instance.m_udpHost; }
-        public static UdpClient ClientUDP { get => Instance.m_udpClient; }
+        public static UdpReceive HostUDP { get => Instance.m_udpHost; }
+        public static UdpSend ClientUDP { get => Instance.m_udpClient; }
 
         public GameInstance(IRenderer _renderer, GameScene[] _gameScenes, string _firstSceneToLoad)
         {
             m_debugger = new GameEngineDebugger();
             m_tcpHost = new TcpHost();
             m_tcpClient = new TcpClient();
-            m_udpHost = new UdpHost();
-            m_udpClient = new UdpClient();
+            m_udpHost = new UdpReceive();
+            m_udpClient = new UdpSend();
             m_sceneManager = new SceneManager(_gameScenes, _firstSceneToLoad, OnSceneLoad);
             m_inputSystem = new InputSystem();
             m_physics2D = new Physics2D();

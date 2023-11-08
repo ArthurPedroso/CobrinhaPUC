@@ -28,7 +28,6 @@ namespace GameEngine.Net
         private const int k_timeoutMSecs = 30000;
         private const int k_maxQueueSize = 5;
 
-        private IPAddress m_ipAddress;
         private ConcurrentQueue<byte[]> m_sendBuffer;
         private ConcurrentQueue<byte[]> m_receiveBuffer;
         private HostState m_currentState;
@@ -44,7 +43,6 @@ namespace GameEngine.Net
 
         internal TcpHost() : base()
         {
-            m_ipAddress = null;
             m_listener = null;
             m_sendBuffer = new ConcurrentQueue<byte[]>();
             m_receiveBuffer = new ConcurrentQueue<byte[]>();
