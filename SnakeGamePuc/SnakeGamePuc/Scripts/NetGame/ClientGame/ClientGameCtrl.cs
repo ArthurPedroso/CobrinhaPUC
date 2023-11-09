@@ -34,7 +34,10 @@ namespace SnakeGamePuc.Scripts.NetGame.ClientGame
 
         public override void Update()
         {
-
+            if (!m_udpSend.SendData(new byte[] { 5, 2 }))
+            {
+                throw new Exception("Erro send udp");
+            }
         }
 
     }

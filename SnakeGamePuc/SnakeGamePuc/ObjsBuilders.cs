@@ -13,6 +13,8 @@ using SnakeGamePuc.Scripts.MainMenu;
 using SnakeGamePuc.Scripts.MultiplayerMenu;
 using SnakeGamePuc.Scripts.HostMenu;
 using SnakeGamePuc.Scripts.ClientMenu;
+using SnakeGamePuc.Scripts.NetGame.HostGame;
+using SnakeGamePuc.Scripts.NetGame.ClientGame;
 
 namespace SnakeGamePuc
 {
@@ -238,14 +240,37 @@ namespace SnakeGamePuc
             };
         }
 
+        internal static GameObject BuildHostGameCtrl()
+        {
+            GameObject hostCtrl = new GameObject("HostCtrl");
+
+            hostCtrl.AttachComponent(new HostGameCtrl(hostCtrl));
+
+            return hostCtrl;
+        }
+        internal static GameObject BuildClientGameCtrl()
+        {
+            GameObject clientCtrl = new GameObject("ClientCtrl");
+
+            clientCtrl.AttachComponent(new ClientGameCtrl(clientCtrl));
+
+            return clientCtrl;
+        }
+
         internal static GameObject[] BuildHostGame()
         {
-            return new GameObject[] { };
+            return new GameObject[]
+            {
+                BuildHostGameCtrl()
+            };
         }
 
         internal static GameObject[] BuildClientGame()
         {
-            return new GameObject[] { };
+            return new GameObject[]
+            {
+                BuildClientGameCtrl()
+            };
         }
     }
 }

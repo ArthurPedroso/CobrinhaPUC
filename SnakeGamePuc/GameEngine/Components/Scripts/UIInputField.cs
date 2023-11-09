@@ -27,7 +27,7 @@ namespace GameEngine.Components.Scripts
 
             InputSystem input = GameInstance.Input;
 
-            if (input.KeyPressed(InputKey.Backspace))
+            if (input.KeyPressed(InputKey.Backspace) && UiText.Length > 0)
             {
                 UiText = UiText.Substring(0, UiText.Length - 1);
             }

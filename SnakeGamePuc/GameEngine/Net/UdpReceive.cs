@@ -1,7 +1,9 @@
-﻿using System.Collections.Concurrent;
+﻿
 using System.Net.Sockets;
 using System.Net;
-using static GameEngine.Net.TcpHost;
+using GameEngine.Exceptions;
+using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace GameEngine.Net
 {
@@ -10,14 +12,17 @@ namespace GameEngine.Net
         public enum UdpReceiveState
         {
             Idle,
+            StartReceiving,
             Receiving
         }
 
-        private readonly byte[] r_receiveBuffer = new byte[65000];
 
         private byte[] m_receiveBuffer;
+        private byte[] m_threadBuffer;
         private UdpReceiveState m_currentState;
         private Socket m_udpReceiveSocket;
+        private IAsyncResult m_receiveResult;
+        private Stopwatch m_waitReceiveStopWatch;
 
         public UdpReceiveState State { get { return m_currentState; } }
 
@@ -25,7 +30,51 @@ namespace GameEngine.Net
         {
             m_currentState = UdpReceiveState.Idle;
             m_sleep = true;
-            m_receiveBuffer = new byte[0];
+            m_receiveBuffer = new byte[1024];
+        }
+
+        private void OnReceive(IAsyncResult _result)
+        {
+
+            Socket? result = null;
+            try
+            {
+                result = (Socket?)_result.AsyncState;
+                int x = result.Available;
+            }
+            catch (ObjectDisposedException ex)
+            {
+                GameInstance.Debug.LogWarningMsg("Timed Out!");
+                return;
+            }
+            if (State != UdpReceiveState.Receiving) throw new NetException("Wrong Host State! Should be WaitingConnection");
+
+            m_receiveResult = null;
+            if (result != null)
+            {
+                try
+                {
+                    int bytesReceived = result.EndReceive(_result);
+                    if (bytesReceived > 1)
+                    {
+                        lock (m_threadBuffer)
+                        {
+                            m_threadBuffer = new byte[bytesReceived];
+                            Array.Copy(m_receiveBuffer, m_threadBuffer, bytesReceived);
+                        }
+                    }
+                    m_currentState = UdpReceiveState.StartReceiving;
+                    return;
+
+                }
+                catch (Exception ex)
+                {
+                    GameInstance.Debug.LogErrorMsg(ex.ToString());
+                }
+            }
+
+            GameInstance.Debug.LogWarningMsg("Receive failed!");
+            m_currentState = UdpReceiveState.StartReceiving;
         }
 
         private void Idle()
@@ -36,18 +85,22 @@ namespace GameEngine.Net
                 m_sleep = true;
             }
         }
+        private void StartReceiving()
+        {
+            m_receiveResult = m_udpReceiveSocket.BeginReceive(m_receiveBuffer, 0, m_receiveBuffer.Length, SocketFlags.None, OnReceive, m_udpReceiveSocket);
+        }
         private void ReceiveMessages()
         {
-            int bytesReceived;
-            bytesReceived = m_udpReceiveSocket.Receive(r_receiveBuffer);
-            if (bytesReceived > 1)
+            /*
+            if (m_waitReceiveStopWatch.ElapsedMilliseconds >= 500)
             {
-                lock(m_receiveBuffer)
-                {
-                    m_receiveBuffer = new byte[bytesReceived];
-                    Array.Copy(r_receiveBuffer, m_receiveBuffer, bytesReceived);
-                }
+                if (m_receiveResult != null && m_receiveResult.IsCompleted) throw new NetException("Wrong Host State! Should be Listening or Idle!");
+
+                m_waitReceiveStopWatch.Stop();
+                m_client.Close();
+                m_currentState = ClientState.Idle;
             }
+            */
         }
 
 
@@ -58,6 +111,9 @@ namespace GameEngine.Net
             {
                 case UdpReceiveState.Idle:
                     Idle();
+                    break;
+                case UdpReceiveState.StartReceiving:
+                    StartReceiving();
                     break;
                 case UdpReceiveState.Receiving:
                     ReceiveMessages();
@@ -93,7 +149,9 @@ namespace GameEngine.Net
                 SocketType.Dgram,
                 ProtocolType.Udp);
 
-                m_currentState = UdpReceiveState.Receiving;
+                m_udpReceiveSocket.Bind(endPoint);
+
+                m_currentState = UdpReceiveState.StartReceiving;
                 m_sleep = false;
 
                 return true;
@@ -108,18 +166,18 @@ namespace GameEngine.Net
         {
             bool success = false;
             _data = null;
-            if (m_currentState != UdpReceiveState.Receiving) return success;
+            if (m_currentState == UdpReceiveState.Idle) return success;
 
-            lock (m_receiveBuffer)
+            lock (m_threadBuffer)
             {
-                if (m_receiveBuffer.Length > 0)
+                if (m_threadBuffer.Length > 0)
                 {
-                    _data = (byte[])m_receiveBuffer.Clone();
+                    _data = (byte[])m_threadBuffer.Clone();
                     success = true;
+                    m_threadBuffer = null;
                 }
             }
 
-            if(!success) GameInstance.Debug.LogErrorMsg("UDP Receive Queue FULL!");
             return success;
         }
 

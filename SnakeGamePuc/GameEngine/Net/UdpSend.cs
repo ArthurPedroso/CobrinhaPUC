@@ -17,6 +17,7 @@ namespace GameEngine.Net
         private ConcurrentQueue<byte[]> m_sendBuffer;
         private UdpSendState m_currentState;
         private Socket m_udpSendSocket;
+        private EndPoint m_sendTo;
 
         public UdpSendState State { get { return m_currentState; } }
 
@@ -38,7 +39,7 @@ namespace GameEngine.Net
             {
                 if (m_sendBuffer.TryDequeue(out msg) && msg.Length > 0)
                 {
-                    if (m_udpSendSocket.Send(msg) != msg.Length)
+                    if (m_udpSendSocket.SendTo(msg, m_sendTo) != msg.Length)
                     {
                         m_udpSendSocket.Close();
                         m_currentState = UdpSendState.Idle;
@@ -90,6 +91,7 @@ namespace GameEngine.Net
                 endPoint.AddressFamily,
                 SocketType.Dgram,
                 ProtocolType.Udp);
+                m_sendTo = endPoint;
 
                 m_sleep = false;
                 m_currentState = UdpSendState.Sending;
@@ -112,6 +114,7 @@ namespace GameEngine.Net
                 endPoint.AddressFamily,
                 SocketType.Dgram,
                 ProtocolType.Udp);
+                m_sendTo = endPoint;
 
                 m_sleep = false;
                 m_currentState = UdpSendState.Sending;

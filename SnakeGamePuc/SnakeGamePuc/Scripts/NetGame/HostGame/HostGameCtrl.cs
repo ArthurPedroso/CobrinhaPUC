@@ -2,6 +2,7 @@
 using GameEngine.Net;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +35,11 @@ namespace SnakeGamePuc.Scripts.NetGame.HostGame
 
         public override void Update()
         {
-
+            byte[] bytes = null;
+            if(m_udpReceive.ReceiveData(out bytes))
+            {
+                GameInstance.Debug.LogMsg("Sucess!!!!!");
+            }
         }
     }
 }
