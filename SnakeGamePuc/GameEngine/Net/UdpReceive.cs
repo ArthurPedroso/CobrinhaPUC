@@ -31,6 +31,7 @@ namespace GameEngine.Net
             m_currentState = UdpReceiveState.Idle;
             m_sleep = true;
             m_receiveBuffer = new byte[1024];
+            m_threadBuffer = new byte[0];
         }
 
         private void OnReceive(IAsyncResult _result)
@@ -47,7 +48,7 @@ namespace GameEngine.Net
                 GameInstance.Debug.LogWarningMsg("Timed Out!");
                 return;
             }
-            if (State != UdpReceiveState.Receiving) throw new NetException("Wrong Host State! Should be WaitingConnection");
+            if (State == UdpReceiveState.Idle) throw new NetException("Wrong Host State! Should be WaitingConnection");
 
             m_receiveResult = null;
             if (result != null)
@@ -88,6 +89,7 @@ namespace GameEngine.Net
         private void StartReceiving()
         {
             m_receiveResult = m_udpReceiveSocket.BeginReceive(m_receiveBuffer, 0, m_receiveBuffer.Length, SocketFlags.None, OnReceive, m_udpReceiveSocket);
+            m_currentState = UdpReceiveState.Receiving;
         }
         private void ReceiveMessages()
         {

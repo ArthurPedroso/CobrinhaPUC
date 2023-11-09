@@ -81,29 +81,6 @@ namespace GameEngine.Net
         protected override void PreThreadModuleStop()
         {
         }
-        public bool StartUdpSend(string _address, int _port)
-        {
-            if (State != UdpSendState.Idle) return false;
-            try
-            {
-                IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(_address), _port);
-                m_udpSendSocket = new(
-                endPoint.AddressFamily,
-                SocketType.Dgram,
-                ProtocolType.Udp);
-                m_sendTo = endPoint;
-
-                m_sleep = false;
-                m_currentState = UdpSendState.Sending;
-
-                return true;
-            }
-            catch (Exception e)
-            {
-                GameInstance.Debug.LogErrorMsg(e.ToString());
-                return false;
-            }
-        }
         public bool StartUdpSend(IPEndPoint _endpoint)
         {
             if (State != UdpSendState.Idle) return false;
