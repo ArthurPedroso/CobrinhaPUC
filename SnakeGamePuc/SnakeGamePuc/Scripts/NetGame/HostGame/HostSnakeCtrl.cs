@@ -24,8 +24,16 @@ namespace SnakeGamePuc.Scripts.NetGame.HostGame
         protected override void OnCollision(Collider _collider)
         {
             base.OnCollision(_collider);
-            if (_collider.AttachedGameObject.Name == "Apple") EatApple();
-            else Die();
+            if (_collider.AttachedGameObject.Name == "Apple")
+            {
+                EatApple();
+                GameCtrl.OnHostApple();
+            }
+            else
+            {
+                GameCtrl.OnHostDeath();
+                GameInstance.SceneMan.LoadScene("WinScene");
+            }
         }
     }
 }

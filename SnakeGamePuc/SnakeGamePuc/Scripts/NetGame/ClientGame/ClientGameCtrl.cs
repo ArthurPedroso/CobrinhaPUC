@@ -1,10 +1,15 @@
 ﻿using GameEngine;
+using GameEngine.Components.Sprites;
+using GameEngine.Components;
+using GameEngine.GEMath;
 using GameEngine.Net;
 using SnakeGamePuc.Scripts.NetGame.HostGame;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace SnakeGamePuc.Scripts.NetGame.ClientGame
@@ -18,17 +23,62 @@ namespace SnakeGamePuc.Scripts.NetGame.ClientGame
         public ShadowSnakeCtrl ShadowSnakeCtrl { private get; set; }
 
         protected TcpClient m_tcpClient;
+        private GameObject m_apple;
         public ClientGameCtrl(GameObject _attachedGameObject) : base(_attachedGameObject)
         {
         }
-        private void ParseGameEvent()
+        private void CreateShadowApple(Vector2 _coord)
         {
+            GameObject apple = new GameObject("Apple");
 
+            apple.AttachComponent(new Transform(apple));
+            apple.AttachComponent(new ASCIISprite(apple, 'M'));
+
+            m_apple = apple;
+
+            GameInstance.Instantiate(apple);
+        }
+        private void DeleteShadowApple()
+        {
+            if(m_apple != null) GameInstance.RemoveObj(m_apple);
+        }
+        private void ParseGameEvent(HostMsg _msg)
+        {
+            Vector2 pos = new Vector2(_msg.X, _msg.Y);
+
+            if (pos.X > 128) pos.X -= 256;
+            if (pos.Y > 128) pos.Y -= 256;
+
+            if (_msg.T == 0)
+            {
+                CreateShadowApple(pos);
+            }
+            else if (_msg.T == 1)
+            {
+                DeleteShadowApple();
+                SnakeCtrl.EatApple();
+            }
+            else if (_msg.T == 2) DeleteShadowApple();
+            else if (_msg.T == 3) GameInstance.Debug.LogMsg("YouWIN!");
+            else if (_msg.T == 4) GameInstance.Debug.LogMsg("YouLoose!");
         }
         private void GetGameEvents()
         {
-            byte[][] data;
-            m_tcpClient.ReceiveData
+            byte[][] dataArr;
+            if(m_tcpClient.ReceiveData(out dataArr))
+            {
+                foreach (byte[] data in dataArr)
+                {
+                    HostMsg? msg = JsonSerializer.Deserialize<HostMsg>(Encoding.Default.GetString(data));
+
+                    if (msg != null)
+                    {
+                        ParseGameEvent(msg);
+                    }
+                    else
+                        GameInstance.Debug.LogErrorMsg("Null Json!");
+                }
+            }
         }
         private void GetShadowSnake()
         {

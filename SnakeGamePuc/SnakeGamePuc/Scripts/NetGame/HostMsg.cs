@@ -12,5 +12,12 @@ namespace SnakeGamePuc.Scripts.NetGame
         public byte T;
         public byte X;
         public byte Y;
+
+        public HostMsg(byte t, byte x, byte y)
+        {
+            T = t;
+            X = x;
+            Y = y;
+        }
     }
 }

@@ -5,10 +5,8 @@ using GameEngine.Input;
 using GameEngine.Net;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace SnakeGamePuc.Scripts.NetGame.HostGame
 {
@@ -24,6 +22,14 @@ namespace SnakeGamePuc.Scripts.NetGame.HostGame
         public HostGameCtrl(GameObject _attachedGameObject) : base(_attachedGameObject)
         {
             m_possibleSpawnPos = new List<Vector2>();
+        }
+
+        private void SendGameEvent(HostMsg _msg)
+        {
+            if(!m_tcpHost.SendData(Encoding.ASCII.GetBytes(JsonSerializer.Serialize(_msg))))
+            {
+                throw new Exception("Cant Send TCP!");
+            }
         }
 
         private void GetShadowSnake()
@@ -70,10 +76,13 @@ namespace SnakeGamePuc.Scripts.NetGame.HostGame
             {
                 GameObject apple = ObjsBuilders.BuildApple(InstantiateApple);
                 Random random = new Random();
+                Vector2 pos = m_possibleSpawnPos[random.Next(m_possibleSpawnPos.Count)];
 
-                apple.GetComponent<Transform>().Position = m_possibleSpawnPos[random.Next(m_possibleSpawnPos.Count)];
+                apple.GetComponent<Transform>().Position = pos;
 
                 GameInstance.Instantiate(apple);
+
+                SendGameEvent(new HostMsg(0, (byte)pos.X, (byte)pos.Y));
             }
         }
         protected override void CheckDisconnect()
@@ -87,6 +96,25 @@ namespace SnakeGamePuc.Scripts.NetGame.HostGame
         {
             throw new Exception("Disconnected!");
         }
+        public void OnHostDeath()
+        {
+            SendGameEvent(new HostMsg(3, 0, 0));
+        }
+        public void OnClientDeath()
+        {
+            SendGameEvent(new HostMsg(4, 0, 0));
+        }
+
+        public void OnClientApple()
+        {
+            SendGameEvent(new HostMsg(1, 0, 0));
+
+        }
+
+        public void OnHostApple()
+        {
+            SendGameEvent(new HostMsg(2, 0, 0));
+        }
 
         public override void Start()
         {
@@ -97,7 +125,7 @@ namespace SnakeGamePuc.Scripts.NetGame.HostGame
             foreach (GameObject wall in walls) { GameInstance.Instantiate(wall); }
             m_gameAreaX = GameInstance.Renderer.GetWidth() - 2;
             m_gameAreaY = GameInstance.Renderer.GetHeight() - 2;
-            //InstantiateApple();
+            InstantiateApple();
         }
 
         public override void Update()
