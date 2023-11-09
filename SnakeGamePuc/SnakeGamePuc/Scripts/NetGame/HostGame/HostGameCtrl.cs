@@ -26,7 +26,8 @@ namespace SnakeGamePuc.Scripts.NetGame.HostGame
 
         private void SendGameEvent(HostMsg _msg)
         {
-            if(!m_tcpHost.SendData(Encoding.ASCII.GetBytes(JsonSerializer.Serialize(_msg))))
+            if (_msg.T == 0) return;
+            if(!m_tcpHost.SendData(new byte[] { _msg.T, _msg.X, _msg.Y}))
             {
                 throw new Exception("Cant Send TCP!");
             }
@@ -82,7 +83,7 @@ namespace SnakeGamePuc.Scripts.NetGame.HostGame
 
                 GameInstance.Instantiate(apple);
 
-                SendGameEvent(new HostMsg(0, (byte)pos.X, (byte)pos.Y));
+                SendGameEvent(new HostMsg(5, (byte)(int)float.Round(pos.X), (byte)(int)float.Round(pos.Y)));
             }
         }
         protected override void CheckDisconnect()

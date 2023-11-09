@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using GameEngine.Scenes;
 
 namespace SnakeGamePuc.Scripts.NetGame.ClientGame
 {
@@ -35,6 +36,7 @@ namespace SnakeGamePuc.Scripts.NetGame.ClientGame
             apple.AttachComponent(new ASCIISprite(apple, 'M'));
 
             m_apple = apple;
+            m_apple.GetComponent<Transform>().Position = _coord;
 
             GameInstance.Instantiate(apple);
         }
@@ -49,7 +51,7 @@ namespace SnakeGamePuc.Scripts.NetGame.ClientGame
             if (pos.X > 128) pos.X -= 256;
             if (pos.Y > 128) pos.Y -= 256;
 
-            if (_msg.T == 0)
+            if (_msg.T == 5)
             {
                 CreateShadowApple(pos);
             }
@@ -58,9 +60,12 @@ namespace SnakeGamePuc.Scripts.NetGame.ClientGame
                 DeleteShadowApple();
                 SnakeCtrl.EatApple();
             }
-            else if (_msg.T == 2) DeleteShadowApple();
-            else if (_msg.T == 3) GameInstance.Debug.LogMsg("YouWIN!");
-            else if (_msg.T == 4) GameInstance.Debug.LogMsg("YouLoose!");
+            else if (_msg.T == 2)
+                DeleteShadowApple();
+            else if (_msg.T == 3)
+                GameInstance.SceneMan.LoadScene("WinScene");
+            else if (_msg.T == 4)
+                GameInstance.SceneMan.LoadScene("LoseScene");
         }
         private void GetGameEvents()
         {
@@ -69,14 +74,12 @@ namespace SnakeGamePuc.Scripts.NetGame.ClientGame
             {
                 foreach (byte[] data in dataArr)
                 {
-                    HostMsg? msg = JsonSerializer.Deserialize<HostMsg>(Encoding.Default.GetString(data));
-
-                    if (msg != null)
+                    if (data.Length >= 3 && data[0] != 0)
                     {
-                        ParseGameEvent(msg);
+                        ParseGameEvent(new HostMsg(data[0], data[1], data[2]));
                     }
                     else
-                        GameInstance.Debug.LogErrorMsg("Null Json!");
+                        GameInstance.Debug.LogErrorMsg("Empty!");
                 }
             }
         }

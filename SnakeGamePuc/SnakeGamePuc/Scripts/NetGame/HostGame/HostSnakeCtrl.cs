@@ -32,7 +32,7 @@ namespace SnakeGamePuc.Scripts.NetGame.HostGame
             else
             {
                 GameCtrl.OnHostDeath();
-                GameInstance.SceneMan.LoadScene("WinScene");
+                GameInstance.SceneMan.LoadScene("LoseScene");
             }
         }
     }

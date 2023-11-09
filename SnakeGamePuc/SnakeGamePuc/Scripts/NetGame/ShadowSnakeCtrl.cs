@@ -12,9 +12,9 @@ namespace SnakeGamePuc.Scripts.NetGame
 {
     internal class ShadowSnakeCtrl : Script
     {
-        private GameObject[] m_body;
-        private Transform m_headTr;
-        private bool m_ready;
+        protected GameObject[] m_body;
+        protected Transform m_headTr;
+        protected bool m_ready;
         public ShadowSnakeCtrl(GameObject _attachedGameObject) : base(_attachedGameObject)
         {
             m_body = new GameObject[0];

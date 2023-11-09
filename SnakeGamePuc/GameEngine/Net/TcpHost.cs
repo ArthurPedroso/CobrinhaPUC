@@ -107,6 +107,7 @@ namespace GameEngine.Net
             }
         }
 
+        /*
         private void ReceiveMessages()
         {
             byte[] buffer = new byte[1024];
@@ -120,6 +121,7 @@ namespace GameEngine.Net
             else
                 GameInstance.Debug.LogErrorMsg("TCP Receive Queue FULL!");
         }
+        */
 
         private void SendMessages()
         {

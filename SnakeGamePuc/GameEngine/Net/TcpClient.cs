@@ -24,7 +24,7 @@ namespace GameEngine.Net
             Connected
         }
 
-        private const int k_maxQueueSize = 5;
+        private const int k_maxQueueSize = 50;
         private const int k_timeoutMSecs = 30000;
 
         private IPAddress m_ipAddress;
@@ -116,10 +116,10 @@ namespace GameEngine.Net
 
         private void ReceiveMessages()
         {
-            byte[] buffer = new byte[1024];
+            byte[] buffer = new byte[3];
             if (m_receiveBuffer.Count < k_maxQueueSize)
             {
-                if (m_client.Receive(buffer) > 4)
+                if (m_client.Receive(buffer) > 0)
                 {
                     m_receiveBuffer.Enqueue(buffer);
                 }
@@ -235,18 +235,26 @@ namespace GameEngine.Net
         */
         public bool ReceiveData(out byte[][] _data)
         {
+            List<byte[]> data= new List<byte[]>();
+            byte[] outQueue;
             _data = null;
+
             if (m_currentState != ClientState.Connected) return false;
 
-            if (m_receiveBuffer.Count < k_maxQueueSize)
+            while(m_receiveBuffer.Count > 0)
             {
-                _data = m_receiveBuffer.ToArray();
-                return true;
+                if(m_receiveBuffer.TryDequeue(out outQueue))
+                {
+                    data.Add(outQueue);
+                }
+                else
+                {
+                    throw new Exception("Cant dequeue");
+                    return false;
+                }
             }
-            else
-                GameInstance.Debug.LogErrorMsg("TCP Receive Queue FULL!");
-
-            return false;
+            _data = data.ToArray();
+            return true;
         }
 
         public IPEndPoint GetConnectedEnpoint()
