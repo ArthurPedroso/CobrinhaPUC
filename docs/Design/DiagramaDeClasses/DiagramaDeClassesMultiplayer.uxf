@@ -1,0 +1,836 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <help_text>Space for diagram notes</help_text>
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>168</x>
+      <y>828</y>
+      <w>126</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+*Encantador de Serpentes*
+--
+-nome: string
+-input: Input
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>468</x>
+      <y>816</y>
+      <w>126</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+*Serpente*
+--
+-tamanho: int
+-cabeca: ObjetoDeJogo
+-corpo: ObjetoDeJogo[]
+-colisor: Colisor[]
+--
++moverCobraDireita(): void
++moverCobraEsquerda(): void
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>288</x>
+      <y>840</y>
+      <w>192</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;association&gt;&gt;
+m2=1
+Controla a serpente &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;300.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>282</x>
+      <y>606</y>
+      <w>126</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+*Jogo da Cobrinha*
+--
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>222</x>
+      <y>624</y>
+      <w>72</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=
+m2=1
+
+&lt;&lt;aggregation&gt;&gt;</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;10.0;10.0;340.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>336</x>
+      <y>756</y>
+      <w>144</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=
+m2=1
+
+&lt;&lt;aggregation&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0;220.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>282</x>
+      <y>708</y>
+      <w>126</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+*Campo da Serpente*
+--
+-altura: int
+-largura: int
+-limitesDoCampo: Parede[4]
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>336</x>
+      <y>642</y>
+      <w>72</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=
+m2=1
+
+&lt;&lt;aggregation&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>684</x>
+      <y>816</y>
+      <w>114</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+*Maçã*
+--
+-colisor: Colisor
+-sprite: \Sprite\
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>588</x>
+      <y>840</y>
+      <w>108</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;association&gt;&gt;
+m2=1
+Come a maçã &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>402</x>
+      <y>726</y>
+      <w>294</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;association&gt;&gt;
+m2=1
+Gera novas maçãs &gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0;80.0;100.0;410.0;100.0;410.0;170.0;470.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>930</x>
+      <y>594</y>
+      <w>66</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Struct&gt;&gt;
+*Vector2*
+--
++X: float
++Y: float
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1020</x>
+      <y>498</y>
+      <w>288</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+*IRenderizador*
+--
++renderizarFrame(sprites: SpriteImagem[], asciiSprites: SpriteASCII[]) :void
++renderizarFrame(asciiSprites: RenderizadorDeSpritesASCII[]) :void
++renderizarFrame(sprites: SpriteImagem[]) :void
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1086</x>
+      <y>576</y>
+      <w>120</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+*RenderizadorASCII*
+--
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1140</x>
+      <y>552</y>
+      <w>18</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1038</x>
+      <y>786</y>
+      <w>120</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+/Sprite/
+--
+-pronfundidade: int
+--
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>972</x>
+      <y>876</y>
+      <w>120</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+SpriteImagem
+--
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1026</x>
+      <y>822</y>
+      <w>84</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;90.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1104</x>
+      <y>876</y>
+      <w>120</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+SpriteASCII
+--
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1092</x>
+      <y>822</y>
+      <w>84</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>120.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1038</x>
+      <y>678</y>
+      <w>126</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+/Componente/
+--
+#objetoAnexado: ObjetoDeJogo
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1092</x>
+      <y>714</y>
+      <w>18</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>978</x>
+      <y>522</y>
+      <w>54</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>870</x>
+      <y>786</y>
+      <w>162</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+Colisor
+--
+-formato: Retangulo
+--
++eventoDeColisao(outroColisor: Colisor) : void
+bg=green
++getColisor(): Retangulo</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>948</x>
+      <y>714</y>
+      <w>162</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;120.0;250.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1086</x>
+      <y>630</y>
+      <w>150</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+*Fisica*
+--
++calcularColisoes(colisores: Colisor[])
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>978</x>
+      <y>534</y>
+      <w>120</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;10.0;40.0;190.0;180.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>852</x>
+      <y>594</y>
+      <w>66</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Struct&gt;&gt;
+*Retangulo*
+--
++Inicio: Vector2
++Fim: Vector2
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>852</x>
+      <y>678</y>
+      <w>120</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+/ObjetoDeJogo/
+--
+-posicao: Vector2
+-componentes: Componente[]
+--
++iniciar(): void
++atualizar(): void
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>966</x>
+      <y>696</y>
+      <w>84</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>762</x>
+      <y>738</y>
+      <w>162</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>250.0;10.0;250.0;70.0;10.0;70.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>522</x>
+      <y>738</y>
+      <w>384</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>620.0;10.0;620.0;40.0;200.0;40.0;200.0;110.0;10.0;110.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>498</x>
+      <y>696</y>
+      <w>126</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+*Parede*
+--
+-altura: int
+-largura: int
+-colisor: Colisor
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>558</x>
+      <y>666</y>
+      <w>330</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>530.0;130.0;530.0;150.0;150.0;150.0;150.0;10.0;10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>402</x>
+      <y>708</y>
+      <w>108</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=
+m2=4
+
+&lt;&lt;aggregation&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>846</x>
+      <y>474</y>
+      <w>468</w>
+      <h>450</h>
+    </coordinates>
+    <panel_attributes>GameEngine..</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>858</x>
+      <y>504</y>
+      <w>126</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+/Game/
+--
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>336</x>
+      <y>540</y>
+      <w>594</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>970.0;10.0;970.0;70.0;10.0;70.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>372</x>
+      <y>0</y>
+      <w>876</w>
+      <h>414</h>
+    </coordinates>
+    <panel_attributes>ConexãoMultiplayer..
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1164</x>
+      <y>786</y>
+      <w>108</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+Input
+--
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1092</x>
+      <y>714</y>
+      <w>138</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>210.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>768</x>
+      <y>24</y>
+      <w>120</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Abstract&gt;&gt;
+ThreadedModule
+--
+# m_thread: Thread
+- m_run: bool
+--
++ ThreadedModule()
+- ThreadLoop(): void
+StartModuleThread(): void
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>600</x>
+      <y>240</y>
+      <w>198</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+TcpHost
+--
++ ClientHost: enum
+- m_ipAddress: IPAddress
+- m_sendBuffer: ConcurrentQueue&lt;byte[]&gt;
+- m_receiveBuffer: ConcurrentQueue&lt;byte[]&gt;
+- m_currentState: HostState
+- m_client: Socket
+--
+- OnConnectionResult(_result: IAsyncResult): void
+- Idle(): void
+- StartConnection(): void
+- WaitingConnection(): void
+- ReceiveMessages(): void
+- SendMessages(): void
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>768</x>
+      <y>132</y>
+      <w>120</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Abstract&gt;&gt;
+ThreadedNETModule
+--
+- k_sleepTimeMS: int
+# m_sleep: bool
+--
+# ModuleLoop(): void
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>822</x>
+      <y>96</y>
+      <w>18</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>696</x>
+      <y>186</y>
+      <w>144</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;90.0;220.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>390</x>
+      <y>240</y>
+      <w>198</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+TcpClient
+--
++ ClientState: enum
+- m_ipAddress: IPAddress
+- m_sendBuffer: ConcurrentQueue&lt;byte[]&gt;
+- m_receiveBuffer: ConcurrentQueue&lt;byte[]&gt;
+- m_currentState: ClientState
+- m_client: Socket
+--
+- OnConnectionResult(_result: IAsyncResult): void
+- Idle(): void
+- StartConnection(): void
+- WaitingConnection(): void
+- ReceiveMessages(): void
+- SendMessages(): void
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>186</y>
+      <w>360</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;90.0;580.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>816</x>
+      <y>240</y>
+      <w>198</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+UdpClient
+--
++ ClientState: enum
+- m_ipAddress: IPAddress
+- m_sendBuffer: ConcurrentQueue&lt;byte[]&gt;
+- m_receiveBuffer: ConcurrentQueue&lt;byte[]&gt;
+- m_currentState: HostState
+- m_client: Socket
+--
+- OnConnectionResult(_result: IAsyncResult): void
+- Idle(): void
+- StartConnection(): void
+- WaitingConnection(): void
+- ReceiveMessages(): void
+- SendMessages(): void
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>822</x>
+      <y>186</y>
+      <w>108</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>160.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1026</x>
+      <y>240</y>
+      <w>198</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Class&gt;&gt;
+UdpHost
+--
++ ClientHost: enum
+- m_ipAddress: IPAddress
+- m_sendBuffer: ConcurrentQueue&lt;byte[]&gt;
+- m_receiveBuffer: ConcurrentQueue&lt;byte[]&gt;
+- m_currentState: HostState
+- m_client: Socket
+--
+- OnConnectionResult(_result: IAsyncResult): void
+- Idle(): void
+- StartConnection(): void
+- WaitingConnection(): void
+- ReceiveMessages(): void
+- SendMessages(): void
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>822</x>
+      <y>186</y>
+      <w>318</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>510.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>150</x>
+      <y>564</y>
+      <w>660</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>Jogo da Cobrinha..
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>474</x>
+      <y>384</y>
+      <w>396</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>640.0;240.0;10.0;240.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>684</x>
+      <y>384</y>
+      <w>186</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>290.0;240.0;10.0;240.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>762</x>
+      <y>384</y>
+      <w>162</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>160.0;240.0;10.0;240.0;10.0;80.0;250.0;80.0;250.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>804</x>
+      <y>384</y>
+      <w>330</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>90.0;240.0;10.0;240.0;10.0;120.0;530.0;120.0;530.0;10.0</additional_attributes>
+  </element>
+</diagram>
