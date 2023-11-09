@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GameEngine.GEMath;
+using System.Windows.Media.Animation;
 
 namespace SnakeGamePuc.Scripts.NetGame
 {
@@ -50,7 +51,6 @@ namespace SnakeGamePuc.Scripts.NetGame
         }
         protected virtual void OnCollision(Collider _collider)
         {
-
             if (_collider.AttachedGameObject.Name == "Apple") EatApple();
             else Die();
         }
@@ -127,6 +127,58 @@ namespace SnakeGamePuc.Scripts.NetGame
             pos.Add(m_transform.Position);
 
             return pos.ToArray();
+        }
+
+        private SnakeDirection InvertDirection(SnakeDirection _dir)
+        {
+            switch(_dir)
+            {
+                case SnakeDirection.Up:
+                    return SnakeDirection.Down;
+                case SnakeDirection.Down:
+                    return SnakeDirection.Up;
+                case SnakeDirection.Right:
+                    return SnakeDirection.Left;
+                case SnakeDirection.Left:
+                    return SnakeDirection.Right;
+            }
+        }
+
+        public byte[] SerializeSnake()
+        {
+            SnakeBody body = null;
+
+            List<byte> bytes= new List<byte>();
+            int dirCount = 0;
+
+            body = m_snakeBody;
+            while (body != null)
+            {
+                if (bytes.Count >= 2)
+                {
+                    if (bytes[bytes.Count - 2] == (byte)InvertDirection(body.Direction))
+                    {
+                        dirCount++;
+                    }
+                    else
+                    {
+                        bytes.Add((byte)InvertDirection(body.Direction));
+                        bytes.Add(0);
+                    }
+                }
+                else
+                {
+                    bytes.Add((byte)InvertDirection(body.Direction));
+                    bytes.Add(0);
+                }
+
+                body = body.NextBodyPiece;
+            }
+
+            bytes.Add((byte)float.Round(m_transform.Position.X));
+            bytes.Add((byte)float.Round(m_transform.Position.Y));
+
+            return bytes.ToArray();
         }
     }
 }

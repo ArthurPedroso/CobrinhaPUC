@@ -10,18 +10,18 @@ using System.Threading.Tasks;
 
 namespace SnakeGamePuc.Scripts
 {
-    internal enum SnakeDirection
+    internal enum SnakeDirection : byte
     {
-        Left,
-        Right,
-        Up,
-        Down,
-        None
+        Left    = 1,
+        Right   = 2,
+        Up      = 3,
+        Down    = 4,
+        None    = 0
     }
     internal class SnakeBody : Script
     {
         private Transform m_transform;
-        public SnakeBody NextBodyPiece { private get; set; }
+        public SnakeBody NextBodyPiece { get; set; }
         public SnakeDirection Direction { get; set; }
 
         public SnakeBody(GameObject _attachedGameObject) : base(_attachedGameObject)
