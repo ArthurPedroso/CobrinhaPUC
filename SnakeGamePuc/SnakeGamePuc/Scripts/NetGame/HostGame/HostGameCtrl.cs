@@ -37,7 +37,8 @@ namespace SnakeGamePuc.Scripts.NetGame.HostGame
 
         private void SendSnakeToClient()
         {
-            m_udpSend.SendData(SnakeCtrl.SerializeSnake());
+            byte[] bytes = SnakeCtrl.SerializeSnake();
+            if (bytes != null) m_udpSend.SendData(bytes);
         }
 
         private void InstantiateApple()

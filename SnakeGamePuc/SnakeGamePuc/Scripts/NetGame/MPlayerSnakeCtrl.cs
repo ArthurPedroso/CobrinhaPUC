@@ -20,20 +20,26 @@ namespace SnakeGamePuc.Scripts.NetGame
         private SnakeDirection m_direction;
         private SnakeDirection m_lastDirection;
         private float m_elapsedTime;
+        private bool m_ready;
         private SnakeBody m_snakeBody;
 
-        public MPlayerSnakeCtrl(GameObject _attachedGameObject) : base(_attachedGameObject)
+        private Vector2 m_startPos;
+
+        public MPlayerSnakeCtrl(GameObject _attachedGameObject, Vector2 _startPos) : base(_attachedGameObject)
         {
             m_direction = SnakeDirection.Left;
             m_lastDirection = SnakeDirection.Left;
+            m_startPos = _startPos;
+            m_ready = false;
         }
 
         public override void Start()
         {
             m_transform = AttachedGameObject.GetComponent<Transform>();
-            AttachedGameObject.GetComponent<Collider>().RegisterOnCollisionEnterCB(OnCollision);
+            m_transform.Position = m_startPos;
             m_elapsedTime = 0;
-            BuildBodyParts();
+            BuildBodyParts(m_startPos);
+            m_ready = true;
         }
 
         public override void Update()
@@ -41,18 +47,16 @@ namespace SnakeGamePuc.Scripts.NetGame
             UpdateTimer();
             CheckInput();
         }
-        private void EatApple()
+        public void EatApple()
         {
             m_snakeBody.AddBodyPiece();
         }
-        private void Die()
+        public void Die()
         {
             GameInstance.SceneMan.LoadScene("LoseScene");
         }
         protected virtual void OnCollision(Collider _collider)
         {
-            if (_collider.AttachedGameObject.Name == "Apple") EatApple();
-            else Die();
         }
         private void CheckInput()
         {
@@ -75,9 +79,9 @@ namespace SnakeGamePuc.Scripts.NetGame
                 Move();
             }
         }
-        private void BuildBodyParts()
+        protected virtual void BuildBodyParts(Vector2 _startPos)
         {
-            Vector2 newPos = Vector2.Zero;
+            Vector2 newPos = m_startPos;
             SnakeBody oldsnake = null;
             GameObject obj;
             SnakeBody snakeBody;
@@ -148,10 +152,12 @@ namespace SnakeGamePuc.Scripts.NetGame
 
         public byte[] SerializeSnake()
         {
+            if (!m_ready) return null;
             SnakeBody body = null;
 
             List<byte> bytes= new List<byte>();
-            int dirCount = 0;
+            byte dirCount = 0;
+            int dirRef;
 
             body = m_snakeBody;
             while (body != null)
@@ -160,18 +166,18 @@ namespace SnakeGamePuc.Scripts.NetGame
                 {
                     if (bytes[bytes.Count - 2] == (byte)InvertDirection(body.Direction))
                     {
-                        dirCount++;
+                        bytes[bytes.Count - 1]++;
                     }
                     else
                     {
                         bytes.Add((byte)InvertDirection(body.Direction));
-                        bytes.Add(0);
+                        bytes.Add(1);
                     }
                 }
                 else
                 {
                     bytes.Add((byte)InvertDirection(body.Direction));
-                    bytes.Add(0);
+                    bytes.Add(1);
                 }
 
                 body = body.NextBodyPiece;

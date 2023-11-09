@@ -15,6 +15,7 @@ using SnakeGamePuc.Scripts.HostMenu;
 using SnakeGamePuc.Scripts.ClientMenu;
 using SnakeGamePuc.Scripts.NetGame.HostGame;
 using SnakeGamePuc.Scripts.NetGame.ClientGame;
+using SnakeGamePuc.Scripts.NetGame;
 
 namespace SnakeGamePuc
 {
@@ -65,6 +66,15 @@ namespace SnakeGamePuc
             snake.AttachComponent(new Collider(snake));
             snake.AttachComponent(new ASCIISprite(snake, 'X'));
             snake.AttachComponent(new SnakeBody(snake));
+
+            return snake;
+        }
+        internal static GameObject BuildShadowSnakeBody()
+        {
+            GameObject snake = new GameObject("SnakeBody");
+
+            snake.AttachComponent(new Transform(snake));
+            snake.AttachComponent(new ASCIISprite(snake, 'H'));
 
             return snake;
         }
@@ -240,23 +250,6 @@ namespace SnakeGamePuc
             };
         }
 
-        internal static GameObject BuildHostGameCtrl()
-        {
-            GameObject hostCtrl = new GameObject("HostCtrl");
-
-            hostCtrl.AttachComponent(new HostGameCtrl(hostCtrl));
-
-            return hostCtrl;
-        }
-        internal static GameObject BuildClientGameCtrl()
-        {
-            GameObject clientCtrl = new GameObject("ClientCtrl");
-
-            clientCtrl.AttachComponent(new ClientGameCtrl(clientCtrl));
-
-            return clientCtrl;
-        }
-
         internal static GameObject BuildHostSnakeController()
         {
             GameObject snake = new GameObject("Player");
@@ -268,12 +261,53 @@ namespace SnakeGamePuc
 
             return snake;
         }
+        internal static GameObject BuildHostShadowSnakeController()
+        {
+            GameObject snake = new GameObject("Player");
+
+            snake.AttachComponent(new Transform(snake));
+            snake.AttachComponent(new Collider(snake));
+            snake.AttachComponent(new ASCIISprite(snake, '#'));
+            snake.AttachComponent(new HostShadowSnake(snake));
+
+            return snake;
+        }
 
         internal static GameObject BuildHostSnakeGameCtrl()
         {
             GameObject snakeGameCtrl = new GameObject("SnakeGameCtrl");
 
             snakeGameCtrl.AttachComponent(new HostGameCtrl(snakeGameCtrl));
+
+            return snakeGameCtrl;
+        }
+
+        internal static GameObject BuildClientSnakeController()
+        {
+            GameObject snake = new GameObject("Player");
+
+            snake.AttachComponent(new Transform(snake));
+            snake.AttachComponent(new ASCIISprite(snake, '@'));
+            snake.AttachComponent(new ClientSnakeCtrl(snake));
+
+            return snake;
+        }
+        internal static GameObject BuildClientShadowSnakeController()
+        {
+            GameObject snake = new GameObject("Player");
+
+            snake.AttachComponent(new Transform(snake));
+            snake.AttachComponent(new ASCIISprite(snake, '#'));
+            snake.AttachComponent(new ShadowSnakeCtrl(snake));
+
+            return snake;
+        }
+
+        internal static GameObject BuildClientSnakeGameCtrl()
+        {
+            GameObject snakeGameCtrl = new GameObject("SnakeGameCtrl");
+
+            snakeGameCtrl.AttachComponent(new ClientGameCtrl(snakeGameCtrl));
 
             return snakeGameCtrl;
         }

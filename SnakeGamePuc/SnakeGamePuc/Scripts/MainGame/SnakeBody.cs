@@ -27,6 +27,7 @@ namespace SnakeGamePuc.Scripts
         public SnakeBody(GameObject _attachedGameObject) : base(_attachedGameObject)
         {
             NextBodyPiece = null;
+            Direction = SnakeDirection.Left;
         }
 
         public override void Start()

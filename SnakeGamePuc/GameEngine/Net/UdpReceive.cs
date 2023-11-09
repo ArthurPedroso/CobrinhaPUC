@@ -120,7 +120,6 @@ namespace GameEngine.Net
                 {
                     _data = (byte[])m_threadBuffer.Clone();
                     success = true;
-                    m_threadBuffer = null;
                 }
             }
 
