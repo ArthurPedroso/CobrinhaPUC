@@ -170,7 +170,6 @@ namespace GameEngine.Net
                     break;
                 case ClientState.Connected:
                     ReceiveMessages();
-                    SendMessages();
                     break;
             }
         }
@@ -218,6 +217,7 @@ namespace GameEngine.Net
                 return false;
             }
         }
+        /*
         public bool SendData(byte[] _data)
         {
             if (m_currentState != ClientState.Connected) return false;
@@ -232,6 +232,7 @@ namespace GameEngine.Net
 
             return false;
         }
+        */
         public bool ReceiveData(out byte[][] _data)
         {
             _data = null;

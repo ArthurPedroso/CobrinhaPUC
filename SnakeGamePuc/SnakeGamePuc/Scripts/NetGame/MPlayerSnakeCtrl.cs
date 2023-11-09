@@ -146,7 +146,7 @@ namespace SnakeGamePuc.Scripts.NetGame
                 case SnakeDirection.Left:
                     return SnakeDirection.Right;
                 default:
-                    throw new Exception("Direcao nao existe");
+                    return SnakeDirection.None;
             }
         }
 

@@ -26,7 +26,7 @@ namespace GameEngine.Net
         }
 
         private const int k_timeoutMSecs = 30000;
-        private const int k_maxQueueSize = 5;
+        private const int k_maxQueueSize = 50;
 
         private ConcurrentQueue<byte[]> m_sendBuffer;
         private ConcurrentQueue<byte[]> m_receiveBuffer;
@@ -154,7 +154,6 @@ namespace GameEngine.Net
                     WaitingConnection();
                     break;
                 case HostState.Connected:
-                    ReceiveMessages();
                     SendMessages();
                     break;
             }
@@ -226,6 +225,7 @@ namespace GameEngine.Net
 
             return false;
         }
+        /*
         public bool ReceiveData(out byte[][] _data)
         {
             _data = null;
@@ -241,6 +241,7 @@ namespace GameEngine.Net
 
             return false;
         }
+        */
 
         public override void StopNetModule()
         {
