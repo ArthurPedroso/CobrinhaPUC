@@ -81,12 +81,12 @@ namespace GameEngine.Net
         protected override void PreThreadModuleStop()
         {
         }
-        public bool StartUdpSend(IPEndPoint _endpoint)
+        public bool StartUdpSend(string _ip, int _port)
         {
             if (State != UdpSendState.Idle) return false;
             try
             {
-                IPEndPoint endPoint = _endpoint;
+                IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(_ip), _port);
                 m_udpSendSocket = new(
                 endPoint.AddressFamily,
                 SocketType.Dgram,

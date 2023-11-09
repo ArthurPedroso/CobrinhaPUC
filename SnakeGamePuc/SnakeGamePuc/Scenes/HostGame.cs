@@ -1,5 +1,7 @@
 ﻿using GameEngine;
 using GameEngine.Scenes;
+using SnakeGamePuc.Scripts;
+using SnakeGamePuc.Scripts.NetGame.HostGame;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +18,14 @@ namespace SnakeGamePuc.Scenes
 
         public override void BuildScene()
         {
-            foreach (GameObject obj in ObjsBuilders.BuildHostGame())
-            {
-                AddObj(obj);
-            }
+            GameObject snake = ObjsBuilders.BuildHostSnakeController();
+            AddObj(snake);
+
+            GameObject snakeGame = ObjsBuilders.BuildHostSnakeGameCtrl();
+            snakeGame.GetComponent<HostGameCtrl>().SnakeCtrl = snake.GetComponent<HostSnakeCtrl>();
+            AddObj(snakeGame);
+
+            snake.GetComponent<HostSnakeCtrl>().GameCtrl = snakeGame.GetComponent<HostGameCtrl>();
         }
     }
 }

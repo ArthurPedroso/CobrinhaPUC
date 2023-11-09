@@ -97,8 +97,8 @@ namespace SnakeGamePuc.Scripts.ClientMenu
             else if (GameInstance.ClientTCP.State == TcpClient.ClientState.Connected)
             {
                 IPEndPoint remote = GameInstance.ClientTCP.GetConnectedEnpoint();
-                GameInstance.UDPReceive.StartUdpReceive(remote.Port);
-                GameInstance.UDPSend.StartUdpSend(remote);
+                GameInstance.UDPReceive.StartUdpReceive(m_inputtedPort);
+                GameInstance.UDPSend.StartUdpSend(remote.Address.ToString(), m_inputtedPort);
                 m_menuState = ClientMenuState.Done;
                 GameInstance.SceneMan.LoadScene("ClientGame");
             }

@@ -11,7 +11,7 @@ using System.Windows.Media.Animation;
 
 namespace SnakeGamePuc.Scripts.NetGame
 {
-    internal class MPlayerSnakeCtrl : Script
+    internal abstract class MPlayerSnakeCtrl : Script
     {
         private const float k_moveAfter = 0.3f;
         private const int k_startingSize = 4;

@@ -257,20 +257,25 @@ namespace SnakeGamePuc
             return clientCtrl;
         }
 
-        internal static GameObject[] BuildHostGame()
+        internal static GameObject BuildHostSnakeController()
         {
-            return new GameObject[]
-            {
-                BuildHostGameCtrl()
-            };
+            GameObject snake = new GameObject("Player");
+
+            snake.AttachComponent(new Transform(snake));
+            snake.AttachComponent(new Collider(snake));
+            snake.AttachComponent(new ASCIISprite(snake, '@'));
+            snake.AttachComponent(new HostSnakeCtrl(snake));
+
+            return snake;
         }
 
-        internal static GameObject[] BuildClientGame()
+        internal static GameObject BuildHostSnakeGameCtrl()
         {
-            return new GameObject[]
-            {
-                BuildClientGameCtrl()
-            };
+            GameObject snakeGameCtrl = new GameObject("SnakeGameCtrl");
+
+            snakeGameCtrl.AttachComponent(new HostGameCtrl(snakeGameCtrl));
+
+            return snakeGameCtrl;
         }
     }
 }
