@@ -19,7 +19,7 @@ namespace GameEngine.Patterns
             m_thread = new Thread(new ThreadStart(ThreadLoop));
         }
 
-        private void ThreadLoop()
+        protected void ThreadLoop()
         {
             OnModuleStart();
             while (m_run)

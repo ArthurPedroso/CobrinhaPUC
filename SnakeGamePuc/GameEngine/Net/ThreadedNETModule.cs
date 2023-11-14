@@ -1,9 +1,4 @@
 ﻿using GameEngine.Patterns;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameEngine.Net
 {
@@ -12,6 +7,11 @@ namespace GameEngine.Net
         private const int k_sleepTimeMS = 500;
 
         protected bool m_sleep;
+
+        protected ThreadedNETModule()
+        {
+            m_thread = null;
+        }
 
         public bool NETRunning { get => Running; }
 
@@ -23,10 +23,12 @@ namespace GameEngine.Net
         public void StopNetModule()
         {
             StopModuleThread();
+            if (m_thread.ThreadState == ThreadState.WaitSleepJoin) m_thread = null;
         }
 
         public void StartNetModule()
         {
+            if(m_thread == null) m_thread = new Thread(new ThreadStart(ThreadLoop));
             StartModuleThread();
         }
     }
