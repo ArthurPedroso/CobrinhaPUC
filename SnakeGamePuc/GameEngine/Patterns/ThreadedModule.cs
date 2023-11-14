@@ -12,6 +12,7 @@ namespace GameEngine.Patterns
     {
         protected Thread m_thread;
         private bool m_run;
+        internal bool Running { get => m_run; }
         public ThreadedModule()
         {
             m_run = false;

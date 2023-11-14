@@ -1,6 +1,7 @@
 ﻿using GameEngine.Components;
 using GameEngine.Components.Sprites;
 using GameEngine.Debug;
+using GameEngine.Exceptions;
 using GameEngine.Input;
 using GameEngine.Net;
 using GameEngine.Patterns;
@@ -56,7 +57,6 @@ namespace GameEngine
             m_renderer = _renderer;
 
             InitEngine();
-            EngineLoop();
         }
 
         private void InitEngine()
@@ -64,15 +64,11 @@ namespace GameEngine
             m_debugger.StartModuleThread();
             m_renderer.StartRenderLoop();
             m_inputSystem.StartModuleThread();
-            m_tcpHost.StartModuleThread();
-            m_tcpClient.StartModuleThread();
-            m_udpHost.StartModuleThread();
-            m_udpClient.StartModuleThread();
             m_engineState = EngineState.FirstFrame;
         }
         private void WaitForRenderThread()
         {
-            bool renderThreadDone = false;
+            bool renderThreadDone;
             while (!(m_renderer.CheckIfFrameFinishedRendering(out renderThreadDone) && renderThreadDone)) ;
         }
 
@@ -85,8 +81,17 @@ namespace GameEngine
             Script[] scripts = m_sceneManager.CurrentScene.SceneScripts.ToArray();
             foreach (Script script in scripts)
             {
-                if (m_engineState == EngineState.FirstFrame) script.Start();
-                else if(m_engineState == EngineState.Running) script.Update();
+                switch (m_engineState) 
+                {
+                    case EngineState.FirstFrame:
+                        script.Start(); 
+                        break;
+                    case EngineState.Running:
+                        script.Update();
+                        break;
+                    default: 
+                        break;
+                }
             }
         }
 
@@ -100,6 +105,14 @@ namespace GameEngine
             m_renderer.RenderSprites(m_sceneManager.CurrentScene.SceneSprites.ToArray());
         }
 
+        private void CheckEngineState()
+        {
+            if (m_engineState == EngineState.FirstFrame)
+                m_engineState = EngineState.Running;
+            else if (m_engineState == EngineState.ChangeScene)
+                m_engineState = EngineState.FirstFrame;
+        }
+
         private void EngineLoop()
         {
             while (m_engineState != EngineState.Exiting)
@@ -109,10 +122,7 @@ namespace GameEngine
                 UpdatePhysics();
                 UpdateScripts();
                 WaitForRenderThread();
-                if (m_engineState == EngineState.FirstFrame)
-                    m_engineState = EngineState.Running;
-                else if (m_engineState == EngineState.ChangeScene)
-                    m_engineState = EngineState.FirstFrame;
+                CheckEngineState();
             }
         }
         private void StopEngine()
@@ -131,6 +141,15 @@ namespace GameEngine
         {
             m_engineState = EngineState.ChangeScene;
         }
+
+        public void Run()
+        {
+            if(m_engineState != EngineState.FirstFrame)
+                throw new GameEngineException("Asked to run multiple Times!!!!");
+            else
+                EngineLoop();
+        }
+
         public static void Instantiate(GameObject _obj)
         {
             Instance.m_sceneManager.CurrentScene.AddObj(_obj);

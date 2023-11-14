@@ -43,6 +43,28 @@ namespace SnakeGamePuc.Scripts.ClientMenu
             m_timer = 0;
             m_inputtedIp = new List<string>();
         }
+        private void BuildClientUI()
+        {
+            GameObject obj = ObjsBuilders.BuildUI(new Vector2(0.0f, 0.0f), "1.Conectar");
+            GameInstance.Instantiate(obj);
+
+            m_clientUI.Add(obj.GetComponent<UI>());
+
+            obj = ObjsBuilders.BuildUI(new Vector2(0.0f, -1.0f), "2.Voltar");
+            GameInstance.Instantiate(obj);
+
+            m_clientUI.Add(obj.GetComponent<UI>());
+
+            obj = ObjsBuilders.BuildUI(new Vector2(0.0f, 0.0f), "");
+            GameInstance.Instantiate(obj);
+            m_clientStatus = obj.GetComponent<UI>();
+            m_clientStatus.ShowText = false;
+
+            obj = ObjsBuilders.BuildInputField(new Vector2(0.0f, -2.0f), "", 3, true, true);
+            GameInstance.Instantiate(obj);
+            m_inputField = obj.GetComponent<UIInputField>();
+            m_inputField.ShowText = false;
+        }
 
         private void Timer()
         {
@@ -60,6 +82,7 @@ namespace SnakeGamePuc.Scripts.ClientMenu
 
         private void StartTcpConnection()
         {
+            GameInstance.ClientTCP.StartNetModule();
             if (GameInstance.ClientTCP.State == TcpClient.ClientState.Idle)
             {
                 string ipAddress = "";
@@ -97,11 +120,7 @@ namespace SnakeGamePuc.Scripts.ClientMenu
             }
             else if (GameInstance.ClientTCP.State == TcpClient.ClientState.Connected)
             {
-                IPEndPoint remote = GameInstance.ClientTCP.GetConnectedEnpoint();
-                GameInstance.UDPReceive.StartUdpReceive(m_inputtedPort);
-                GameInstance.UDPSend.StartUdpSend(remote.Address.ToString(), m_inputtedPort);
-                m_menuState = ClientMenuState.Done;
-                GameInstance.SceneMan.LoadScene("ClientGame");
+                LoadGameScene();
             }
         }
 
@@ -146,28 +165,21 @@ namespace SnakeGamePuc.Scripts.ClientMenu
             }
         }
 
-        private void BuildClientUI()
+        private void LoadGameScene()
         {
-            GameObject obj = ObjsBuilders.BuildUI(new Vector2(0.0f, 0.0f), "1.Conectar");
-            GameInstance.Instantiate(obj);
+            GameInstance.UDPReceive.StartNetModule();
+            GameInstance.UDPSend.StartNetModule();
 
-            m_clientUI.Add(obj.GetComponent<UI>());
+            IPEndPoint remote = GameInstance.ClientTCP.GetConnectedEnpoint();
 
-            obj = ObjsBuilders.BuildUI(new Vector2(0.0f, -1.0f), "2.Voltar");
-            GameInstance.Instantiate(obj);
+            GameInstance.UDPReceive.StartUdpReceive(m_inputtedPort);
+            GameInstance.UDPSend.StartUdpSend(remote.Address.ToString(), m_inputtedPort);
 
-            m_clientUI.Add(obj.GetComponent<UI>());
+            m_menuState = ClientMenuState.Done;
 
-            obj = ObjsBuilders.BuildUI(new Vector2(0.0f, 0.0f), "");
-            GameInstance.Instantiate(obj);
-            m_clientStatus = obj.GetComponent<UI>();
-            m_clientStatus.ShowText = false;
-
-            obj = ObjsBuilders.BuildInputField(new Vector2(0.0f, -2.0f), "", 3, true, true);
-            GameInstance.Instantiate(obj);
-            m_inputField = obj.GetComponent<UIInputField>();
-            m_inputField.ShowText = false;
+            GameInstance.SceneMan.LoadScene("ClientGame");
         }
+
 
         public override void Start()
         {

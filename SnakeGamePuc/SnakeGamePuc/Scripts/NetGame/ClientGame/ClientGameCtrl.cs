@@ -12,6 +12,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using GameEngine.Scenes;
+using GameEngine.Input;
 
 namespace SnakeGamePuc.Scripts.NetGame.ClientGame
 {
@@ -105,9 +106,10 @@ namespace SnakeGamePuc.Scripts.NetGame.ClientGame
             if(bytes != null) m_udpSend.SendData(bytes);
         }
 
-        private void TurnOffNet()
+        protected override void TurnOffNet()
         {
-
+            base.TurnOffNet();
+            m_tcpClient.StopNetModule();
         }
 
         private void EndGame(MPlayerEndGameType _endGameType)
@@ -135,7 +137,8 @@ namespace SnakeGamePuc.Scripts.NetGame.ClientGame
 
         protected override void OnDisconnect()
         {
-            throw new Exception("Disconnected!");
+            TurnOffNet();
+            GameInstance.SceneMan.LoadScene("DisconnectScene");
         }
 
         public override void Start()
@@ -155,8 +158,11 @@ namespace SnakeGamePuc.Scripts.NetGame.ClientGame
             SendSnakeToHost();
             GetGameEvents();
 
-            //if (GameInstance.Input.KeyPressed(InputKey.Esc))
-            //    GameInstance.QuitGame();
+            if (GameInstance.Input.KeyPressed(InputKey.Esc))
+            {
+                TurnOffNet();
+                GameInstance.SceneMan.LoadScene("MainMenu");
+            }
         }
 
     }

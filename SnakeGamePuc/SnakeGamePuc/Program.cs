@@ -24,9 +24,13 @@ namespace SnakeGamePuc
                 new HostMenu(),
                 new HostGame(),
                 new LoseScene(),
-                new WinScene()
+                new WinScene(),
+                new DisconnectScene(),
             };
+
             GameInstance instance = new GameInstance(new ASCIIRenderer(16, 16, 8), m_gameScenes, "MainMenu", true);
+
+            instance.Run();
         }
     }
 }

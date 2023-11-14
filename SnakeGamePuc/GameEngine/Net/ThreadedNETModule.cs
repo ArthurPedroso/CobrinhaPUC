@@ -13,11 +13,21 @@ namespace GameEngine.Net
 
         protected bool m_sleep;
 
+        public bool NETRunning { get => Running; }
+
         protected override void ModuleLoop()
         {
             if(m_sleep) Thread.Sleep(k_sleepTimeMS);
         }
 
-        public abstract void StopNetModule();
+        public void StopNetModule()
+        {
+            StopModuleThread();
+        }
+
+        public void StartNetModule()
+        {
+            StartModuleThread();
+        }
     }
 }

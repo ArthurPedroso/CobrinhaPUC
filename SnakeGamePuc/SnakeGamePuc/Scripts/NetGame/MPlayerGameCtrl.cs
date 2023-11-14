@@ -27,6 +27,12 @@ namespace SnakeGamePuc.Scripts.NetGame
                 OnDisconnect();
         }
 
+        protected virtual void TurnOffNet()
+        {
+            m_udpReceive.StopNetModule();
+            m_udpSend.StopNetModule();
+        }
+
         public override void Start()
         {
             m_udpReceive = GameInstance.UDPReceive;

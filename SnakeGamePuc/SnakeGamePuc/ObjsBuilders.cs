@@ -212,6 +212,16 @@ namespace SnakeGamePuc
             };
         }
 
+        internal static GameObject[] BuildDisconnectScene()
+        {
+            return new GameObject[]
+            {
+                BuildUI(new Vector2(0.0f, 4.0f), "Desconectado!"),
+                BuildUI(new Vector2(-1.0f, 0.0f), "1.Sair"),
+                BuildEndSceneCtrl()
+            };
+        }
+
         internal static GameObject BuildHostCtrl()
         {
             GameObject hostCtrl = new GameObject("HostCtrl");

@@ -1,17 +1,8 @@
-﻿using GameEngine.Debug;
-using GameEngine.Exceptions;
-using GameEngine.Patterns;
-using System;
+﻿using GameEngine.Exceptions;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Interop;
 
 namespace GameEngine.Net
 {
@@ -44,6 +35,7 @@ namespace GameEngine.Net
         internal TcpHost() : base()
         {
             m_listener = null;
+            m_handler = null;
             m_sendBuffer = new ConcurrentQueue<byte[]>();
             m_receiveBuffer = new ConcurrentQueue<byte[]>();
             m_currentState = HostState.Idle;
@@ -163,18 +155,23 @@ namespace GameEngine.Net
 
         protected override void OnModuleStart()
         {
-            m_currentState = HostState.Idle;
-            m_sleep = true;
         }
 
         protected override void OnModuleStop()
         {
             m_listener?.Close();
             m_handler?.Close();
+            m_sleep = true;
+            m_sendBuffer.Clear();
+            m_receiveBuffer.Clear();
+            m_asyncAccept = null;
+            m_waitAcceptStopWatch = null;
         }
 
         protected override void PreThreadModuleStart()
         {
+            m_currentState = HostState.Idle;
+            m_sleep = true;
         }
 
         protected override void PreThreadModuleStop()
@@ -201,7 +198,7 @@ namespace GameEngine.Net
                 ProtocolType.Tcp);
 
                 m_listener.Bind(endPoint);
-                m_listener.Listen(1); //Apenas aceita 1 conexao s
+                m_listener.Listen(1); //Apenas aceita 1 conexao
 
                 m_sleep = false;
                 m_currentState = HostState.StartWaitConnection;
@@ -244,11 +241,6 @@ namespace GameEngine.Net
             return false;
         }
         */
-
-        public override void StopNetModule()
-        {
-            throw new NotImplementedException();
-        }
     }
 
 }

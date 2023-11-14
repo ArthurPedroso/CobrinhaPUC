@@ -3,10 +3,6 @@ using GameEngine.Components;
 using GameEngine.GEMath;
 using GameEngine.Input;
 using GameEngine.Net;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json;
 
 namespace SnakeGamePuc.Scripts.NetGame.HostGame
 {
@@ -30,13 +26,13 @@ namespace SnakeGamePuc.Scripts.NetGame.HostGame
             if (_msg.T == 0) return;
             if(!m_tcpHost.SendData(new byte[] { _msg.T, _msg.X, _msg.Y}))
             {
-                throw new Exception("Cant Send TCP!");
+                OnDisconnect();
             }
         }
 
         private void GetShadowSnake()
         {
-            byte[] buffer = null;
+            byte[] buffer;
             if(m_udpReceive.ReceiveData(out buffer))
             {
                 ShadowSnakeCtrl.SetShadow(buffer);
@@ -87,6 +83,12 @@ namespace SnakeGamePuc.Scripts.NetGame.HostGame
                 SendGameEvent(new HostMsg(5, (byte)(int)float.Round(pos.X), (byte)(int)float.Round(pos.Y)));
             }
         }
+
+        protected override void TurnOffNet()
+        {
+            base.TurnOffNet();
+            m_tcpHost.StopNetModule();
+        }
         protected override void CheckDisconnect()
         {
             base.CheckDisconnect();
@@ -96,21 +98,25 @@ namespace SnakeGamePuc.Scripts.NetGame.HostGame
 
         protected override void OnDisconnect()
         {
-            throw new Exception("Disconnected!");
+            TurnOffNet();
+            GameInstance.SceneMan.LoadScene("DisconnectScene");
         }
         public void OnHostDeath()
         {
             SendGameEvent(new HostMsg(3, 0, 0));
+            TurnOffNet();
+            GameInstance.SceneMan.LoadScene("LoseScene");
         }
         public void OnClientDeath()
         {
             SendGameEvent(new HostMsg(4, 0, 0));
+            TurnOffNet();
+            GameInstance.SceneMan.LoadScene("WinScene");
         }
 
         public void OnClientApple()
         {
             SendGameEvent(new HostMsg(1, 0, 0));
-
         }
 
         public void OnHostApple()
@@ -127,6 +133,7 @@ namespace SnakeGamePuc.Scripts.NetGame.HostGame
             foreach (GameObject wall in walls) { GameInstance.Instantiate(wall); }
             m_gameAreaX = GameInstance.Renderer.GetWidth() - 2;
             m_gameAreaY = GameInstance.Renderer.GetHeight() - 2;
+
             InstantiateApple();
         }
 
@@ -135,8 +142,11 @@ namespace SnakeGamePuc.Scripts.NetGame.HostGame
             GetShadowSnake();
             SendSnakeToClient();
 
-            //if (GameInstance.Input.KeyPressed(InputKey.Esc))
-            //    GameInstance.QuitGame();
+            if (GameInstance.Input.KeyPressed(InputKey.Esc))
+            {
+                TurnOffNet();
+                GameInstance.SceneMan.LoadScene("MainMenu");
+            }
         }
     }
 }

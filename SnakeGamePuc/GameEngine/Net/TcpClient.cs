@@ -26,8 +26,6 @@ namespace GameEngine.Net
 
         private const int k_maxQueueSize = 50;
         private const int k_timeoutMSecs = 30000;
-
-        private IPAddress m_ipAddress;
         private ConcurrentQueue<byte[]> m_sendBuffer;
         private ConcurrentQueue<byte[]> m_receiveBuffer;
         private ClientState m_currentState;
@@ -38,13 +36,11 @@ namespace GameEngine.Net
         private IAsyncResult m_asyncConnect;
         private Stopwatch m_waitAcceptStopWatch;
         private EndPoint m_connectEndpoint;
-        private CancellationToken m_cancelConnection;
 
         public ClientState State { get { return m_currentState; } }
 
         internal TcpClient() : base()
         {
-            m_ipAddress = null;
             m_client = null;
             m_sendBuffer = new ConcurrentQueue<byte[]>();
             m_receiveBuffer = new ConcurrentQueue<byte[]>();
@@ -176,17 +172,23 @@ namespace GameEngine.Net
 
         protected override void OnModuleStart()
         {
-            m_currentState = ClientState.Idle;
-            m_sleep = true;
         }
 
         protected override void OnModuleStop()
         {
             m_client?.Close();
-        }
+            m_sleep = true;
+            m_sendBuffer.Clear();
+            m_receiveBuffer.Clear();
+            m_asyncConnect = null;
+            m_waitAcceptStopWatch = null;
+            m_connectEndpoint = null;
+    }
 
         protected override void PreThreadModuleStart()
         {
+            m_currentState = ClientState.Idle;
+            m_sleep = true;
         }
 
         protected override void PreThreadModuleStop()
@@ -263,10 +265,6 @@ namespace GameEngine.Net
             if (m_currentState == ClientState.Connected)
                 result = m_client.RemoteEndPoint as IPEndPoint;
             return result;
-        }
-        public override void StopNetModule()
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -65,17 +65,19 @@ namespace GameEngine.Net
 
         protected override void OnModuleStart()
         {
-            m_currentState = UdpSendState.Idle;
-            m_sleep = true;
         }
 
         protected override void OnModuleStop()
         {
             m_udpSendSocket?.Close();
+            m_sendBuffer.Clear();
+            m_sendTo = null;
         }
 
         protected override void PreThreadModuleStart()
         {
+            m_currentState = UdpSendState.Idle;
+            m_sleep = true;
         }
 
         protected override void PreThreadModuleStop()
@@ -117,10 +119,6 @@ namespace GameEngine.Net
                 GameInstance.Debug.LogErrorMsg("TCP Send Queue FULL!");
 
             return false;
-        }
-        public override void StopNetModule()
-        {
-            throw new NotImplementedException();
         }
     }
 }

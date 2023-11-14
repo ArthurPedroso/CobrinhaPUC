@@ -4,6 +4,7 @@ using System.Net;
 using GameEngine.Exceptions;
 using System.Diagnostics;
 using System.Windows.Forms;
+using static GameEngine.Net.UdpSend;
 
 namespace GameEngine.Net
 {
@@ -28,7 +29,7 @@ namespace GameEngine.Net
             m_currentState = UdpReceiveState.Idle;
             m_sleep = true;
             m_receiveBuffer = new byte[512];
-            m_threadBuffer = new byte[0];
+            m_threadBuffer = null;
         }
 
         private void Idle()
@@ -74,10 +75,14 @@ namespace GameEngine.Net
         protected override void OnModuleStop()
         {
             m_udpReceiveSocket?.Close();
+            Array.Clear(m_receiveBuffer);
+            m_threadBuffer = null;
         }
 
         protected override void PreThreadModuleStart()
         {
+            m_currentState = UdpReceiveState.Idle;
+            m_sleep = true;
         }
 
         protected override void PreThreadModuleStop()
@@ -124,11 +129,6 @@ namespace GameEngine.Net
             }
 
             return success;
-        }
-
-        public override void StopNetModule()
-        {
-            throw new NotImplementedException();
         }
     }
 }
