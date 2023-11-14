@@ -23,7 +23,7 @@ namespace GameEngine.Net
         public void StopNetModule()
         {
             StopModuleThread();
-            if (m_thread.ThreadState == ThreadState.WaitSleepJoin) m_thread = null;
+            m_thread = null;
         }
 
         public void StartNetModule()
