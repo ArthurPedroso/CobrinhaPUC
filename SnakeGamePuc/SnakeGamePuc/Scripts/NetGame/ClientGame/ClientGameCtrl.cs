@@ -128,11 +128,16 @@ namespace SnakeGamePuc.Scripts.NetGame.ClientGame
                     break;
             }
         }
-        protected override void CheckDisconnect()
+        protected override bool CheckDisconnect()
         {
-            base.CheckDisconnect();
-            if(m_tcpClient.State != TcpClient.ClientState.Connected)
+            if (base.CheckDisconnect())
+                return true;
+            else if (m_tcpClient.State != TcpClient.ClientState.Connected)
+            { 
                 OnDisconnect();
+                return true;
+            }
+            return false;
         }
 
         protected override void OnDisconnect()
@@ -154,15 +159,17 @@ namespace SnakeGamePuc.Scripts.NetGame.ClientGame
 
         public override void Update()
         {
-            CheckDisconnect();
             GetShadowSnake();
             SendSnakeToHost();
             GetGameEvents();
 
-            if (GameInstance.Input.KeyPressed(InputKey.Esc))
+            if (!CheckDisconnect())
             {
-                TurnOffNet();
-                GameInstance.SceneMan.LoadScene("MainMenu");
+                if (GameInstance.Input.KeyPressed(InputKey.Esc))
+                {
+                    TurnOffNet();
+                    GameInstance.SceneMan.LoadScene("MainMenu");
+                }
             }
         }
 

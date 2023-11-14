@@ -20,11 +20,15 @@ namespace SnakeGamePuc.Scripts.NetGame
 
         protected abstract void OnDisconnect();
 
-        protected virtual void CheckDisconnect()
-        { 
-            if(m_udpReceive.State == UdpReceive.UdpReceiveState.Idle ||
-               m_udpSend.State == UdpSend.UdpSendState.Idle) 
+        protected virtual bool CheckDisconnect()
+        {
+            if (m_udpReceive.State == UdpReceive.UdpReceiveState.Idle ||
+               m_udpSend.State == UdpSend.UdpSendState.Idle)
+            {
                 OnDisconnect();
+                return true;
+            }
+            return false;
         }
 
         protected virtual void TurnOffNet()
