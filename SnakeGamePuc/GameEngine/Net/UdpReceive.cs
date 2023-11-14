@@ -1,6 +1,7 @@
 ﻿
 using System.Net.Sockets;
 using System.Net;
+using System.Diagnostics;
 
 namespace GameEngine.Net
 {
@@ -38,7 +39,28 @@ namespace GameEngine.Net
         }
         private void ReceiveMessages()
         {
-            int bytesReceived = m_udpReceiveSocket.Receive(m_receiveBuffer);
+            //int bytesReceived =
+            Stopwatch timeoutStopWatch = new Stopwatch();
+            const int k_timeoutMs = 1000;
+
+            int bytesReceived = 0;
+
+            timeoutStopWatch.Start();
+
+            Task<int> receiveTask = m_udpReceiveSocket.ReceiveAsync(m_receiveBuffer);
+
+            while (!receiveTask.IsCompleted) 
+            { 
+                if(timeoutStopWatch.ElapsedMilliseconds >= k_timeoutMs)
+                {
+                    timeoutStopWatch.Stop();
+                    return;
+                }
+            }
+
+            timeoutStopWatch.Stop();
+            bytesReceived = receiveTask.Result;
+
             if (bytesReceived > 1)
             {
                 lock (m_threadBuffer)
