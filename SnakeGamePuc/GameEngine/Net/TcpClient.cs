@@ -117,6 +117,7 @@ namespace GameEngine.Net
                 }catch(SocketException e)
                 {
                     GameInstance.Debug.LogWarningMsg(e.ToString());
+                    m_currentState = ClientState.Idle;
                     StopNetModule();
                 }
             }
