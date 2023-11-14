@@ -139,6 +139,7 @@ namespace SnakeGamePuc.Scripts.NetGame.HostGame
 
         public override void Update()
         {
+            CheckDisconnect();
             GetShadowSnake();
             SendSnakeToClient();
 

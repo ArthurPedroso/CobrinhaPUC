@@ -154,6 +154,7 @@ namespace SnakeGamePuc.Scripts.NetGame.ClientGame
 
         public override void Update()
         {
+            CheckDisconnect();
             GetShadowSnake();
             SendSnakeToHost();
             GetGameEvents();
