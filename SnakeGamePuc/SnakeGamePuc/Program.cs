@@ -12,8 +12,6 @@ namespace SnakeGamePuc
 {
     internal class Program
     {
-
-        [STAThread]
         public static void Main()
         {
             GameScene[] m_gameScenes = new GameScene[]
@@ -28,7 +26,7 @@ namespace SnakeGamePuc
                 new LoseScene(),
                 new WinScene()
             };
-            GameInstance instance = new GameInstance(new ASCIIRenderer(16, 16, 8), m_gameScenes, "MainMenu");
+            GameInstance instance = new GameInstance(new ASCIIRenderer(16, 16, 8), m_gameScenes, "MainMenu", true);
         }
     }
 }

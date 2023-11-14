@@ -24,7 +24,7 @@ namespace SnakeGamePuc.Scripts.HostMenu
             Done
         }
         private const float k_errorMsgTime = 5.0f;
-        private const int k_listenPort = 7778;
+        private const int k_gamePort = 7778;
 
         private List<UI> m_hostUI;
         private UI m_hostStatus;
@@ -56,7 +56,7 @@ namespace SnakeGamePuc.Scripts.HostMenu
         {
             if (GameInstance.HostTCP.State == TcpHost.HostState.Idle)
             {
-                if (GameInstance.HostTCP.ListenToPort(k_listenPort))
+                if (GameInstance.HostTCP.ListenToPort(k_gamePort))
                 {
                     m_hostStatus.UiText = "Waiting";
                     m_menuState = HostMenuState.WaitingConnection;
@@ -85,8 +85,8 @@ namespace SnakeGamePuc.Scripts.HostMenu
             else if (GameInstance.HostTCP.State == TcpHost.HostState.Connected)
             {
                 IPEndPoint remote = GameInstance.HostTCP.GetConnectedEnpoint();
-                GameInstance.UDPReceive.StartUdpReceive(k_listenPort);
-                GameInstance.UDPSend.StartUdpSend(remote.Address.ToString(), k_listenPort);
+                GameInstance.UDPReceive.StartUdpReceive(k_gamePort);
+                GameInstance.UDPSend.StartUdpSend(remote.Address.ToString(), k_gamePort);
                 m_menuState = HostMenuState.Done;
                 GameInstance.SceneMan.LoadScene("HostGame");
             }

@@ -25,6 +25,7 @@ namespace SnakeGamePuc.Scripts.ClientMenu
             Done
         }
         private const float k_errorMsgTime = 5.0f;
+        private const int k_gamePort = 7778;
 
         private List<UI> m_clientUI;
         private UIInputField m_inputField;

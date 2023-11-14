@@ -51,21 +51,28 @@ namespace SnakeGamePuc.Scripts.NetGame.ClientGame
             if (pos.X > 128) pos.X -= 256;
             if (pos.Y > 128) pos.Y -= 256;
 
-            if (_msg.T == 5)
+
+            switch(_msg.T)
             {
-                CreateShadowApple(pos);
+                case 1:
+                    DeleteShadowApple();
+                    SnakeCtrl.EatApple();
+                    break;
+                case 2:
+                    DeleteShadowApple();
+                    break;
+                case 3:
+                    EndGame(MPlayerEndGameType.Win);
+                    break;
+                case 4:
+                    EndGame(MPlayerEndGameType.Lose);
+                    break;
+                case 5:
+                    CreateShadowApple(pos);
+                    break;
+                default: 
+                    break;
             }
-            else if (_msg.T == 1)
-            {
-                DeleteShadowApple();
-                SnakeCtrl.EatApple();
-            }
-            else if (_msg.T == 2)
-                DeleteShadowApple();
-            else if (_msg.T == 3)
-                GameInstance.SceneMan.LoadScene("WinScene");
-            else if (_msg.T == 4)
-                GameInstance.SceneMan.LoadScene("LoseScene");
         }
         private void GetGameEvents()
         {
@@ -96,6 +103,28 @@ namespace SnakeGamePuc.Scripts.NetGame.ClientGame
         {
             byte[] bytes = SnakeCtrl.SerializeSnake();
             if(bytes != null) m_udpSend.SendData(bytes);
+        }
+
+        private void TurnOffNet()
+        {
+
+        }
+
+        private void EndGame(MPlayerEndGameType _endGameType)
+        {
+            TurnOffNet();
+            switch (_endGameType)
+            {
+                case MPlayerEndGameType.Disconnect:
+                    GameInstance.SceneMan.LoadScene("Disconnect");
+                    break;
+                case MPlayerEndGameType.Lose:
+                    GameInstance.SceneMan.LoadScene("LoseScene");
+                    break;
+                case MPlayerEndGameType.Win:
+                    GameInstance.SceneMan.LoadScene("WinScene");
+                    break;
+            }
         }
         protected override void CheckDisconnect()
         {

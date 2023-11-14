@@ -11,7 +11,7 @@ using System.Windows.Interop;
 
 namespace GameEngine.Debug
 {
-    internal class GameEngineDebugger : ThreadedModule, IDebugger
+    internal class GameEngineDebugger : GameEngineDebuggerBase
     {
         private const int k_maxBufferSize = 100;
         private readonly string r_logPath = "log_" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".txt";
@@ -60,19 +60,19 @@ namespace GameEngine.Debug
         {
         }
 
-        public void LogMsg(string _msg)
+        public override void LogMsg(string _msg)
         {
             if(m_msgBuffer.Count < k_maxBufferSize)
                 m_msgBuffer.Enqueue(_msg);
         }
 
-        public void LogWarningMsg(string _msg)
+        public override void LogWarningMsg(string _msg)
         {
             if (m_msgBuffer.Count < k_maxBufferSize)
                 m_msgBuffer.Enqueue("!WARNING! " + _msg);
         }
 
-        public void LogErrorMsg(string _msg)
+        public override void LogErrorMsg(string _msg)
         {
             if (m_msgBuffer.Count < k_maxBufferSize)
                 m_msgBuffer.Enqueue("!ERROR! " + _msg);

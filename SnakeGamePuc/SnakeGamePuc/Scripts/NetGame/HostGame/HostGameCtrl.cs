@@ -12,6 +12,7 @@ namespace SnakeGamePuc.Scripts.NetGame.HostGame
 {
     internal class HostGameCtrl : MPlayerGameCtrl
     {
+
         private List<Vector2> m_possibleSpawnPos;
         private int m_gameAreaX;
         private int m_gameAreaY;

@@ -17,7 +17,7 @@ namespace GameEngine
         private enum EngineState { FirstFrame, Running, Exiting, ChangeScene }
 
         //Engine systems
-        private GameEngineDebugger m_debugger;
+        private GameEngineDebuggerBase m_debugger;
         private InputSystem m_inputSystem;
         private Physics2D m_physics2D;
         private SceneManager m_sceneManager;
@@ -43,9 +43,9 @@ namespace GameEngine
         public static UdpReceive UDPReceive { get => Instance.m_udpHost; }
         public static UdpSend UDPSend { get => Instance.m_udpClient; }
 
-        public GameInstance(IRenderer _renderer, GameScene[] _gameScenes, string _firstSceneToLoad)
+        public GameInstance(IRenderer _renderer, GameScene[] _gameScenes, string _firstSceneToLoad, bool _debbug = false)
         {
-            m_debugger = new GameEngineDebugger();
+            m_debugger = _debbug ? new GameEngineDebugger() : new MockDebugger();
             m_tcpHost = new TcpHost();
             m_tcpClient = new TcpClient();
             m_udpHost = new UdpReceive();
@@ -73,9 +73,7 @@ namespace GameEngine
         private void WaitForRenderThread()
         {
             bool renderThreadDone = false;
-            while(!(m_renderer.CheckIfFrameFinishedRendering(out renderThreadDone) && renderThreadDone))
-            { 
-            }
+            while (!(m_renderer.CheckIfFrameFinishedRendering(out renderThreadDone) && renderThreadDone)) ;
         }
 
         private void UpdateInput()

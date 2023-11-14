@@ -33,7 +33,7 @@ namespace GameEngine.Patterns
         protected abstract void OnModuleStop();
         protected abstract void PreThreadModuleStart();
         protected abstract void PreThreadModuleStop();
-        internal void StartModuleThread()
+        internal virtual void StartModuleThread()
         {
             if (!m_run)
             {
@@ -42,7 +42,7 @@ namespace GameEngine.Patterns
                 m_thread.Start();
             }
         }
-        internal void StopModuleThread()
+        internal virtual void StopModuleThread()
         {
             if (m_run)
             {
