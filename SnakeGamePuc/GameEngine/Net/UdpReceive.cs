@@ -83,6 +83,7 @@ namespace GameEngine.Net
         {
             m_currentState = UdpReceiveState.Idle;
             m_sleep = true;
+            m_threadBuffer = new byte[0];
         }
 
         protected override void PreThreadModuleStop()
