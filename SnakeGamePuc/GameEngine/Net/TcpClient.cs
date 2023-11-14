@@ -1,16 +1,8 @@
 ﻿using GameEngine.Exceptions;
-using GameEngine.Patterns;
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
-using System.Net.NetworkInformation;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using static GameEngine.Net.TcpHost;
 
 namespace GameEngine.Net
 {
@@ -115,15 +107,23 @@ namespace GameEngine.Net
             byte[] buffer = new byte[3];
             if (m_receiveBuffer.Count < k_maxQueueSize)
             {
-                if (m_client.Receive(buffer) > 0)
+
+                try
                 {
-                    m_receiveBuffer.Enqueue(buffer);
+                    if (m_client.Receive(buffer) > 0)
+                    {
+                        m_receiveBuffer.Enqueue(buffer);
+                    }
+                }catch(SocketException e)
+                {
+                    GameInstance.Debug.LogWarningMsg(e.ToString());
+                    StopNetModule();
                 }
             }
             else
                 GameInstance.Debug.LogErrorMsg("TCP Receive Queue FULL!");
         }
-
+        /*
         private void SendMessages()
         {
             byte[] msg;
@@ -140,19 +140,11 @@ namespace GameEngine.Net
                 }
             }
         }
+        */
 
         protected override void ModuleLoop()
         {
             base.ModuleLoop();
-            /*
-            byte[] msg;
-            while (m_sendBuffer.Count > 0)
-            {
-                if (m_sendBuffer.TryDequeue(out msg) && msg.Length > 0)
-                {
-                }
-            }
-            */
             switch (m_currentState)
             {
                 case ClientState.Idle:
@@ -183,7 +175,7 @@ namespace GameEngine.Net
             m_asyncConnect = null;
             m_waitAcceptStopWatch = null;
             m_connectEndpoint = null;
-    }
+        }
 
         protected override void PreThreadModuleStart()
         {

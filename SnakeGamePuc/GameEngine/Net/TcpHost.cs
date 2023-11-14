@@ -122,12 +122,20 @@ namespace GameEngine.Net
             {
                 if (m_sendBuffer.TryDequeue(out msg) && msg.Length > 0)
                 {
-                    if(m_handler.Send(msg) != msg.Length)
+                    try 
+                    { 
+                        if(m_handler.Send(msg) != msg.Length)
+                        {
+                            m_listener?.Close();
+                            m_handler.Close();
+                            m_currentState = HostState.Idle;
+                            GameInstance.Debug.LogWarningMsg("TCP Disconnected!");
+                        }
+                    }
+                    catch (SocketException e)
                     {
-                        m_listener?.Close();
-                        m_handler.Close();
-                        m_currentState = HostState.Idle;
-                        GameInstance.Debug.LogWarningMsg("TCP Disconnected!");
+                        GameInstance.Debug.LogWarningMsg(e.ToString());
+                        StopNetModule();
                     }
                 }
             }
