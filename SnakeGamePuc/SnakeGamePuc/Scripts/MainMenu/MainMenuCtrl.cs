@@ -11,22 +11,34 @@ namespace SnakeGamePuc.Scripts.MainMenu
 {
     internal class MainMenuCtrl : Script
     {
-        public MainMenuCtrl(GameObject _attachedGameObject) : base(_attachedGameObject)
+        SoundEmitter m_intro;
+        public MainMenuCtrl(GameObject _attachedGameObject, SoundEmitter _intro) : base(_attachedGameObject)
         {
+            m_intro = _intro;
         }
 
         public override void Start()
         {
+            m_intro.Play();
         }
 
         public override void Update()
         {
-            if (GameInstance.Input.KeyPressed(InputKey.Key1)) 
+            if (GameInstance.Input.KeyPressed(InputKey.Key1))
+            {
+                m_intro.Stop();
                 GameInstance.SceneMan.LoadScene("SinglePlayerScene");
-            else if (GameInstance.Input.KeyPressed(InputKey.Key2)) 
+            }
+            else if (GameInstance.Input.KeyPressed(InputKey.Key2))
+            {
+                m_intro.Stop();
                 GameInstance.SceneMan.LoadScene("MultiplayerMenu");
-            else if (GameInstance.Input.KeyPressed(InputKey.Key3)) 
+            }
+            else if (GameInstance.Input.KeyPressed(InputKey.Key3))
+            {
+                m_intro.Stop();
                 GameInstance.QuitGame();
+            }
         }
     }
 }

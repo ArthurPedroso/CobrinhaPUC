@@ -26,9 +26,11 @@ namespace SnakeGamePuc.Scripts.NetGame.ClientGame
 
         protected TcpClient m_tcpClient;
         private GameObject m_apple;
-        public ClientGameCtrl(GameObject _attachedGameObject) : base(_attachedGameObject)
+
+        public ClientGameCtrl(GameObject _attachedGameObject, SoundEmitter _soundEmitter, SoundEmitter _failureSound, SoundEmitter _winSound, SoundEmitter _music) : base(_attachedGameObject, _soundEmitter, _failureSound, _winSound, _music)
         {
         }
+
         private void CreateShadowApple(Vector2 _coord)
         {
             GameObject apple = new GameObject("Apple");
@@ -56,10 +58,12 @@ namespace SnakeGamePuc.Scripts.NetGame.ClientGame
             switch(_msg.T)
             {
                 case 1:
+                    m_onAppleEatSound.Play();
                     DeleteShadowApple();
                     SnakeCtrl.EatApple();
                     break;
                 case 2:
+                    m_onAppleEatSound.Play();
                     DeleteShadowApple();
                     break;
                 case 3:
@@ -118,12 +122,18 @@ namespace SnakeGamePuc.Scripts.NetGame.ClientGame
             switch (_endGameType)
             {
                 case MPlayerEndGameType.Disconnect:
+                    m_music.Stop();
+                    m_failureSound.Play();
                     GameInstance.SceneMan.LoadScene("Disconnect");
                     break;
                 case MPlayerEndGameType.Lose:
+                    m_music.Stop();
+                    m_failureSound.Play();
                     GameInstance.SceneMan.LoadScene("LoseScene");
                     break;
                 case MPlayerEndGameType.Win:
+                    m_music.Stop();
+                    m_winSound.Play();
                     GameInstance.SceneMan.LoadScene("WinScene");
                     break;
             }
@@ -167,6 +177,7 @@ namespace SnakeGamePuc.Scripts.NetGame.ClientGame
             {
                 if (GameInstance.Input.KeyPressed(InputKey.Esc))
                 {
+                    m_music.Stop();
                     TurnOffNet();
                     GameInstance.SceneMan.LoadScene("MainMenu");
                 }

@@ -11,14 +11,21 @@ namespace GameEngine.Components
     public class SoundEmitter : Component
     {
         SoundPlayer m_sound;
-        public SoundEmitter(GameObject _attachedGameObject, Stream? _sound) : base(_attachedGameObject)
+        readonly bool r_loop;
+        public SoundEmitter(GameObject _attachedGameObject, Stream? _sound, bool _loop = false) : base(_attachedGameObject)
         {
             m_sound = new SoundPlayer(_sound);
+            r_loop = _loop;
         }
 
         public void Play()
         { 
-            m_sound.Play();
+            if(r_loop) m_sound.PlayLooping();
+            else m_sound.Play();
+        }
+        public void Stop() 
+        {
+            m_sound.Stop();
         }
     }
 }

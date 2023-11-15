@@ -148,8 +148,9 @@ namespace SnakeGamePuc
         internal static GameObject BuildMainMenuCtrl()
         {
             GameObject ui = new GameObject("UiCtrl");
+            SoundEmitter intro = new SoundEmitter(ui, Resources.IntroSound);
 
-            ui.AttachComponent(new MainMenuCtrl(ui));
+            ui.AttachComponent(new MainMenuCtrl(ui, intro));
 
             return ui;
         }
@@ -287,7 +288,15 @@ namespace SnakeGamePuc
         {
             GameObject snakeGameCtrl = new GameObject("SnakeGameCtrl");
 
-            snakeGameCtrl.AttachComponent(new HostGameCtrl(snakeGameCtrl));
+            SoundEmitter appleEat = new SoundEmitter(snakeGameCtrl, Resources.OnAppleEaten);
+            SoundEmitter failure = new SoundEmitter(snakeGameCtrl, Resources.Failure);
+            SoundEmitter win = new SoundEmitter(snakeGameCtrl, Resources.OnWin);
+            SoundEmitter music = new SoundEmitter(snakeGameCtrl, Resources.Music, true);
+
+            snakeGameCtrl.AttachComponent(new HostGameCtrl(snakeGameCtrl, appleEat, failure, win, music));
+            snakeGameCtrl.AttachComponent(appleEat);
+            snakeGameCtrl.AttachComponent(failure);
+            snakeGameCtrl.AttachComponent(win);
 
             return snakeGameCtrl;
         }
@@ -317,7 +326,15 @@ namespace SnakeGamePuc
         {
             GameObject snakeGameCtrl = new GameObject("SnakeGameCtrl");
 
-            snakeGameCtrl.AttachComponent(new ClientGameCtrl(snakeGameCtrl));
+            SoundEmitter appleEat = new SoundEmitter(snakeGameCtrl, Resources.OnAppleEaten);
+            SoundEmitter failure = new SoundEmitter(snakeGameCtrl, Resources.Failure);
+            SoundEmitter win = new SoundEmitter(snakeGameCtrl, Resources.OnWin);
+            SoundEmitter music = new SoundEmitter(snakeGameCtrl, Resources.Music, true);
+
+            snakeGameCtrl.AttachComponent(new ClientGameCtrl(snakeGameCtrl, appleEat, failure, win, music));
+            snakeGameCtrl.AttachComponent(appleEat);
+            snakeGameCtrl.AttachComponent(failure);
+            snakeGameCtrl.AttachComponent(win);
 
             return snakeGameCtrl;
         }

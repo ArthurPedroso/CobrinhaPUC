@@ -13,9 +13,17 @@ namespace SnakeGamePuc.Scripts.NetGame
     {
         protected UdpReceive m_udpReceive;
         protected UdpSend m_udpSend;
+        protected SoundEmitter m_onAppleEatSound;
+        protected SoundEmitter m_failureSound;
+        protected SoundEmitter m_winSound;
+        protected SoundEmitter m_music;
 
-        protected MPlayerGameCtrl(GameObject _attachedGameObject) : base(_attachedGameObject)
+        protected MPlayerGameCtrl(GameObject _attachedGameObject, SoundEmitter _soundEmitter, SoundEmitter _failureSound, SoundEmitter _winSound, SoundEmitter _music) : base(_attachedGameObject)
         {
+            m_onAppleEatSound = _soundEmitter;
+            m_failureSound = _failureSound;
+            m_winSound = _winSound;
+            m_music = _music;
         }
 
         protected abstract void OnDisconnect();
@@ -41,6 +49,7 @@ namespace SnakeGamePuc.Scripts.NetGame
         {
             m_udpReceive = GameInstance.UDPReceive;
             m_udpSend = GameInstance.UDPSend;
+            m_music.Play();
         }
     }
 }
