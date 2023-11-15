@@ -49,7 +49,7 @@ namespace SnakeGamePuc.Scripts.NetGame
         {
             m_udpReceive = GameInstance.UDPReceive;
             m_udpSend = GameInstance.UDPSend;
-            m_music.Play();
+            //m_music.Play();
         }
     }
 }
