@@ -28,7 +28,7 @@ namespace SnakeGamePuc
                 new DisconnectScene(),
             };
 
-            GameInstance instance = new GameInstance(new ASCIIRenderer(16, 16, 8), m_gameScenes, "MainMenu", true);
+            GameInstance instance = new GameInstance(new ASCIIRenderer(16, 16, 30), m_gameScenes, "MainMenu", false);
 
             instance.Run();
         }
