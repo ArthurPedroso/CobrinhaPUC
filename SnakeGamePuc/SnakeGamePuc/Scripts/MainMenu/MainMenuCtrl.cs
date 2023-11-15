@@ -19,7 +19,7 @@ namespace SnakeGamePuc.Scripts.MainMenu
 
         public override void Start()
         {
-            m_intro.Play();
+            //m_intro.Play();
         }
 
         public override void Update()
