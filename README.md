@@ -1,7 +1,10 @@
-# CobrinhaPUC
-Projeto de Engenharia de Software e Gestão de Projetos da PUC-SP
+# CobrinhaPUC - A Multiplayer Snake Game
 
-## Audios Utilizados:
-- Musica De Menu: https://freesound.org/people/sonically_sound/sounds/624644/
-- Musica De Combate: https://freesound.org/people/joshuaempyre/sounds/250856/
-- Som de Vitoria: https://freesound.org/people/Unlistenable/sounds/391539/
+This is a multiplayer snake game built using a custom game engine. The game engine was initially constructed for command-line use but can be adapted to utilize graphical APIs for enhanced visuals. The multiplayer functionality is supported through the use of TCP and UDP protocols.
+
+## Features
+
+- **Multiplayer:** Engage in an interactive multiplayer snake game.
+- **Custom Game Engine:** Utilizes a custom-built game engine for rendering, collision, and gameplay mechanics.
+- **Adaptable Graphics:** The engine, while initially designed for the command line, can be modified to incorporate graphical APIs for better visual representation.
+- **Networking Protocols:** Implements both TCP and UDP protocols for multiplayer interaction.
