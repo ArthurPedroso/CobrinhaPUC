@@ -1,32 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="15.1">
-  <help_text>Space for diagram notes</help_text>
-  <zoom_level>6</zoom_level>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>168</x>
-      <y>828</y>
-      <w>126</w>
-      <h>48</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
+<diagram program="umletino" version="15.1"><zoom_level>11</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>33</x><y>1518</y><w>231</w><h>88</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
 *Encantador de Serpentes*
 --
 -nome: string
 -input: Input
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>468</x>
-      <y>816</y>
-      <w>126</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>583</x><y>1496</y><w>231</w><h>165</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
 *Serpente*
 --
 -tamanho: int
@@ -37,385 +14,88 @@ bg=green</panel_attributes>
 +moverCobraDireita(): void
 +moverCobraEsquerda(): void
 
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>288</x>
-      <y>840</y>
-      <w>192</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;association&gt;&gt;
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>253</x><y>1540</y><w>352</w><h>55</h></coordinates><panel_attributes>&lt;&lt;association&gt;&gt;
 m2=1
-Controla a serpente &gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;300.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>282</x>
-      <y>606</y>
-      <w>126</w>
-      <h>42</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
+Controla a serpente &gt;</panel_attributes><additional_attributes>10;20;300;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>242</x><y>1111</y><w>231</w><h>77</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
 *Jogo da Cobrinha*
 --
 
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>222</x>
-      <y>624</y>
-      <w>72</w>
-      <h>216</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>132</x><y>1144</y><w>132</w><h>396</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=
 m2=1
 
-&lt;&lt;aggregation&gt;&gt;</panel_attributes>
-    <additional_attributes>100.0;10.0;10.0;10.0;10.0;340.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>336</x>
-      <y>756</y>
-      <w>144</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+&lt;&lt;aggregation&gt;&gt;</panel_attributes><additional_attributes>100;10;10;10;10;340</additional_attributes></element><element><id>Relation</id><coordinates><x>341</x><y>1386</y><w>264</w><h>165</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=
 m2=1
 
-&lt;&lt;aggregation&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;120.0;220.0;120.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>282</x>
-      <y>708</y>
-      <w>126</w>
-      <h>54</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
+&lt;&lt;aggregation&gt;&gt;</panel_attributes><additional_attributes>10;10;10;120;220;120</additional_attributes></element><element><id>UMLClass</id><coordinates><x>242</x><y>1298</y><w>231</w><h>99</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
 *Campo da Serpente*
 --
 -altura: int
 -largura: int
 -limitesDoCampo: Parede[4]
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>336</x>
-      <y>642</y>
-      <w>72</w>
-      <h>78</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>341</x><y>1177</y><w>121</w><h>143</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=
 m2=1
 
-&lt;&lt;aggregation&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>684</x>
-      <y>816</y>
-      <w>114</w>
-      <h>48</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
+&lt;&lt;aggregation&gt;&gt;</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>UMLClass</id><coordinates><x>979</x><y>1496</y><w>209</w><h>88</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
 *Maçã*
 --
 -colisor: Colisor
 -sprite: \Sprite\
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>588</x>
-      <y>840</y>
-      <w>108</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;association&gt;&gt;
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>803</x><y>1540</y><w>198</w><h>55</h></coordinates><panel_attributes>&lt;&lt;association&gt;&gt;
 m2=1
-Come a maçã &gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>402</x>
-      <y>726</y>
-      <w>294</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;association&gt;&gt;
+Come a maçã &gt;</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>Relation</id><coordinates><x>462</x><y>1331</y><w>539</w><h>220</h></coordinates><panel_attributes>&lt;&lt;association&gt;&gt;
 m2=1
-Gera novas maçãs &gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;80.0;10.0;80.0;100.0;410.0;100.0;410.0;170.0;470.0;170.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>930</x>
-      <y>594</y>
-      <w>66</w>
-      <h>48</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Struct&gt;&gt;
+Gera novas maçãs &gt;</panel_attributes><additional_attributes>10;10;80;10;80;100;410;100;410;170;470;170</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1430</x><y>1089</y><w>121</w><h>88</h></coordinates><panel_attributes>&lt;&lt;Struct&gt;&gt;
 *Vector2*
 --
 +X: float
 +Y: float
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1020</x>
-      <y>498</y>
-      <w>288</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1595</x><y>913</y><w>528</w><h>110</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
 *IRenderizador*
 --
 +renderizarFrame(sprites: SpriteImagem[], asciiSprites: SpriteASCII[]) :void
 +renderizarFrame(asciiSprites: RenderizadorDeSpritesASCII[]) :void
 +renderizarFrame(sprites: SpriteImagem[]) :void
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1086</x>
-      <y>576</y>
-      <w>120</w>
-      <h>42</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1716</x><y>1056</y><w>220</w><h>77</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
 *RenderizadorASCII*
 --
 
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1140</x>
-      <y>552</y>
-      <w>18</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1038</x>
-      <y>786</y>
-      <w>120</w>
-      <h>42</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1815</x><y>1012</y><w>33</w><h>66</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;40;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1628</x><y>1441</y><w>220</w><h>77</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
 /Sprite/
 --
 -pronfundidade: int
 --
 
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>972</x>
-      <y>876</y>
-      <w>120</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1507</x><y>1606</y><w>220</w><h>66</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
 SpriteImagem
 --
 
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1026</x>
-      <y>822</y>
-      <w>84</w>
-      <h>66</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;90.0;120.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1104</x>
-      <y>876</y>
-      <w>120</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1606</x><y>1507</y><w>154</w><h>121</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>120;10;10;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1749</x><y>1606</y><w>220</w><h>66</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
 SpriteASCII
 --
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1092</x>
-      <y>822</y>
-      <w>84</w>
-      <h>66</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>120.0;90.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1038</x>
-      <y>678</y>
-      <w>126</w>
-      <h>42</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1727</x><y>1507</y><w>154</w><h>121</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;120;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1628</x><y>1243</y><w>231</w><h>77</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
 /Componente/
 --
 #objetoAnexado: ObjetoDeJogo
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1092</x>
-      <y>714</y>
-      <w>18</w>
-      <h>84</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>978</x>
-      <y>522</y>
-      <w>54</w>
-      <h>18</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>870</x>
-      <y>786</y>
-      <w>162</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1727</x><y>1309</y><w>33</w><h>154</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;120</additional_attributes></element><element><id>Relation</id><coordinates><x>1518</x><y>957</y><w>99</w><h>33</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;70;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1320</x><y>1441</y><w>297</w><h>110</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
 Colisor
 --
 -formato: Retangulo
 --
 +eventoDeColisao(outroColisor: Colisor) : void
 bg=green
-+getColisor(): Retangulo</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>948</x>
-      <y>714</y>
-      <w>162</w>
-      <h>84</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;120.0;250.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1086</x>
-      <y>630</y>
-      <w>150</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
++getColisor(): Retangulo</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1463</x><y>1309</y><w>297</w><h>154</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>250;10;10;120</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1716</x><y>1155</y><w>275</w><h>66</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
 *Fisica*
 --
 +calcularColisoes(colisores: Colisor[])
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>978</x>
-      <y>534</y>
-      <w>120</w>
-      <h>126</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;40.0;10.0;40.0;190.0;180.0;190.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>852</x>
-      <y>594</y>
-      <w>66</w>
-      <h>48</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Struct&gt;&gt;
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1518</x><y>979</y><w>220</w><h>231</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;40;10;40;190;180;190</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1287</x><y>1089</y><w>121</w><h>88</h></coordinates><panel_attributes>&lt;&lt;Struct&gt;&gt;
 *Retangulo*
 --
 +Inicio: Vector2
 +Fim: Vector2
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>852</x>
-      <y>678</y>
-      <w>120</w>
-      <h>66</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1287</x><y>1243</y><w>220</w><h>121</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
 /ObjetoDeJogo/
 --
 -posicao: Vector2
@@ -423,168 +103,25 @@ bg=green</panel_attributes>
 --
 +iniciar(): void
 +atualizar(): void
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>966</x>
-      <y>696</y>
-      <w>84</w>
-      <h>18</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>762</x>
-      <y>738</y>
-      <w>162</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>250.0;10.0;250.0;70.0;10.0;70.0;10.0;130.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>522</x>
-      <y>738</y>
-      <w>384</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>620.0;10.0;620.0;40.0;200.0;40.0;200.0;110.0;10.0;110.0;10.0;130.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>498</x>
-      <y>696</y>
-      <w>126</w>
-      <h>54</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1496</x><y>1276</y><w>154</w><h>33</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;120;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1122</x><y>1353</y><w>297</w><h>165</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>250;10;250;70;10;70;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>682</x><y>1353</y><w>704</w><h>165</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>620;10;620;40;200;40;200;110;10;110;10;130</additional_attributes></element><element><id>UMLClass</id><coordinates><x>638</x><y>1276</y><w>231</w><h>99</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
 *Parede*
 --
 -altura: int
 -largura: int
 -colisor: Colisor
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>558</x>
-      <y>666</y>
-      <w>330</w>
-      <h>102</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>530.0;130.0;530.0;150.0;150.0;150.0;150.0;10.0;10.0;10.0;10.0;50.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>402</x>
-      <y>708</y>
-      <w>108</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>748</x><y>1221</y><w>605</w><h>187</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>530;130;530;150;150;150;150;10;10;10;10;50</additional_attributes></element><element><id>Relation</id><coordinates><x>462</x><y>1298</y><w>198</w><h>55</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=
 m2=4
 
-&lt;&lt;aggregation&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>846</x>
-      <y>474</y>
-      <w>468</w>
-      <h>450</h>
-    </coordinates>
-    <panel_attributes>GameEngine..</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>858</x>
-      <y>504</y>
-      <w>126</w>
-      <h>42</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
+&lt;&lt;aggregation&gt;&gt;</panel_attributes><additional_attributes>10;20;160;20</additional_attributes></element><element><id>UMLNote</id><coordinates><x>1276</x><y>869</y><w>858</w><h>825</h></coordinates><panel_attributes>GameEngine..</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1298</x><y>924</y><w>231</w><h>77</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
 /Game/
 --
 
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>336</x>
-      <y>540</y>
-      <w>594</w>
-      <h>78</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>970.0;10.0;970.0;70.0;10.0;70.0;10.0;110.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>372</x>
-      <y>0</y>
-      <w>876</w>
-      <h>414</h>
-    </coordinates>
-    <panel_attributes>ConexãoMultiplayer..
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1164</x>
-      <y>786</y>
-      <w>108</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>341</x><y>990</y><w>1089</w><h>143</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>970;10;970;70;10;70;10;110</additional_attributes></element><element><id>UMLNote</id><coordinates><x>407</x><y>0</y><w>1606</w><h>759</h></coordinates><panel_attributes>ConexãoMultiplayer..
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1859</x><y>1441</y><w>198</w><h>55</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
 Input
 --
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1092</x>
-      <y>714</y>
-      <w>138</w>
-      <h>84</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>210.0;120.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>768</x>
-      <y>24</y>
-      <w>120</w>
-      <h>78</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Abstract&gt;&gt;
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1727</x><y>1309</y><w>253</w><h>154</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;210;120</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1133</x><y>44</y><w>220</w><h>143</h></coordinates><panel_attributes>&lt;&lt;Abstract&gt;&gt;
 ThreadedModule
 --
 # m_thread: Thread
@@ -593,18 +130,7 @@ ThreadedModule
 + ThreadedModule()
 - ThreadLoop(): void
 StartModuleThread(): void
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>600</x>
-      <y>240</y>
-      <w>198</w>
-      <h>150</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>825</x><y>440</y><w>363</w><h>275</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
 TcpHost
 --
 + ClientHost: enum
@@ -620,58 +146,13 @@ TcpHost
 - WaitingConnection(): void
 - ReceiveMessages(): void
 - SendMessages(): void
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>768</x>
-      <y>132</y>
-      <w>120</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Abstract&gt;&gt;
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1133</x><y>242</y><w>220</w><h>110</h></coordinates><panel_attributes>&lt;&lt;Abstract&gt;&gt;
 ThreadedNETModule
 --
-- k_sleepTimeMS: int
-# m_sleep: bool
---
 # ModuleLoop(): void
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>822</x>
-      <y>96</y>
-      <w>18</w>
-      <h>48</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>696</x>
-      <y>186</y>
-      <w>144</w>
-      <h>66</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;90.0;220.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>390</x>
-      <y>240</y>
-      <w>198</w>
-      <h>150</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
++ StartNetModule(): void
++  StopNetModule(): void
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1232</x><y>176</y><w>33</w><h>88</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>1001</x><y>341</y><w>264</w><h>132</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>220;10;10;100</additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>440</y><w>363</w><h>275</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
 TcpClient
 --
 + ClientState: enum
@@ -687,29 +168,7 @@ TcpClient
 - WaitingConnection(): void
 - ReceiveMessages(): void
 - SendMessages(): void
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>480</x>
-      <y>186</y>
-      <w>360</w>
-      <h>66</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;90.0;580.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>816</x>
-      <y>240</y>
-      <w>198</w>
-      <h>150</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>616</x><y>341</y><w>649</w><h>121</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>570;10;10;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1221</x><y>440</y><w>363</w><h>275</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
 UdpClient
 --
 + ClientState: enum
@@ -725,29 +184,7 @@ UdpClient
 - WaitingConnection(): void
 - ReceiveMessages(): void
 - SendMessages(): void
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>822</x>
-      <y>186</y>
-      <w>108</w>
-      <h>66</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>160.0;90.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1026</x>
-      <y>240</y>
-      <w>198</w>
-      <h>150</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Class&gt;&gt;
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1232</x><y>341</y><w>187</w><h>121</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;150;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1606</x><y>440</y><w>363</w><h>275</h></coordinates><panel_attributes>&lt;&lt;Class&gt;&gt;
 UdpHost
 --
 + ClientHost: enum
@@ -763,74 +200,5 @@ UdpHost
 - WaitingConnection(): void
 - ReceiveMessages(): void
 - SendMessages(): void
-bg=green</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>822</x>
-      <y>186</y>
-      <w>318</w>
-      <h>66</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>510.0;90.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>150</x>
-      <y>564</y>
-      <w>660</w>
-      <h>360</h>
-    </coordinates>
-    <panel_attributes>Jogo da Cobrinha..
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>474</x>
-      <y>384</y>
-      <w>396</w>
-      <h>156</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>640.0;240.0;10.0;240.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>684</x>
-      <y>384</y>
-      <w>186</w>
-      <h>156</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>290.0;240.0;10.0;240.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>762</x>
-      <y>384</y>
-      <w>162</w>
-      <h>156</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>160.0;240.0;10.0;240.0;10.0;80.0;250.0;80.0;250.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>804</x>
-      <y>384</y>
-      <w>330</w>
-      <h>156</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>90.0;240.0;10.0;240.0;10.0;120.0;530.0;120.0;530.0;10.0</additional_attributes>
-  </element>
-</diagram>
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1232</x><y>341</y><w>572</w><h>121</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;500;90</additional_attributes></element><element><id>UMLNote</id><coordinates><x>0</x><y>1034</y><w>1210</w><h>660</h></coordinates><panel_attributes>Jogo da Cobrinha..
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>594</x><y>704</y><w>726</w><h>286</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>640;240;10;240;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>979</x><y>704</y><w>341</w><h>286</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>290;240;10;240;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1122</x><y>704</y><w>297</w><h>286</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>160;240;10;240;10;80;250;80;250;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1199</x><y>704</y><w>605</w><h>286</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>90;240;10;240;10;120;530;120;530;10</additional_attributes></element></diagram>
